@@ -8,11 +8,11 @@ var qiao = {};
 qiao.cli = require('qiao-cli');
 qiao.qec = require('../index.js');
 
-// cmd for icon
-qiao.cli.cmd.command('icon <iconPath>').description('generate electron application icon').action(icon);
+// cmd for icns
+qiao.cli.cmd.command('icns <iconPath>').description('generate electron application icon').action(icns);
 
-// generate icon
-async function icon(iconPath) {
+// generate icns
+async function icns(iconPath) {
   try {
     var cwd = process.cwd();
     if (iconPath.startsWith('./')) iconPath = path.resolve(cwd, iconPath);
