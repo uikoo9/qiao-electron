@@ -1,0 +1,4 @@
+node_modules
+
+packages/qiao-electron-cli/_demo
+packages/qiao-electron-demo

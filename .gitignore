@@ -1,0 +1,14 @@
+.idea
+.project
+.settings
+.externalToolBuilders
+
+dist
+jsdoc
+files_out
+node_modules
+
+config.json
+
+lerna-debug.log
+packages/qiao-electron-cli/_demo

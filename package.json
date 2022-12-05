@@ -1,0 +1,25 @@
+{
+  "name": "root",
+  "private": true,
+  "scripts": {
+    "check": "qlerna ncu ./packages",
+    "ncu": "lerna exec 'ncu -u'",
+    "clean": "lerna clean -y",
+    "init": "lerna bootstrap --hoist",
+    "build": "lerna run build --scope=qiao-electron",
+    "prettier": "prettier --write .",
+    "eslintfix": "eslint . --ext .js --fix",
+    "prepublish": "npm run build && npm run prettier && npm run eslintfix",
+    "dc": "qlerna dc ./packages",
+    "ls": "lerna ls -l",
+    "pkg": "qlerna pkg ./packages",
+    "dpkg": "qlerna pkg ./packages 1"
+  },
+  "devDependencies": {
+    "eslint": "^8.29.0",
+    "eslint-config-prettier": "^8.5.0",
+    "prettier": "^2.8.0",
+    "qiao-lerna": "^1.2.5",
+    "rollup": "^3.6.0"
+  }
+}
