@@ -10,7 +10,7 @@ const { dirname, resolve } = require('path');
 const { isExists, mkdir, rm } = require('qiao-file');
 
 // cp
-const child_process = require('child_process');
+const { exec } = require('child_process');
 
 // tmp dir
 let tmpDirName;
@@ -44,10 +44,10 @@ function tmpDir(iconPath) {
   if (!isExists(tmpDirName)) {
     const res = mkdir(`${tmpDirName}/`);
     if (!res) {
-      console.log(colors.red(`qiao-electron-cli, icns, mkdir failed: ${tmpDirName}`));
+      console.log(colors.red(`qiao-electron-cli, icns, tmpdir failed: ${tmpDirName}`));
       return false;
     } else {
-      console.log(colors.green(`qiao-electron-cli, icns, mkdir success: ${tmpDirName}`));
+      console.log(`qiao-electron-cli, icns, tmpdir success: ${tmpDirName}`);
     }
   }
 
@@ -71,13 +71,13 @@ function sips(options) {
   ];
 
   // bar
-  const bar = new progress(colors.green('qiao-electron-cli, icns, sips... :current/:total'), {
+  const bar = new progress('qiao-electron-cli, icns, sips... :current/:total', {
     total: cmds.length,
   });
 
   for (let i = 0; i < cmds.length; i++) {
     const cmd = cmds[i];
-    child_process.exec(cmd, options, function () {
+    exec(cmd, options, function () {
       bar.tick();
 
       // icns
@@ -91,11 +91,11 @@ function sips(options) {
 // icns
 function icns(options) {
   const cmd = 'iconutil -c icns tmp.iconset -o icon.icns';
-  child_process.exec(cmd, options, function (error) {
+  exec(cmd, options, function (error) {
     if (error) {
-      console.log(colors.red('qiao-electron-cli, icns, failed'));
+      console.log(colors.red('qiao-electron-cli, icns, iconutil: failed'));
     } else {
-      console.log(colors.green('qiao-electron-cli, icns, success'));
+      console.log('qiao-electron-cli, icns, iconutil: success');
       deleteTmpDir();
     }
   });
@@ -105,6 +105,8 @@ function icns(options) {
 function deleteTmpDir() {
   if (tmpDirName) {
     rm(`${tmpDirName}/`);
-    console.log(colors.green('qiao-electron-cli, icns, delete tmp.iconset success'));
+    console.log('qiao-electron-cli, icns, delete tmp.iconset success');
   }
+
+  console.log(colors.green('qiao-electron-cli, icns: success'));
 }
