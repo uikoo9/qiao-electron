@@ -47,7 +47,7 @@ function tmpDir(iconPath) {
       console.log(colors.red(`qiao-electron-cli, icns, tmpdir failed: ${tmpDirName}`));
       return false;
     } else {
-      console.log(`qiao-electron-cli, icns, tmpdir success: ${tmpDirName}`);
+      console.log('qiao-electron-cli, icns, tmpdir success');
     }
   }
 
@@ -95,7 +95,7 @@ function icns(options) {
     if (error) {
       console.log(colors.red('qiao-electron-cli, icns, iconutil: failed'));
     } else {
-      console.log('qiao-electron-cli, icns, iconutil: success');
+      console.log('qiao-electron-cli, icns, iconutil success');
       deleteTmpDir();
     }
   });
