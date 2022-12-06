@@ -18,9 +18,6 @@ async function icns(iconPath) {
     if (iconPath.startsWith('./')) iconPath = path.resolve(cwd, iconPath);
 
     qiao.qec.icns(iconPath);
-
-    console.log('generate electron application icon success!');
-    console.log();
   } catch (e) {
     console.log('generate electron application icon fail!');
     console.log();
