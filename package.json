@@ -2,6 +2,7 @@
   "name": "root",
   "private": true,
   "scripts": {
+    "prepare": "husky install",
     "check": "qlerna ncu ./packages",
     "ncu": "lerna exec 'ncu -u'",
     "clean": "lerna clean -y",
@@ -16,8 +17,11 @@
     "dpkg": "qlerna pkg ./packages 1"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.4.0",
+    "@commitlint/config-conventional": "^17.4.0",
     "eslint": "^8.31.0",
     "eslint-config-prettier": "^8.6.0",
+    "husky": "^8.0.3",
     "prettier": "^2.8.1",
     "qiao-lerna": "^1.2.7",
     "rollup": "^3.9.1"
