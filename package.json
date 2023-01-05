@@ -10,7 +10,8 @@
     "build": "lerna run build --scope=qiao-electron",
     "prettier": "prettier --write .",
     "eslintfix": "eslint . --ext .js --fix",
-    "postinstall": "npm run clean && npm run init && npm run build && npm run prettier && npm run eslintfix",
+    "lint": "npm run prettier && npm run eslintfix",
+    "postinstall": "npm run clean && npm run init && npm run build && npm run lint",
     "dc": "qlerna dc ./packages",
     "ls": "lerna ls -l",
     "pkg": "qlerna pkg ./packages",
@@ -22,6 +23,7 @@
     "eslint": "^8.31.0",
     "eslint-config-prettier": "^8.6.0",
     "husky": "^8.0.3",
+    "lint-staged": "^13.1.0",
     "prettier": "^2.8.1",
     "qiao-lerna": "^1.2.7",
     "rollup": "^3.9.1"
