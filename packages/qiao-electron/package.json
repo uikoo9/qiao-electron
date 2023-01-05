@@ -28,6 +28,6 @@
   "dependencies": {
     "qiao-config": "^1.0.3",
     "qiao-file": "^1.0.8",
-    "qiao-log": "^1.0.0"
+    "qiao-log": "^1.0.6"
   }
 }
