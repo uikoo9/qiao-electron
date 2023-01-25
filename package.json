@@ -18,14 +18,14 @@
     "dpkg": "qlerna pkg ./packages 1"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.4.0",
-    "@commitlint/config-conventional": "^17.4.0",
-    "eslint": "^8.31.0",
+    "@commitlint/cli": "^17.4.2",
+    "@commitlint/config-conventional": "^17.4.2",
+    "eslint": "^8.32.0",
     "eslint-config-prettier": "^8.6.0",
     "husky": "^8.0.3",
     "lint-staged": "^13.1.0",
-    "prettier": "^2.8.1",
-    "qiao-lerna": "^1.2.7",
-    "rollup": "^3.9.1"
+    "prettier": "^2.8.3",
+    "qiao-lerna": "^1.2.8",
+    "rollup": "^3.10.1"
   }
 }
