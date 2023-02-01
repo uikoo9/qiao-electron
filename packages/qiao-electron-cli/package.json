@@ -25,11 +25,11 @@
   },
   "dependencies": {
     "electron-packager": "^17.1.1",
-    "qiao-cli": "^1.1.0",
-    "qiao-file": "^1.0.8"
+    "qiao-cli": "^1.1.1",
+    "qiao-file": "^1.0.9"
   },
   "optionalDependencies": {
-    "appdmg": "^0.6.4",
-    "qiao-cos": "^2.2.1"
+    "appdmg": "^0.6.5",
+    "qiao-cos": "^2.2.2"
   }
 }
