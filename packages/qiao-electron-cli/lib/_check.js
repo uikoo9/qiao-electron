@@ -21,18 +21,20 @@ exports.checkConfig = function (config) {
   const appVersion = config.appVersion;
   const appCopyright = config.appCopyright;
 
-  // check consts
+  // check paths
   if (!srcPath) throw new Error('need config.srcPath params');
   if (!distPath) throw new Error('need config.distPath params');
   if (!srcFiles || !srcFiles.length) throw new Error('need config.srcFiles params');
   if (!outPath) throw new Error('need config.outPath params');
 
-  if (!arch) throw new Error('need config.arch params');
-
+  // others
   if (!appEnv) throw new Error('need config.appEnv params');
   if (!appName) throw new Error('need config.appName params');
   if (!appVersion) throw new Error('need config.appVersion params');
   if (!appCopyright) throw new Error('need config.appCopyright params');
+
+  // arch
+  if (!arch) throw new Error('need config.arch params');
 };
 
 /**

@@ -31,6 +31,17 @@ module.exports = async function (config) {
     appCopyright: config.appCopyright,
   };
 
+  // universal
+  if (config.arch === 'universal') {
+    options.osxUniversal = {
+      x64AppPath: `${config.outPath}/${config.appName}-darwin-x64/${config.appName}.app`,
+      arm64AppPath: `${config.outPath}/${config.appName}-darwin-arm64/${config.appName}.app`,
+      outAppPath: `${config.outPath}/${config.appName}-darwin-universal/${config.appName}.app`,
+    };
+
+    if (config.universalOptions) options.osxUniversal.x64ArchFiles = config.universalOptions;
+  }
+
   // packager
   return await packager(options);
 };
