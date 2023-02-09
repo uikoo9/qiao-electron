@@ -38,7 +38,7 @@ let config = {
   // app权限声明，会显示在关于面板上
   appCopyright: 'Copyright © 2022 xxx版权所有',
 
-  // app操作系统，详见https://electron.github.io/electron-packager/main/interfaces/electronpackager.options.html#arch
+  // app操作系统，mac下如果输入universal会打一个支持x64和arm64的包
   arch: 'arm64',
 
   // app应用包中的app文件夹是否使用asar格式，默认为false

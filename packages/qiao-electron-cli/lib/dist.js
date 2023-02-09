@@ -1,13 +1,13 @@
 'use strict';
 
 // path
-var path = require('path');
+const path = require('path');
 
 // q
-var q = require('qiao-file');
+const q = require('qiao-file');
 
 // checker
-var checker = require('./_check.js');
+const checker = require('./_check.js');
 
 /**
  * dist
@@ -20,22 +20,22 @@ module.exports = function (config) {
   // check
   checker.checkConfig(config);
 
-  // vars
-  var root = process.cwd();
-  var src = path.resolve(root, config.srcPath);
-  var dist = path.resolve(root, config.distPath);
-  var srcFiles = config.srcFiles;
+  // consts
+  const root = process.cwd();
+  const src = path.resolve(root, config.srcPath);
+  const dist = path.resolve(root, config.distPath);
+  const srcFiles = config.srcFiles;
 
   // mkdir
   mkDir(dist);
 
   // cp file or folder
-  for (var i = 0; i < srcFiles.length; i++) cpFileOrFolder(src, dist, srcFiles[i]);
+  for (let i = 0; i < srcFiles.length; i++) cpFileOrFolder(src, dist, srcFiles[i]);
 };
 
 // make electron-dist dir
 function mkDir(dir) {
-  var res = 'success';
+  let res = 'success';
   try {
     // rm
     if (q.isExists(dir)) q.rm(`${dir}/`);
@@ -52,10 +52,10 @@ function mkDir(dir) {
 
 // cp file or folder
 function cpFileOrFolder(src, dest, file) {
-  var srcFilePath = path.resolve(src, file);
-  var destFilePath = path.resolve(dest, file);
+  const srcFilePath = path.resolve(src, file);
+  const destFilePath = path.resolve(dest, file);
 
-  var res = 'success';
+  let res = 'success';
   try {
     q.cp(srcFilePath, destFilePath);
   } catch (e) {

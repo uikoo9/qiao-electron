@@ -1,10 +1,10 @@
 'use strict';
 
 // path
-var path = require('path');
+const path = require('path');
 
 // qiao
-var qiao = {};
+const qiao = {};
 qiao.cli = require('qiao-cli');
 qiao.qec = require('../index.js');
 
@@ -14,7 +14,7 @@ qiao.cli.cmd.command('dist <configPath>').alias('d').description('dist electron 
 // dist
 async function dist(configPath) {
   try {
-    var cwd = process.cwd();
+    const cwd = process.cwd();
     if (configPath.startsWith('./')) configPath = path.resolve(cwd, configPath);
 
     qiao.qec.dist(require(configPath));

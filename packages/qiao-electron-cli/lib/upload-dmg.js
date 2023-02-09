@@ -1,13 +1,13 @@
 'use strict';
 
 // path
-var path = require('path');
+const path = require('path');
 
 // q
-var q = require('qiao-cos');
+const q = require('qiao-cos');
 
 // checker
-var checker = require('./_check.js');
+const checker = require('./_check.js');
 
 /**
  * upload dmg
@@ -20,16 +20,16 @@ module.exports = async function (config) {
   checker.checkCosConfig(config);
 
   // cos config
-  var cosConfig = config.cosConfig;
-  var client = q(cosConfig);
+  const cosConfig = config.cosConfig;
+  const client = q(cosConfig);
 
   // dest path
-  var dmgName = `${config.appName}-${config.appEnv}-${config.appVersion}-${config.arch}`;
-  var dmgPath = path.resolve(process.cwd(), `${config.outPath}/dmg/${dmgName}.dmg`);
-  var destPath = `${cosConfig.destPath}${dmgName}.dmg`;
+  const dmgName = `${config.appName}-${config.appEnv}-${config.appVersion}-${config.arch}`;
+  const dmgPath = path.resolve(process.cwd(), `${config.outPath}/dmg/${dmgName}.dmg`);
+  const destPath = `${cosConfig.destPath}${dmgName}.dmg`;
 
   // rs
-  var rs = await client.uploadFileSync(destPath, dmgPath);
+  const rs = await client.uploadFileSync(destPath, dmgPath);
   if (!rs || !rs.Location) return;
 
   // return

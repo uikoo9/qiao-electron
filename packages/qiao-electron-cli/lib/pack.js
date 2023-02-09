@@ -1,13 +1,13 @@
 'use strict';
 
 // electron pakcager
-var packager = require('electron-packager');
+const packager = require('electron-packager');
 
 // checker
-var checker = require('./_check.js');
+const checker = require('./_check.js');
 
 // util
-var util = require('./_util.js');
+const util = require('./_util.js');
 
 /**
  * pack
@@ -19,7 +19,7 @@ module.exports = async function (config) {
   checker.checkConfig(config);
 
   // options
-  var options = {
+  const options = {
     overwrite: true,
     dir: config.distPath,
     out: config.outPath,

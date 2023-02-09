@@ -1,10 +1,10 @@
 'use strict';
 
 // path
-var path = require('path');
+const path = require('path');
 
 // qiao
-var qiao = {};
+const qiao = {};
 qiao.cli = require('qiao-cli');
 qiao.qec = require('../index.js');
 
@@ -14,7 +14,7 @@ qiao.cli.cmd.command('icns <iconPath>').description('generate electron applicati
 // generate icns
 async function icns(iconPath) {
   try {
-    var cwd = process.cwd();
+    const cwd = process.cwd();
     if (iconPath.startsWith('./')) iconPath = path.resolve(cwd, iconPath);
 
     qiao.qec.icns(iconPath);

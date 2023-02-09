@@ -1,5 +1,5 @@
 // os
-var os = require('os');
+const os = require('os');
 
 /**
  * get icon
@@ -9,7 +9,7 @@ var os = require('os');
 exports.getIcon = function (iconPath) {
   if (!iconPath) return;
 
-  var icon;
+  let icon;
   if (os.platform() == 'darwin') icon = `${iconPath}.icns`;
   if (os.platform() == 'win32') icon = `${iconPath}.ico`;
 

@@ -1,10 +1,10 @@
 'use strict';
 
 // path
-var path = require('path');
+const path = require('path');
 
 // qiao
-var qiao = {};
+const qiao = {};
 qiao.cli = require('qiao-cli');
 qiao.qec = require('../index.js');
 
@@ -14,7 +14,7 @@ qiao.cli.cmd.command('init <destPath>').description('init electron application')
 // init project
 async function init(destPath) {
   try {
-    var cwd = process.cwd();
+    const cwd = process.cwd();
     if (destPath.startsWith('./')) destPath = path.resolve(cwd, destPath);
 
     qiao.qec.init(destPath);

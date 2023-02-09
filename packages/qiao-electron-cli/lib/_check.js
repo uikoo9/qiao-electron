@@ -9,19 +9,19 @@ exports.checkConfig = function (config) {
   if (!config) throw new Error('need config params');
 
   // vars
-  var srcPath = config.srcPath;
-  var distPath = config.distPath;
-  var srcFiles = config.srcFiles;
-  var outPath = config.outPath;
+  const srcPath = config.srcPath;
+  const distPath = config.distPath;
+  const srcFiles = config.srcFiles;
+  const outPath = config.outPath;
 
-  var arch = config.arch;
+  const arch = config.arch;
 
-  var appEnv = config.appEnv;
-  var appName = config.appName;
-  var appVersion = config.appVersion;
-  var appCopyright = config.appCopyright;
+  const appEnv = config.appEnv;
+  const appName = config.appName;
+  const appVersion = config.appVersion;
+  const appCopyright = config.appCopyright;
 
-  // check vars
+  // check consts
   if (!srcPath) throw new Error('need config.srcPath params');
   if (!distPath) throw new Error('need config.distPath params');
   if (!srcFiles || !srcFiles.length) throw new Error('need config.srcFiles params');
@@ -44,7 +44,7 @@ exports.checkCosConfig = function (config) {
   if (!config || !config.cosConfig) throw new Error('need config.cosConfig params');
 
   // cos config
-  var cosConfig = config.cosConfig;
+  const cosConfig = config.cosConfig;
   if (!cosConfig.SecretId) throw new Error('need config.cosConfig.SecretId params');
   if (!cosConfig.SecretKey) throw new Error('need config.cosConfig.SecretKey params');
   if (!cosConfig.Region) throw new Error('need config.cosConfig.Region params');

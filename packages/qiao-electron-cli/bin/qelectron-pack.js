@@ -1,10 +1,10 @@
 'use strict';
 
 // path
-var path = require('path');
+const path = require('path');
 
 // qiao
-var qiao = {};
+const qiao = {};
 qiao.cli = require('qiao-cli');
 qiao.qec = require('../index.js');
 
@@ -17,7 +17,7 @@ qiao.cli.cmd.command('packwin <configPath>').alias('pw').description('pack elect
 // pack
 async function pack(configPath) {
   try {
-    var cwd = process.cwd();
+    const cwd = process.cwd();
     if (configPath.startsWith('./')) configPath = path.resolve(cwd, configPath);
 
     await qiao.qec.pack(require(configPath));
