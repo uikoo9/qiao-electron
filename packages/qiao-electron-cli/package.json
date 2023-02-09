@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "electron-packager": "^17.1.1",
+    "electron-installer-zip": "^0.1.2",
     "qiao-cli": "^1.1.1",
     "qiao-file": "^1.0.9"
   },

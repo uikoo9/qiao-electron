@@ -108,6 +108,14 @@ qelectron dist|d /{yourconfigpath}/qiao-electron.config.js
 qelectron packmac|pm /{yourconfigpath}/qiao-electron.config.js
 ```
 
+### zip
+
+将 app 应用打包 zip 文件
+
+```bash
+qelectron zip|z /{yourconfigpath}/qiao-electron.config.js
+```
+
 ### packdmg
 
 打包 mac 下安装包 dmg 文件

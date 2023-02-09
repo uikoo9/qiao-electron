@@ -21,6 +21,11 @@ exports.dist = require('./lib/dist.js');
 exports.pack = require('./lib/pack.js');
 
 /**
+ * zip
+ */
+exports.zip = require('./lib/zip.js');
+
+/**
  * pack dmg
  */
 exports.packDmg = require('./lib/dmg/pack-dmg.js');
