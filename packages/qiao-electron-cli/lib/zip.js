@@ -12,24 +12,19 @@ const checker = require('./_check.js');
  * @returns
  */
 module.exports = async function (config) {
-  // check
-  checker.checkConfig(config);
+  return new Promise((resolve, reject) => {
+    // check
+    checker.checkConfig(config);
 
-  // opts
-  const opts = {
-    dir: `${config.outPath}/${config.appName}-darwin-${config.arch}/${config.appName}.app`,
-    out: `${config.outPath}/`,
-  };
+    // opts
+    const opts = {
+      dir: `${config.outPath}/${config.appName}-darwin-${config.arch}/${config.appName}.app`,
+      out: `${config.outPath}/${config.appName}-darwin-${config.arch}/${config.appName}-${config.appVersion}.zip`,
+    };
 
-  // zip
-  zip(opts, function (err, res) {
-    if (err) {
-      console.log('zip file errored:');
-      console.error(err);
-
-      return;
-    }
-
-    console.log(`zip file success: ${res}`);
+    // zip
+    zip(opts, function (err, res) {
+      return err ? reject(err) : resolve(res);
+    });
   });
 };
