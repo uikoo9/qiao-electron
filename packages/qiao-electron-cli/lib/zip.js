@@ -18,8 +18,8 @@ module.exports = async function (config) {
 
     // opts
     const opts = {
-      dir: `${config.outPath}/${config.appName}-darwin-${config.arch}/${config.appName}.app`,
-      out: `${config.outPath}/${config.appName}-darwin-${config.arch}/${config.appName}-${config.appVersion}.zip`,
+      dir: `${config.outPath}/${config.appName}-${process.platform}-${config.arch}/${config.appName}.app`,
+      out: `${config.outPath}/${config.appName}-${process.platform}-${config.arch}/${config.appName}-${config.appVersion}.zip`,
     };
 
     // zip
