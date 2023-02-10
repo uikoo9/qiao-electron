@@ -18,9 +18,14 @@ module.exports = async function (config) {
 
     // opts
     const opts = {
-      dir: `${config.outPath}/${config.appName}-${process.platform}-${config.arch}/${config.appName}.app`,
       out: `${config.outPath}/${config.appName}-${process.platform}-${config.arch}/${config.appName}-${config.appVersion}.zip`,
     };
+
+    // os
+    if (process.platform == 'win32')
+      opts.dir = `${config.outPath}/${config.appName}-${process.platform}-${config.arch}`;
+    if (process.platform == 'darwin')
+      opts.dir = `${config.outPath}/${config.appName}-${process.platform}-${config.arch}/${config.appName}.app`;
 
     // zip
     zip(opts, function (err, res) {
