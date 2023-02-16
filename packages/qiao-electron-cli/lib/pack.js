@@ -24,7 +24,7 @@ module.exports = async function (config) {
     dir: config.distPath,
     out: config.outPath,
     arch: config.arch,
-    asar: !!config.asar,
+    asar: config.asar,
     name: config.appName,
     icon: util.getIcon(config.appIconPath),
     appVersion: config.appVersion,
