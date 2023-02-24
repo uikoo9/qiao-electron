@@ -2,6 +2,7 @@
 
 // electron pakcager
 const packager = require('electron-packager');
+const { serialHooks } = require('electron-packager/src/hooks');
 
 // checker
 const checker = require('./_check.js');
@@ -41,6 +42,11 @@ module.exports = async function (config) {
     };
 
     if (config.universalOptions) options.osxUniversal.x64ArchFiles = config.universalOptions;
+  }
+
+  // hooks
+  if (config.afterInitialize) {
+    options.afterInitialize = [serialHooks([config.afterInitialize])];
   }
 
   // packager
