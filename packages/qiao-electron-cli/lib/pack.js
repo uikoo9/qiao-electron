@@ -29,6 +29,7 @@ module.exports = async function (config) {
     icon: util.getIcon(config.appIconPath),
     appVersion: config.appVersion,
     appCopyright: config.appCopyright,
+    osxNotarize: config.osxNotarize,
   };
 
   // universal
