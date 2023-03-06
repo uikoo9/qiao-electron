@@ -32,6 +32,7 @@ module.exports = async function (config) {
     appCopyright: config.appCopyright,
 
     // darwin
+    appBundleId: config.appBundleId,
     osxSign: config.osxSign,
     osxNotarize: config.osxNotarize,
   };
