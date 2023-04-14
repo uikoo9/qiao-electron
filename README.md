@@ -2,18 +2,9 @@
 
 electron 方法集和打包工具
 
-## 方法集
+## packages
 
-[https://code.insistime.com/qiao-electron](https://code.insistime.com/qiao-electron)
-
-## 打包工具
-
-[https://code.insistime.com/qiao-electron-cli](https://code.insistime.com/qiao-electron-cli)
-
-## sqlite
-
-[https://code.insistime.com/qiao-sqlite#/](https://code.insistime.com/qiao-sqlite#/)
-
-## regedit
-
-[https://code.insistime.com/qiao-regedit#/](https://code.insistime.com/qiao-regedit#/)
+1.  [qiao-electron](packages/qiao-electron/README.md): 封装了一些常见的 electron 主进程操作
+2.  [qiao-electron-cli](packages/qiao-electron-cli/README.md): electron 脚手架
+3.  [qiao-regedit](packages/qiao-regedit/README.md): windows 注册表常见 api 封装
+4.  [qiao-sqlite](packages/qiao-sqlite/README.md): 本地数据库 sqlite 常见 api 封装

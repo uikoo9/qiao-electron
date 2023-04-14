@@ -1,7 +1,11 @@
 {
+  "$schema": "node_modules/lerna/schemas/lerna-schema.json",
   "packages": ["packages/*"],
-  "version": "independent",
+  "version": "3.0.0",
   "command": {
+    "version": {
+      "allowBranch": "master"
+    },
     "publish": {
       "allowBranch": "master",
       "message": "chore(release): publish"
