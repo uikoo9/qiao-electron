@@ -17,15 +17,32 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/uikoo9/qiao-monorepo.git"
+    "url": "git+https://github.com/uikoo9/qiao-electron.git"
   },
   "bugs": {
-    "url": "https://github.com/uikoo9/qiao-monorepo/issues"
+    "url": "https://github.com/uikoo9/qiao-electron/issues"
   },
   "scripts": {
     "build": "rollup -c"
   },
   "dependencies": {
     "sqlite3": "^5.1.4"
+  },
+  "nx": {
+    "namedInputs": {
+      "default": [
+        "{projectRoot}/src/**/*"
+      ]
+    },
+    "targets": {
+      "build": {
+        "inputs": [
+          "default"
+        ],
+        "outputs": [
+          "{projectRoot}/index.js"
+        ]
+      }
+    }
   }
 }

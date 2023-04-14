@@ -14,7 +14,10 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/uikoo9/qiao-monorepo.git"
+    "url": "git+https://github.com/uikoo9/qiao-electron.git"
+  },
+  "bugs": {
+    "url": "https://github.com/uikoo9/qiao-electron/issues"
   },
   "scripts": {},
   "dependencies": {

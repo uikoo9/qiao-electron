@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * rollup.config.js
  */
