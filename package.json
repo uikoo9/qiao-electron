@@ -19,8 +19,8 @@
     "dpkg": "qlerna pkg ./packages dev"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.6.0",
-    "@commitlint/config-conventional": "^17.6.0",
+    "@commitlint/cli": "^17.6.1",
+    "@commitlint/config-conventional": "^17.6.1",
     "ava": "^5.2.0",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.38.0",
