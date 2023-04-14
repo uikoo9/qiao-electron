@@ -16,7 +16,7 @@ const checker = require('./_check.js');
  * @param {*} srcFiles
  * @returns
  */
-module.exports = function (config) {
+module.exports = async function (config) {
   // check
   checker.checkConfig(config);
 
@@ -27,21 +27,21 @@ module.exports = function (config) {
   const srcFiles = config.srcFiles;
 
   // mkdir
-  mkDir(dist);
+  await mkDir(dist);
 
   // cp file or folder
-  for (let i = 0; i < srcFiles.length; i++) cpFileOrFolder(src, dist, srcFiles[i]);
+  for (let i = 0; i < srcFiles.length; i++) await cpFileOrFolder(src, dist, srcFiles[i]);
 };
 
 // make electron-dist dir
-function mkDir(dir) {
+async function mkDir(dir) {
   let res = 'success';
   try {
     // rm
-    if (q.isExists(dir)) q.rm(`${dir}/`);
+    if (await q.isExists(dir)) await q.rm(`${dir}/`);
 
     // mkdir
-    q.mkdir(`${dir}/`);
+    await q.mkdir(`${dir}/`);
   } catch (e) {
     console.log(e);
     res = 'fail';
@@ -51,13 +51,13 @@ function mkDir(dir) {
 }
 
 // cp file or folder
-function cpFileOrFolder(src, dest, file) {
+async function cpFileOrFolder(src, dest, file) {
   const srcFilePath = path.resolve(src, file);
   const destFilePath = path.resolve(dest, file);
 
   let res = 'success';
   try {
-    q.cp(srcFilePath, destFilePath);
+    await q.cp(srcFilePath, destFilePath);
   } catch (e) {
     console.log(e);
     res = 'fail';

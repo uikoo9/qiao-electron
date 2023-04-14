@@ -1,5 +1,3 @@
-'use strict';
-
 // app
 import { appGetVersionIPC } from './app/app-preload.js';
 

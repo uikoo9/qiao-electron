@@ -1,5 +1,3 @@
-'use strict';
-
 // ipc
 export * from './_ipc.js';
 

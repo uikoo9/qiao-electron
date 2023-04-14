@@ -1,5 +1,3 @@
-'use strict';
-
 // by file
 export * from './window-by-file.js';
 

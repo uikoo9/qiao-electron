@@ -1,5 +1,3 @@
-'use strict';
-
 // browser window
 import { BrowserWindow } from 'electron';
 

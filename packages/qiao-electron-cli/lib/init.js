@@ -9,9 +9,9 @@ const q = require('qiao-file');
 /**
  * init
  */
-module.exports = function (destPath) {
+module.exports = async function (destPath) {
   const src = path.resolve(__dirname, '../_demo');
   const dest = path.resolve(destPath, './electron');
 
-  q.cp(src, dest);
+  await q.cp(src, dest);
 };

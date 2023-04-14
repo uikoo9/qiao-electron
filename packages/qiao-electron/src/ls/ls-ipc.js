@@ -1,5 +1,3 @@
-'use strict';
-
 // electron
 import { ipcMain } from 'electron';
 
@@ -16,31 +14,31 @@ export const lsIPCInit = () => {
   const _ls = ls();
 
   // ipc ls all
-  ipcMain.handle(IPC_LS_ALL, () => {
-    return _ls.all();
+  ipcMain.handle(IPC_LS_ALL, async () => {
+    return await _ls.all();
   });
 
   // ipc ls get
-  ipcMain.handle(IPC_LS_GET, (event, key) => {
-    return _ls.config(key);
+  ipcMain.handle(IPC_LS_GET, async (event, key) => {
+    return await _ls.config(key);
   });
 
   // ipc ls set
-  ipcMain.handle(IPC_LS_SET, (event, args) => {
+  ipcMain.handle(IPC_LS_SET, async (event, args) => {
     // check
     if (!args || !args.key || !args.value) return;
 
     // set
-    _ls.config(args.key, args.value);
+    await _ls.config(args.key, args.value);
 
     // return
     return true;
   });
 
   // ipc ls del
-  ipcMain.handle(IPC_LS_DEL, (event, key) => {
+  ipcMain.handle(IPC_LS_DEL, async (event, key) => {
     // del
-    _ls.config(key, null);
+    await _ls.config(key, null);
 
     //return
     return true;

@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * get window options
  * @param {*} options

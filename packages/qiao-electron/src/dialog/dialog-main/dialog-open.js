@@ -1,5 +1,3 @@
-'use strict';
-
 // electron
 import { dialog } from 'electron';
 

@@ -1,5 +1,3 @@
-'use strict';
-
 import { Menu } from 'electron';
 
 /**

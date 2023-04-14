@@ -18,7 +18,7 @@ let tmpDirName;
 /**
  * icon
  */
-module.exports = function (iconPath) {
+module.exports = async function (iconPath) {
   // check
   if (!iconPath) {
     console.log(colors.red('qiao-electron-cli, icns, failed: need icon path'));
@@ -26,7 +26,7 @@ module.exports = function (iconPath) {
   }
 
   // tmp.iconset
-  const tempRes = tmpDir(iconPath);
+  const tempRes = await tmpDir(iconPath);
   if (!tempRes) return;
 
   // options
@@ -39,10 +39,10 @@ module.exports = function (iconPath) {
 };
 
 // tmp dir
-function tmpDir(iconPath) {
+async function tmpDir(iconPath) {
   tmpDirName = resolve(dirname(iconPath), './tmp.iconset');
-  if (!isExists(tmpDirName)) {
-    const res = mkdir(`${tmpDirName}/`);
+  if (!(await isExists(tmpDirName))) {
+    const res = await mkdir(`${tmpDirName}/`);
     if (!res) {
       console.log(colors.red(`qiao-electron-cli, icns, tmpdir failed: ${tmpDirName}`));
       return false;
@@ -91,20 +91,20 @@ function sips(options) {
 // icns
 function icns(options) {
   const cmd = 'iconutil -c icns tmp.iconset -o icon.icns';
-  exec(cmd, options, function (error) {
+  exec(cmd, options, async function (error) {
     if (error) {
       console.log(colors.red('qiao-electron-cli, icns, iconutil: failed'));
     } else {
       console.log('qiao-electron-cli, icns, iconutil success');
-      deleteTmpDir();
+      await deleteTmpDir();
     }
   });
 }
 
 // delete tmp dir
-function deleteTmpDir() {
+async function deleteTmpDir() {
   if (tmpDirName) {
-    rm(`${tmpDirName}/`);
+    await rm(`${tmpDirName}/`);
     console.log('qiao-electron-cli, icns, delete tmp.iconset success');
   }
 

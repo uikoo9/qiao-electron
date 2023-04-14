@@ -1,5 +1,3 @@
-'use strict';
-
 // window
 import { windowOpenByUrl } from './window-by-url.js';
 import { windowOpenByFile } from './window-by-file.js';

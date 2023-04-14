@@ -1,5 +1,3 @@
-'use strict';
-
 // electron
 import { ipcMain } from 'electron';
 
@@ -21,44 +19,44 @@ import {
  */
 export const fsIPCInit = () => {
   // ipc fs rm
-  ipcMain.handle(IPC_FS_RM, (event, rmPath) => {
+  ipcMain.handle(IPC_FS_RM, async (event, rmPath) => {
     if (!rmPath) return;
 
-    return rm(rmPath);
+    return await rm(rmPath);
   });
 
   // ipc fs mkdir
-  ipcMain.handle(IPC_FS_MKDIR, (event, dir) => {
+  ipcMain.handle(IPC_FS_MKDIR, async (event, dir) => {
     if (!dir) return;
 
-    return mkdir(dir);
+    return await mkdir(dir);
   });
 
   // ipc fs rename
-  ipcMain.handle(IPC_FS_RENAME, (event, oldPath, newPath) => {
+  ipcMain.handle(IPC_FS_RENAME, async (event, oldPath, newPath) => {
     if (!oldPath || !newPath) return;
 
-    return mv(oldPath, newPath);
+    return await mv(oldPath, newPath);
   });
 
   // ipc fs get tree
-  ipcMain.handle(IPC_FS_GET_TREE, (event, dir, ignores) => {
+  ipcMain.handle(IPC_FS_GET_TREE, async (event, dir, ignores) => {
     if (!dir) return;
 
-    return lstree(dir, ignores);
+    return await lstree(dir, ignores);
   });
 
   // ipc fs read file
-  ipcMain.handle(IPC_FS_READ_FILE, (event, filePath) => {
+  ipcMain.handle(IPC_FS_READ_FILE, async (event, filePath) => {
     if (!filePath) return;
 
-    return readFile(filePath);
+    return await readFile(filePath);
   });
 
   // ipc fs write file
-  ipcMain.handle(IPC_FS_WRITE_FILE, (event, filePath, fileData) => {
+  ipcMain.handle(IPC_FS_WRITE_FILE, async (event, filePath, fileData) => {
     if (!filePath) return;
 
-    return writeFile(filePath, fileData);
+    return await writeFile(filePath, fileData);
   });
 };

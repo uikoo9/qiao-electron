@@ -1,5 +1,3 @@
-'use strict';
-
 // about version
 export * from './menu-main/about-version.js';
 

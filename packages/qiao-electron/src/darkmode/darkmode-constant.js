@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * darkmode constant
  */

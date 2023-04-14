@@ -1,5 +1,3 @@
-'use strict';
-
 // dialog
 export * from './dialog/dialog-main/dialog-main.js';
 

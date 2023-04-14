@@ -11,6 +11,8 @@ var q = require('qiao-config');
  */
 const IPC_APP_GET_VERSION = 'ipc-app-get-version';
 
+// electron
+
 /**
  * appIPCInit
  */
@@ -26,6 +28,8 @@ const appIPCInit = (version) => {
  */
 const IPC_DARKMODE_CHANGE = 'ipc-darkmode-change';
 const IPC_DARKMODE_GET = 'ipc-darkmode-get';
+
+// electron
 
 /**
  * darkModeIPCInit
@@ -51,6 +55,8 @@ const darkModeIPCInit = () => {
 const IPC_DIALOG_OPEN_FILE = 'ipc-dialog-open-file';
 const IPC_DIALOG_OPEN_FOLDER = 'ipc-dialog-open-folder';
 const IPC_DIALOG_OPEN_FILE_FOLDER = 'ipc-dialog-open-file-folder';
+
+// electron
 
 /**
  * dialogOpenFile
@@ -108,6 +114,8 @@ async function openDialog(options, defaultProps) {
   return win ? await electron.dialog.showOpenDialog(win, opt) : await electron.dialog.showOpenDialog(opt);
 }
 
+// electron
+
 /**
  * dialogIPCInit
  */
@@ -138,50 +146,52 @@ const IPC_FS_GET_TREE = 'ipc-fs-get-tree';
 const IPC_FS_READ_FILE = 'ipc-fs-read-file';
 const IPC_FS_WRITE_FILE = 'ipc-fs-write-file';
 
+// electron
+
 /**
  * fsIPCInit
  */
 const fsIPCInit = () => {
   // ipc fs rm
-  electron.ipcMain.handle(IPC_FS_RM, (event, rmPath) => {
+  electron.ipcMain.handle(IPC_FS_RM, async (event, rmPath) => {
     if (!rmPath) return;
 
-    return qiaoFile.rm(rmPath);
+    return await qiaoFile.rm(rmPath);
   });
 
   // ipc fs mkdir
-  electron.ipcMain.handle(IPC_FS_MKDIR, (event, dir) => {
+  electron.ipcMain.handle(IPC_FS_MKDIR, async (event, dir) => {
     if (!dir) return;
 
-    return qiaoFile.mkdir(dir);
+    return await qiaoFile.mkdir(dir);
   });
 
   // ipc fs rename
-  electron.ipcMain.handle(IPC_FS_RENAME, (event, oldPath, newPath) => {
+  electron.ipcMain.handle(IPC_FS_RENAME, async (event, oldPath, newPath) => {
     if (!oldPath || !newPath) return;
 
-    return qiaoFile.mv(oldPath, newPath);
+    return await qiaoFile.mv(oldPath, newPath);
   });
 
   // ipc fs get tree
-  electron.ipcMain.handle(IPC_FS_GET_TREE, (event, dir, ignores) => {
+  electron.ipcMain.handle(IPC_FS_GET_TREE, async (event, dir, ignores) => {
     if (!dir) return;
 
-    return qiaoFile.lstree(dir, ignores);
+    return await qiaoFile.lstree(dir, ignores);
   });
 
   // ipc fs read file
-  electron.ipcMain.handle(IPC_FS_READ_FILE, (event, filePath) => {
+  electron.ipcMain.handle(IPC_FS_READ_FILE, async (event, filePath) => {
     if (!filePath) return;
 
-    return qiaoFile.readFile(filePath);
+    return await qiaoFile.readFile(filePath);
   });
 
   // ipc fs write file
-  electron.ipcMain.handle(IPC_FS_WRITE_FILE, (event, filePath, fileData) => {
+  electron.ipcMain.handle(IPC_FS_WRITE_FILE, async (event, filePath, fileData) => {
     if (!filePath) return;
 
-    return qiaoFile.writeFile(filePath, fileData);
+    return await qiaoFile.writeFile(filePath, fileData);
   });
 };
 
@@ -209,6 +219,8 @@ const logInit = () => {
  */
 const IPC_LOG = 'ipc-log';
 
+// electron
+
 /**
  * logIPCInit
  */
@@ -228,6 +240,8 @@ const logIPCInit = () => {
     if (type == 'error') Logger.error(arg.msg);
   });
 };
+
+// path
 
 /**
  * ls
@@ -249,6 +263,8 @@ const IPC_LS_GET = 'ipc-ls-get';
 const IPC_LS_SET = 'ipc-ls-set';
 const IPC_LS_DEL = 'ipc-ls-del';
 
+// electron
+
 /**
  * lsIPCInit
  */
@@ -256,31 +272,31 @@ const lsIPCInit = () => {
   const _ls = ls();
 
   // ipc ls all
-  electron.ipcMain.handle(IPC_LS_ALL, () => {
-    return _ls.all();
+  electron.ipcMain.handle(IPC_LS_ALL, async () => {
+    return await _ls.all();
   });
 
   // ipc ls get
-  electron.ipcMain.handle(IPC_LS_GET, (event, key) => {
-    return _ls.config(key);
+  electron.ipcMain.handle(IPC_LS_GET, async (event, key) => {
+    return await _ls.config(key);
   });
 
   // ipc ls set
-  electron.ipcMain.handle(IPC_LS_SET, (event, args) => {
+  electron.ipcMain.handle(IPC_LS_SET, async (event, args) => {
     // check
     if (!args || !args.key || !args.value) return;
 
     // set
-    _ls.config(args.key, args.value);
+    await _ls.config(args.key, args.value);
 
     // return
     return true;
   });
 
   // ipc ls del
-  electron.ipcMain.handle(IPC_LS_DEL, (event, key) => {
+  electron.ipcMain.handle(IPC_LS_DEL, async (event, key) => {
     // del
-    _ls.config(key, null);
+    await _ls.config(key, null);
 
     //return
     return true;
@@ -292,6 +308,8 @@ const lsIPCInit = () => {
  */
 const IPC_SHELL_OPEN_URL = 'ipc-shell-open-url';
 const IPC_SHELL_SHOW_PATH = 'ipc-shell-show-path';
+
+// electron
 
 /**
  * shellOpenURL
@@ -317,6 +335,8 @@ const shellShowPath = (path) => {
   }
 };
 
+// electron
+
 /**
  * shellIPCInit
  */
@@ -336,6 +356,8 @@ const shellIPCInit = () => {
   });
 };
 
+// electron
+
 /**
  * shortcutInit
  */
@@ -350,6 +372,8 @@ const shortcutInit = () => {
  */
 const IPC_WINDOW_RESIZE_TO = 'ipc-window-resize-to';
 
+// electron
+
 /**
  * windowIPCInit
  */
@@ -362,6 +386,8 @@ const windowIPCInit = () => {
     win.setSize(width, height);
   });
 };
+
+// app
 
 /**
  * ipcInit
@@ -384,6 +410,8 @@ const ipcInit = (version) => {
   shortcutInit();
 };
 
+// electron
+
 /**
  * appGetVersionIPC
  * @returns version
@@ -391,6 +419,8 @@ const ipcInit = (version) => {
 const appGetVersionIPC = async () => {
   return await electron.ipcRenderer.invoke(IPC_APP_GET_VERSION);
 };
+
+// electron
 
 /**
  * darkModeChangeIPC
@@ -409,6 +439,8 @@ const darkModeGetIPC = async () => {
   return await electron.ipcRenderer.invoke(IPC_DARKMODE_GET);
 };
 
+// electron
+
 /**
  * dialogOpenFolderIPC
  * @param {*} options
@@ -416,6 +448,8 @@ const darkModeGetIPC = async () => {
 const dialogOpenFolderIPC = async (options) => {
   return await electron.ipcRenderer.invoke(IPC_DIALOG_OPEN_FOLDER, options);
 };
+
+// electron
 
 /**
  * fsRmIPC
@@ -459,6 +493,8 @@ const fsWriteFileIPC = async (filePath, fileData) => {
   return await electron.ipcRenderer.invoke(IPC_FS_WRITE_FILE, filePath, fileData);
 };
 
+// electron
+
 /**
  * logIPC
  * @param {*} msg
@@ -467,6 +503,8 @@ const fsWriteFileIPC = async (filePath, fileData) => {
 const logIPC = (msg, type) => {
   electron.ipcRenderer.send(IPC_LOG, { msg, type });
 };
+
+// electron
 
 /**
  * lsAllIPC
@@ -496,6 +534,8 @@ const lsDelIPC = async (key) => {
   return await electron.ipcRenderer.invoke(IPC_LS_DEL, key);
 };
 
+// electron
+
 /**
  * shellOpenUrlIPC
  * @param {*} url
@@ -517,6 +557,8 @@ const shellShowPathIPC = (path) => {
  */
 const IPC_SHORTCUT_GLOBAL = 'ipc-shortcut-global';
 
+// electron
+
 /**
  * shortcutGlobalIPC
  * @returns res
@@ -524,6 +566,8 @@ const IPC_SHORTCUT_GLOBAL = 'ipc-shortcut-global';
 const shortcutGlobalIPC = async (shortcutKey, shortcutCallbackName) => {
   return await electron.ipcRenderer.invoke(IPC_SHORTCUT_GLOBAL, shortcutKey, shortcutCallbackName);
 };
+
+// electron
 
 /**
  * windowResizeIPC
@@ -533,6 +577,8 @@ const shortcutGlobalIPC = async (shortcutKey, shortcutCallbackName) => {
 const windowResizeIPC = (width, height) => {
   electron.ipcRenderer.send(IPC_WINDOW_RESIZE_TO, width, height);
 };
+
+// app
 
 /**
  * getPreloads
@@ -681,6 +727,8 @@ const setApplicationMenu = (menus) => {
   electron.Menu.setApplicationMenu(electron.Menu.buildFromTemplate(finalMenus));
 };
 
+// electron
+
 /**
  * shortcutReg
  * @param {*} shortcutKey
@@ -734,6 +782,8 @@ const getWindowOptions = (options, supportNode, isDev) => {
   return opt;
 };
 
+// browser window
+
 /**
  * windowOpenByFile
  * @param {*} filePath
@@ -764,6 +814,8 @@ function windowOpenByFile(filePath, options, supportNode) {
   return win;
 }
 
+// browser window
+
 /**
  * windowOpenByUrl
  * @param {*} url
@@ -789,6 +841,8 @@ function windowOpenByUrl(url, options, supportNode, isDev) {
   return win;
 }
 
+// window
+
 /**
  * windowOpenByUrlAndFile
  * @param {*} urlPath
@@ -808,6 +862,8 @@ function windowOpenByUrlAndFile(urlPath, filePath, options) {
   opt.show = false;
   return windowOpenByFile(filePath, opt);
 }
+
+// browser window
 
 /**
  * windowGetByEvent

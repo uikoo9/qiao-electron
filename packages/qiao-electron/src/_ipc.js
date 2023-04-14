@@ -1,5 +1,3 @@
-'use strict';
-
 // app
 import { appIPCInit } from './app/app-ipc.js';
 

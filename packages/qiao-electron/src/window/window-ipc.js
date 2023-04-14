@@ -1,5 +1,3 @@
-'use strict';
-
 // electron
 import { BrowserWindow, ipcMain } from 'electron';
 

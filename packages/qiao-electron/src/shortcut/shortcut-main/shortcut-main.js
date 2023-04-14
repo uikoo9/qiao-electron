@@ -1,5 +1,3 @@
-'use strict';
-
 // electron
 import { globalShortcut } from 'electron';
 
