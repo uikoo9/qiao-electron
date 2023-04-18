@@ -50,16 +50,6 @@ electron-icns / rmTempDir / success
 electron-icns / success /path/to/icns/icon
 ```
 
-### js api
-
-```javascript
-// cjs
-const { icns } = require('electron-icns');
-
-// mjs
-import { icns } from 'electron-icns';
-```
-
 ## api
 
 ### icns
@@ -74,5 +64,12 @@ generate electron mac icns icon
   - desc: icns path
 
 ```javascript
+// cjs
+const { icns } = require('electron-icns');
+
+// mjs
+import { icns } from 'electron-icns';
+
+// icns
 const icnsPath = await icns(pngPath);
 ```
