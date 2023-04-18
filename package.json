@@ -29,7 +29,7 @@
     "lerna": "^6.6.1",
     "lint-staged": "^13.2.1",
     "prettier": "^2.8.7",
-    "qiao-lerna": "^3.2.0",
+    "qiao-lerna": "^3.2.1",
     "rollup": "^3.20.5"
   }
 }
