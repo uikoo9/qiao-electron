@@ -30,6 +30,9 @@ const icns = async (pngPath) => {
     return;
   }
 
+  // log
+  console.log('electron-icns / from', pngPath);
+
   // tmp.iconset
   const tempRes = await tmpDir(pngPath);
   if (!tempRes) return;
@@ -78,7 +81,7 @@ function sips(pngPath) {
   ];
 
   // bar
-  const bar = new qiaoCli.progress('electron-icns / sips / :current/:total', {
+  const bar = new qiaoCli.progress('electron-icns / sips... :current/:total', {
     total: cmds.length,
   });
 
@@ -114,7 +117,7 @@ function iconutil(options) {
       await deleteTmpDir();
 
       const icnsPath = path.resolve(options.cwd, './icon.icns');
-      console.log(qiaoCli.colors.green(`electron-icns / success: ${icnsPath}`));
+      console.log(qiaoCli.colors.green(`electron-icns / success ${icnsPath}`));
     }
   });
 }

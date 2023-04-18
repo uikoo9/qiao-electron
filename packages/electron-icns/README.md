@@ -10,7 +10,7 @@ generate electron icns icon
 ### npx
 
 ```shell
-npx icns icon /path/to/your/png/icon
+npx icns /path/to/your/png/icon
 ```
 
 ### npm global
@@ -18,7 +18,7 @@ npx icns icon /path/to/your/png/icon
 ```shell
 npm i -g electron-icns
 
-icns icon /path/to/your/png/icon
+icns /path/to/your/png/icon
 ```
 
 ### dev dependencies
@@ -34,9 +34,20 @@ npm i -D electron-icns
 ```javascript
 {
   "scripts": {
-    "icns": "icns icon /path/to/your/png/icon"
+    "icns": "icns /path/to/your/png/icon"
   },
 }
+```
+
+### show
+
+```shell
+electron-icns / from /path/to/your/png/icon
+electron-icns / tmpdir / success
+electron-icns / sips... 10/10
+electron-icns / iconutil / success
+electron-icns / delete tmp.iconset / success
+electron-icns / success /path/to/icns/icon
 ```
 
 ### js api

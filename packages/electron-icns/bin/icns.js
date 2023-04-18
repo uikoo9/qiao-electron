@@ -1,11 +1,34 @@
 #!/usr/bin/env node
 
-// qiao
+// path
+const path = require('path');
+
+// cli
 const cli = require('qiao-cli');
 
-// cmds
-require('./icns-icon.js');
-require('./icns-version.js');
+// icns
+const { icns } = require('../index.js');
 
-// parse
-cli.cmd.parse(process.argv);
+// run
+async function run() {
+  try {
+    // argv
+    const argv = process.argv;
+    if (!argv || argv.length < 3) {
+      console.log(cli.colors.red('electron-icns / start / failed: need png path'));
+      return;
+    }
+
+    // path
+    let pngPath = argv[2];
+    if (!path.isAbsolute(pngPath)) pngPath = path.resolve(process.cwd(), pngPath);
+
+    await icns(pngPath);
+  } catch (e) {
+    console.log('electron-icns / error');
+    console.log();
+
+    console.error(e);
+  }
+}
+run();
