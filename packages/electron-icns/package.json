@@ -1,0 +1,57 @@
+{
+  "name": "electron-icns",
+  "version": "0.0.0",
+  "description": "generate electron icns icon",
+  "keywords": [
+    "generate",
+    "icon",
+    "electron",
+    "icns",
+    "mac"
+  ],
+  "author": "uikoo9 <uikoo9@qq.com>",
+  "homepage": "https://code.insistime.com/electron-icns",
+  "license": "MIT",
+  "main": "index.js",
+  "module": "src/index.js",
+  "sideEffets": false,
+  "files": [
+    "bin",
+    "src"
+  ],
+  "bin": {
+    "icns": "./bin/icns.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uikoo9/qiao-electron.git"
+  },
+  "bugs": {
+    "url": "https://github.com/uikoo9/qiao-electron/issues"
+  },
+  "scripts": {
+    "build": "rollup -c",
+    "test": "node __tests__/test.js"
+  },
+  "dependencies": {
+    "qiao-cli": "^3.1.5",
+    "qiao-file": "^3.1.2"
+  },
+  "nx": {
+    "namedInputs": {
+      "default": [
+        "{projectRoot}/src/**/*"
+      ]
+    },
+    "targets": {
+      "build": {
+        "inputs": [
+          "default"
+        ],
+        "outputs": [
+          "{projectRoot}/index.js"
+        ]
+      }
+    }
+  }
+}

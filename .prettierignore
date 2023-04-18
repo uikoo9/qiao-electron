@@ -5,3 +5,5 @@ package-lock.json
 # packages
 packages/qiao-electron-cli/_demo
 packages/qiao-electron-demo
+packages/electron-icns/__tests__/tmp.iconset
+packages/electron-icns/__tests__/icon.icns
