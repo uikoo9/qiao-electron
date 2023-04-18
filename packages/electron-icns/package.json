@@ -20,7 +20,7 @@
     "src"
   ],
   "bin": {
-    "icns": "./bin/icns.js"
+    "electron-icns": "./bin/icns.js"
   },
   "repository": {
     "type": "git",

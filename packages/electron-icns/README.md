@@ -10,7 +10,7 @@ generate electron mac icns icon
 ### npx
 
 ```shell
-npx icns /path/to/your/png/icon
+npx electron-icns /path/to/your/png/icon
 ```
 
 ### npm global
@@ -18,7 +18,7 @@ npx icns /path/to/your/png/icon
 ```shell
 npm i -g electron-icns
 
-icns /path/to/your/png/icon
+electron-icns /path/to/your/png/icon
 ```
 
 ### dev dependencies
@@ -34,7 +34,7 @@ npm i -D electron-icns
 ```javascript
 {
   "scripts": {
-    "icns": "icns /path/to/your/png/icon"
+    "icns": "electron-icns /path/to/your/png/icon"
   },
 }
 ```
