@@ -8,7 +8,8 @@ const { icns } = require('../index.js');
 async function test() {
   const pngPath = path.resolve(__dirname, './pic.png');
   try {
-    await icns(pngPath);
+    const res = await icns(pngPath);
+    console.log(res);
   } catch (error) {
     console.log(error);
   }

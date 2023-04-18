@@ -1,49 +1,19 @@
 'use strict';
 
-var path = require('path');
-var child_process = require('child_process');
 var qiaoCli = require('qiao-cli');
 var qiaoFile = require('qiao-file');
+var path = require('path');
+var child_process = require('child_process');
 
 // path
 
-// tmp dir
-let tmpDirName;
-
 /**
- * icon
+ * tmp dir
+ * @param {*} pngPath
+ * @returns
  */
-const icns = async (pngPath) => {
-  // darwin
-  if (process.platform !== 'darwin') {
-    console.log(qiaoCli.colors.red('electron-icns / failed: only support on macos'));
-    return;
-  }
-
-  // check
-  if (!pngPath) {
-    console.log(qiaoCli.colors.red('electron-icns / failed: need png path'));
-    return;
-  }
-  if (!(await qiaoFile.isExists(pngPath))) {
-    console.log(qiaoCli.colors.red('electron-icns / failed: png not exists'));
-    return;
-  }
-
-  // log
-  console.log('electron-icns / from', pngPath);
-
-  // tmp.iconset
-  const tempRes = await tmpDir(pngPath);
-  if (!tempRes) return;
-
-  // sips
-  sips(pngPath);
-};
-
-// tmp dir
-async function tmpDir(pngPath) {
-  tmpDirName = path.resolve(path.dirname(pngPath), './tmp.iconset');
+const tmpDir = async (pngPath) => {
+  const tmpDirName = path.resolve(path.dirname(pngPath), './tmp.iconset');
   if (!(await qiaoFile.isExists(tmpDirName))) {
     const res = await qiaoFile.mkdir(tmpDirName);
     if (!res) {
@@ -54,11 +24,52 @@ async function tmpDir(pngPath) {
     }
   }
 
-  return true;
-}
+  return tmpDirName;
+};
 
-// sips
-function sips(pngPath) {
+// file
+
+/**
+ * rmTempDir
+ * @param {*} tmpDirName
+ * @returns
+ */
+const rmTempDir = async (tmpDirName) => {
+  if (!tmpDirName) return;
+
+  const res = await qiaoFile.rm(tmpDirName);
+  if (!res) {
+    console.log(qiaoCli.colors.red('electron-icns / rmTempDir / failed'));
+    return;
+  }
+
+  console.log('electron-icns / rmTempDir / success');
+};
+
+// cp
+
+/**
+ * run cmd
+ * @param {*} cmd
+ * @param {*} options
+ * @returns
+ */
+const runCmd = (cmd, options) => {
+  return new Promise((resolve) => {
+    child_process.exec(cmd, options, (error) => {
+      return resolve(!error);
+    });
+  });
+};
+
+// path
+
+/**
+ * sips
+ * @param {*} pngPath
+ * @param {*} tmpDirName
+ */
+const sips = async (pngPath, tmpDirName) => {
   //
   const pngName = path.basename(pngPath);
   const dirName = path.dirname(pngPath);
@@ -85,49 +96,90 @@ function sips(pngPath) {
     total: cmds.length,
   });
 
+  // run
   for (let i = 0; i < cmds.length; i++) {
-    const cmd = cmds[i];
-    child_process.exec(cmd, options, async (error) => {
-      if (error) {
-        console.log(qiaoCli.colors.red('electron-icns / sips / failed'));
-        await deleteTmpDir();
-        return;
-      }
-
-      bar.tick();
-
-      // icns
-      if (bar.complete) {
-        iconutil(options);
-      }
-    });
-  }
-}
-
-// iconutil
-function iconutil(options) {
-  const cmd = 'iconutil -c icns tmp.iconset -o icon.icns';
-  child_process.exec(cmd, options, async (error) => {
-    // log
-    if (error) {
-      await deleteTmpDir();
-      console.log(qiaoCli.colors.red('electron-icns / iconutil / failed'));
-    } else {
-      console.log('electron-icns / iconutil / success');
-      await deleteTmpDir();
-
-      const icnsPath = path.resolve(options.cwd, './icon.icns');
-      console.log(qiaoCli.colors.green(`electron-icns / success ${icnsPath}`));
+    // cmd
+    const res = await runCmd(cmds[i], options);
+    if (!res) {
+      console.log();
+      console.log(qiaoCli.colors.red('electron-icns / sips / failed'));
+      await rmTempDir(tmpDirName);
+      return;
     }
-  });
-}
 
-// delete tmp dir
-async function deleteTmpDir() {
+    // run
+    bar.tick();
+    if (bar.complete) return options;
+  }
+};
+
+// path
+
+/**
+ * iconutil
+ * @param {*} options
+ * @param {*} tmpDirName
+ * @returns
+ */
+const iconutil = async (options, tmpDirName) => {
+  const cmd = 'iconutil -c icns tmp.iconset -o icon.icns';
+  const res = await runCmd(cmd, options);
+
+  // fail
+  if (!res) {
+    await rmTempDir(tmpDirName);
+    console.log(qiaoCli.colors.red('electron-icns / iconutil / failed'));
+
+    return;
+  }
+
+  // success
+  console.log('electron-icns / iconutil / success');
+  await rmTempDir(tmpDirName);
+
+  const icnsPath = path.resolve(options.cwd, './icon.icns');
+  console.log(qiaoCli.colors.green(`electron-icns / success ${icnsPath}`));
+  console.log();
+
+  return icnsPath;
+};
+
+// colors
+
+/**
+ * icon
+ */
+const icns = async (pngPath) => {
+  // darwin
+  if (process.platform !== 'darwin') {
+    console.log(qiaoCli.colors.red('electron-icns / failed: only support on macos'));
+    return;
+  }
+
+  // check
+  if (!pngPath) {
+    console.log(qiaoCli.colors.red('electron-icns / failed: need png path'));
+    return;
+  }
+  if (!(await qiaoFile.isExists(pngPath))) {
+    console.log(qiaoCli.colors.red('electron-icns / failed: png not exists'));
+    return;
+  }
+
+  // log
+  console.log('electron-icns / from', pngPath);
+
+  // tmp.iconset
+  const tmpDirName = await tmpDir(pngPath);
   if (!tmpDirName) return;
 
-  await qiaoFile.rm(tmpDirName);
-  console.log('electron-icns / delete tmp.iconset / success');
-}
+  // sips
+  const options = await sips(pngPath, tmpDirName);
+  if (!options) return;
+
+  // iconutil
+  const icnsPath = await iconutil(options, tmpDirName);
+  return icnsPath;
+};
 
 exports.icns = icns;

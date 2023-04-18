@@ -3,7 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/electron-icns.svg?style=flat-square)](https://www.npmjs.org/package/electron-icns)
 [![npm downloads](https://img.shields.io/npm/dm/electron-icns.svg?style=flat-square)](https://npm-stat.com/charts.html?package=electron-icns)
 
-generate electron icns icon
+generate electron mac icns icon
 
 ## use
 
@@ -46,7 +46,7 @@ electron-icns / from /path/to/your/png/icon
 electron-icns / tmpdir / success
 electron-icns / sips... 10/10
 electron-icns / iconutil / success
-electron-icns / delete tmp.iconset / success
+electron-icns / rmTempDir / success
 electron-icns / success /path/to/icns/icon
 ```
 
@@ -64,7 +64,7 @@ import { icns } from 'electron-icns';
 
 ### icns
 
-generate electron icns icon
+generate electron mac icns icon
 
 - pngPath
   - type: string
