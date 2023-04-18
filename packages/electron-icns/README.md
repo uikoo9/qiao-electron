@@ -23,13 +23,13 @@ electron-icns /path/to/your/png/icon
 
 ### dev dependencies
 
-1. install
+install
 
 ```shell
 npm i -D electron-icns
 ```
 
-2. use npm scripts
+use npm scripts
 
 ```javascript
 {
@@ -70,9 +70,9 @@ generate electron mac icns icon
   - type: string
   - desc: png path
 - return
-  - 类型: string
-  - 说明: icns path
+  - type: string
+  - desc: icns path
 
 ```javascript
-await icns(pngPath);
+const icnsPath = await icns(pngPath);
 ```
