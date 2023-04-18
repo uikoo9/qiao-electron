@@ -27,10 +27,10 @@
     "electron-installer-zip": "^0.1.2",
     "electron-packager": "^17.1.1",
     "qiao-cli": "^3.1.5",
-    "qiao-file": "^3.1.2"
+    "qiao-file": "^3.1.5"
   },
   "optionalDependencies": {
     "appdmg": "^0.6.6",
-    "qiao-cos": "^3.1.9"
+    "qiao-cos": "^3.2.2"
   }
 }
