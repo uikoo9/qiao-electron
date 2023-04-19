@@ -3,7 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/electron-icns.svg?style=flat-square)](https://www.npmjs.org/package/electron-icns)
 [![npm downloads](https://img.shields.io/npm/dm/electron-icns.svg?style=flat-square)](https://npm-stat.com/charts.html?package=electron-icns)
 
-generate electron mac icns icon
+A tool for generating icns icons for use with Electron on macOS
 
 ## use
 
