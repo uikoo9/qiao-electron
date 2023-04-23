@@ -5,45 +5,43 @@ var qiaoFile = require('qiao-file');
 var path = require('path');
 var child_process = require('child_process');
 
-// path
+// colors
 
 /**
- * tmp dir
+ * mkTmpDir
  * @param {*} pngPath
  * @returns
  */
-const tmpDir = async (pngPath) => {
-  const tmpDirName = path.resolve(path.dirname(pngPath), './tmp.iconset');
+const mkTmpDir = async (pngPath) => {
+  const tmpDirName = qiaoFile.path.resolve(qiaoFile.path.dirname(pngPath), './tmp.iconset');
   if (!(await qiaoFile.isExists(tmpDirName))) {
     const res = await qiaoFile.mkdir(tmpDirName);
     if (!res) {
-      console.log(qiaoCli.colors.red(`electron-icns / tmpdir / failed: ${tmpDirName}`));
+      console.log(qiaoCli.colors.red(`electron-icns / mkTmpDir / failed: ${tmpDirName}`));
       return false;
     } else {
-      console.log('electron-icns / tmpdir / success');
+      console.log('electron-icns / mkTmpDir / success');
     }
   }
 
   return tmpDirName;
 };
 
-// file
-
 /**
- * rmTempDir
- * @param {*} tmpDirName
+ * rmTmpDir
+ * @param {*} dir
  * @returns
  */
-const rmTempDir = async (tmpDirName) => {
-  if (!tmpDirName) return;
+const rmTmpDir = async (dir) => {
+  if (!dir) return;
 
-  const res = await qiaoFile.rm(tmpDirName);
+  const res = await qiaoFile.rm(dir);
   if (!res) {
-    console.log(qiaoCli.colors.red('electron-icns / rmTempDir / failed'));
+    console.log(qiaoCli.colors.red('electron-icns / rmTmpDir / failed'));
     return;
   }
 
-  console.log('electron-icns / rmTempDir / success');
+  console.log('electron-icns / rmTmpDir / success');
 };
 
 // cp
@@ -103,7 +101,7 @@ const sips = async (pngPath, tmpDirName) => {
     if (!res) {
       console.log();
       console.log(qiaoCli.colors.red('electron-icns / sips / failed'));
-      await rmTempDir(tmpDirName);
+      await rmTmpDir(tmpDirName);
       return;
     }
 
@@ -127,7 +125,7 @@ const iconutil = async (options, tmpDirName) => {
 
   // fail
   if (!res) {
-    await rmTempDir(tmpDirName);
+    await rmTmpDir(tmpDirName);
     console.log(qiaoCli.colors.red('electron-icns / iconutil / failed'));
 
     return;
@@ -135,7 +133,7 @@ const iconutil = async (options, tmpDirName) => {
 
   // success
   console.log('electron-icns / iconutil / success');
-  await rmTempDir(tmpDirName);
+  await rmTmpDir(tmpDirName);
 
   const icnsPath = path.resolve(options.cwd, './icon.icns');
   console.log(qiaoCli.colors.green(`electron-icns / success ${icnsPath}`));
@@ -170,7 +168,7 @@ const icns = async (pngPath) => {
   console.log('electron-icns / from', pngPath);
 
   // tmp.iconset
-  const tmpDirName = await tmpDir(pngPath);
+  const tmpDirName = await mkTmpDir(pngPath);
   if (!tmpDirName) return;
 
   // sips

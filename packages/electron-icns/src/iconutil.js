@@ -5,7 +5,7 @@ import path from 'path';
 import { colors } from 'qiao-cli';
 
 // rm
-import { rmTempDir } from './rm-temp-dir.js';
+import { rmTmpDir } from './tmp-dir.js';
 
 // run cmd
 import { runCmd } from './run-cmd.js';
@@ -22,7 +22,7 @@ export const iconutil = async (options, tmpDirName) => {
 
   // fail
   if (!res) {
-    await rmTempDir(tmpDirName);
+    await rmTmpDir(tmpDirName);
     console.log(colors.red('electron-icns / iconutil / failed'));
 
     return;
@@ -30,7 +30,7 @@ export const iconutil = async (options, tmpDirName) => {
 
   // success
   console.log('electron-icns / iconutil / success');
-  await rmTempDir(tmpDirName);
+  await rmTmpDir(tmpDirName);
 
   const icnsPath = path.resolve(options.cwd, './icon.icns');
   console.log(colors.green(`electron-icns / success ${icnsPath}`));

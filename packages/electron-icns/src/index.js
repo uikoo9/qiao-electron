@@ -5,7 +5,7 @@ import { colors } from 'qiao-cli';
 import { isExists } from 'qiao-file';
 
 // tmp dir
-import { tmpDir } from './temp-dir.js';
+import { mkTmpDir } from './tmp-dir.js';
 
 // sips
 import { sips } from './sips.js';
@@ -37,7 +37,7 @@ export const icns = async (pngPath) => {
   console.log('electron-icns / from', pngPath);
 
   // tmp.iconset
-  const tmpDirName = await tmpDir(pngPath);
+  const tmpDirName = await mkTmpDir(pngPath);
   if (!tmpDirName) return;
 
   // sips

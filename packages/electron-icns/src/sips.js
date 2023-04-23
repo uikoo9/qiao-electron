@@ -5,7 +5,7 @@ import path from 'path';
 import { colors, progress } from 'qiao-cli';
 
 // rm
-import { rmTempDir } from './rm-temp-dir.js';
+import { rmTmpDir } from './tmp-dir.js';
 
 // run cmd
 import { runCmd } from './run-cmd.js';
@@ -49,7 +49,7 @@ export const sips = async (pngPath, tmpDirName) => {
     if (!res) {
       console.log();
       console.log(colors.red('electron-icns / sips / failed'));
-      await rmTempDir(tmpDirName);
+      await rmTmpDir(tmpDirName);
       return;
     }
 

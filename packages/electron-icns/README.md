@@ -43,10 +43,10 @@ use npm scripts
 
 ```shell
 electron-icns / from /path/to/your/png/icon
-electron-icns / tmpdir / success
+electron-icns / mkTmpDir / success
 electron-icns / sips... 10/10
 electron-icns / iconutil / success
-electron-icns / rmTempDir / success
+electron-icns / rmTmpDir / success
 electron-icns / success /path/to/icns/icon
 ```
 
