@@ -131,39 +131,3 @@ qelectron packdmg|pd /{yourconfigpath}/qiao-electron.config.js
 ```bash
 qelectron uploaddmg|ud /{yourconfigpath}/qiao-electron.config.js
 ```
-
-## version
-
-### 0.0.7.20221020
-
-1. pack win
-
-### 0.0.6.20221019
-
-1. 1.0.0
-
-### 0.0.5.20220503
-
-1. mac icns
-
-### 0.0.4.20220502
-
-1. qe config
-2. qe init
-
-### 0.0.3.20220401
-
-1. upload dmg
-
-### 0.0.2.20220317
-
-1. 拆分代码
-2. add dist
-3. add dist cli
-
-### 0.0.1.20220311
-
-1. init project
-2. pack mac
-3. pack mac return path
-4. pack dmg

@@ -222,32 +222,3 @@ async function test() {
 // run
 test();
 ```
-
-## version
-
-### 0.0.5.20221024
-
-1. 1.0.0
-
-### 0.0.4.20220417
-
-1. add lerna
-
-### 0.0.3.20220408
-
-1. modify data
-2. show tables
-3. drop table
-
-### 0.0.2.20220407
-
-1. promise
-2. delete data
-
-### 0.0.1.20220402
-
-1. init project
-2. create db
-3. create table
-4. insert data
-5. select data

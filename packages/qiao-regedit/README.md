@@ -142,29 +142,3 @@ var test = async function () {
 
 test();
 ```
-
-## version
-
-### 0.0.4.20220513
-
-1. ncu
-
-### 0.0.3.20200803
-
-1. ncu
-
-### 0.0.2.20200620
-
-1. fix list key space bug
-2. string trim
-
-### 0.0.1.20200606
-
-1. init project
-2. add value
-3. add value sync
-4. del value
-5. del value sync
-6. 兼容中文和空格
-7. list values
-8. list values sync
