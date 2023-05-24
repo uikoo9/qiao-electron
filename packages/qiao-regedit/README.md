@@ -1,144 +1,100 @@
-# qiao-regedit
+## qiao-regedit
+
+[![npm version](https://img.shields.io/npm/v/qiao-regedit.svg?style=flat-square)](https://www.npmjs.org/package/qiao-regedit)
+[![npm downloads](https://img.shields.io/npm/dm/qiao-regedit.svg?style=flat-square)](https://npm-stat.com/charts.html?package=qiao-regedit)
+
+nodejs 操作 windows 注册表
+
+## install
+
+安装
+
+```shell
+npm i qiao-regedit
+```
+
+## use
+
+使用
+
+```javascript
+// cjs
+const { addValue } = require('qiao-regedit');
+
+// mjs
+import { addValue } from 'qiao-regedit';
+```
 
 ## api
 
 ### addValue
 
-```javascript
-'use strict';
+添加值
 
-var q = require('qiao-regedit');
-
-var test = function () {
-  // var key = 'HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Run';
-  var key = 'HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run';
-  var obj = {
-    key: key,
-    name: 'test',
-    data: 'haha',
-  };
-
-  q.addValue(obj, function (res) {
-    console.log(res);
-  });
-};
-
-test();
-```
-
-### addValueSync
+- options.key
+  - 类型: string
+  - 说明: key
+- options.name
+  - 类型: string
+  - 说明: name
+- options.data
+  - 类型: string
+  - 说明: data
+- callback
+  - 类型: function
+  - 说明: 添加成功的回调函数
 
 ```javascript
-'use strict';
-
-var q = require('qiao-regedit');
-
-var test = async function () {
-  try {
-    // var key = 'HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Run';
-    var key = 'HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run';
-    var obj = {
-      key: key,
-      name: 'test',
-      data: 'haha',
-    };
-
-    var res = await q.addValueSync(obj);
-    console.log(res);
-  } catch (e) {
-    console.log(e);
-  }
+const options = {
+  key: 'HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run',
+  name: 'test',
+  data: 'haha',
 };
 
-test();
+addValue(options, (res) => {
+  console.log(res);
+});
 ```
 
 ### delValue
 
-```javascript
-'use strict';
+删除值
 
-var q = require('qiao-regedit');
-
-var test = function () {
-  // var key = 'HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Run';
-  var key = 'HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run';
-  var obj = {
-    key: key,
-    name: 'test',
-  };
-
-  q.delValue(obj, function (res) {
-    console.log(res);
-  });
-};
-
-test();
-```
-
-### delValueSync
+- options.key
+  - 类型: string
+  - 说明: key
+- options.name
+  - 类型: string
+  - 说明: name
+- callback
+  - 类型: function
+  - 说明: 删除成功的回调函数
 
 ```javascript
-'use strict';
-
-var q = require('qiao-regedit');
-
-var test = async function () {
-  try {
-    // var key = 'HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Run';
-    var key = 'HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run';
-    var obj = {
-      key: key,
-      name: 'test',
-    };
-
-    var res = await q.delValueSync(obj);
-    console.log(res);
-  } catch (e) {
-    console.log(e);
-  }
+const options = {
+  key: 'HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run',
+  name: 'test',
 };
 
-test();
+delValue(options, (res) => {
+  console.log(res);
+});
 ```
 
 ### listValues
 
-```javascript
-'use strict';
+列出值
 
-var q = require('qiao-regedit');
-
-var test = function () {
-  // var key = 'HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Run';
-  var key = 'HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run';
-
-  q.listValues(key, function (err, res) {
-    console.log(err, res);
-  });
-};
-
-test();
-```
-
-### listValuesSync
+- key
+  - 类型: string
+  - 说明: key
+- callback
+  - 类型: function
+  - 说明: 列出成功的回调函数
 
 ```javascript
-'use strict';
-
-var q = require('qiao-regedit');
-
-var test = async function () {
-  try {
-    // var key = 'HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Run';
-    var key = 'HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run';
-
-    var res = await q.listValuesSync(key);
-    console.log(res);
-  } catch (e) {
-    console.log(e);
-  }
-};
-
-test();
+const key = 'HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run';
+listValues(key, (err, res) => {
+  console.log(err, res);
+});
 ```

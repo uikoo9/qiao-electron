@@ -1,33 +1,10 @@
-'use strict';
-
-var child_process = require('child_process');
-var iconv = require('iconv-lite');
-
-// iconv
-
-// encoding
-const encoding = 'cp936';
-
-/**
- * binary encoding
- */
-const binaryEncoding = 'binary';
-
-/**
- * msg
- */
-const msg = (err, stdout, stderr) => {
-  return err ? decode(stderr) : decode(stdout);
-};
-
-/**
- * decode
- */
-function decode(s) {
-  return iconv.decode(Buffer.from(s, exports.binaryEncoding), encoding);
-}
-
 /* eslint-disable no-useless-escape */
+
+// exec
+import { exec } from 'child_process';
+
+// utile
+import { binaryEncoding, msg } from './util.js';
 
 // default type
 const defaultType = 'REG_SZ';
@@ -41,7 +18,7 @@ const defaultType = 'REG_SZ';
  * 		data
  * 	cb
  */
-const addValue = (obj, cb) => {
+export const addValue = (obj, cb) => {
   if (!obj || !obj.key || !obj.name || !obj.data) {
     if (cb) cb('need key,name,data');
     return;
@@ -49,7 +26,7 @@ const addValue = (obj, cb) => {
 
   obj.type = obj.type || defaultType;
 
-  child_process.exec(
+  exec(
     `reg add \"${obj.key}\" /v \"${obj.name}\" /t \"${obj.type}\" /d \"${obj.data}\" /f`,
     { encoding: binaryEncoding },
     function (err, stdout, stderr) {
@@ -65,19 +42,15 @@ const addValue = (obj, cb) => {
  * 		name
  * 	cb
  */
-const delValue = (obj, cb) => {
+export const delValue = (obj, cb) => {
   if (!obj || !obj.key || !obj.name) {
     if (cb) cb('need key,name');
     return;
   }
 
-  child_process.exec(
-    `reg delete \"${obj.key}\" /v \"${obj.name}\" /f`,
-    { encoding: binaryEncoding },
-    function (err, stdout, stderr) {
-      if (cb) cb(msg(err, stdout, stderr));
-    },
-  );
+  exec(`reg delete \"${obj.key}\" /v \"${obj.name}\" /f`, { encoding: binaryEncoding }, function (err, stdout, stderr) {
+    if (cb) cb(msg(err, stdout, stderr));
+  });
 };
 
 /**
@@ -85,10 +58,10 @@ const delValue = (obj, cb) => {
  * 	key
  * 	cb
  */
-const listValues = (key, cb) => {
+export const listValues = (key, cb) => {
   const cmdQueryAll = `reg query \"${key}\"`;
 
-  child_process.exec(cmdQueryAll, { encoding: binaryEncoding }, function (err, stdout, stderr) {
+  exec(cmdQueryAll, { encoding: binaryEncoding }, function (err, stdout, stderr) {
     const res = msg(err, stdout, stderr);
     const completeKey = getCompleteKey(key);
     if (res.indexOf(completeKey) === -1) {
@@ -124,7 +97,3 @@ const listValues = (key, cb) => {
 function getCompleteKey(key) {
   if (key.indexOf('HKCU') === 0) return key.replace(/HKCU/g, 'HKEY_CURRENT_USER');
 }
-
-exports.addValue = addValue;
-exports.delValue = delValue;
-exports.listValues = listValues;
