@@ -202,13 +202,27 @@ const fsIPCInit = () => {
  * @returns
  */
 const logInit = () => {
-  const logsPath = electron.app.getPath('logs');
-  const logPath = path.resolve(logsPath, './electron.log');
+  const logPath = path.resolve(electron.app.getPath('logs'), './electron.log');
 
   // config
   const config = {
-    appenders: ['stdoutLog', 'datefileLog'],
-    fileName: logPath,
+    appenders: {
+      stdout: {
+        type: 'stdout',
+      },
+      datefile: {
+        type: 'dateFile',
+        pattern: 'yyyy-MM-dd-hh',
+        filename: logPath,
+        keepFileExt: true,
+      },
+    },
+    categories: {
+      default: {
+        level: 'debug',
+        appenders: ['stdout', 'datefile'],
+      },
+    },
   };
 
   return Logger(config);
