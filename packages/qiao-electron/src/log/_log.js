@@ -5,7 +5,7 @@ import path from 'path';
 import { app } from 'electron';
 
 // qiao-log
-import { getLogger } from 'qiao-log';
+import Logger from 'qiao-log';
 
 /**
  * logInit
@@ -21,5 +21,5 @@ export const logInit = () => {
     fileName: logPath,
   };
 
-  return getLogger(config);
+  return Logger(config);
 };

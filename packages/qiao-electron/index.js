@@ -3,7 +3,7 @@
 var electron = require('electron');
 var qiaoFile = require('qiao-file');
 var path = require('path');
-var qiaoLog = require('qiao-log');
+var Logger = require('qiao-log');
 var q = require('qiao-config');
 
 /**
@@ -211,7 +211,7 @@ const logInit = () => {
     fileName: logPath,
   };
 
-  return qiaoLog.getLogger(config);
+  return Logger(config);
 };
 
 /**
