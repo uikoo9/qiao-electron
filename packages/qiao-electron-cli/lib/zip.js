@@ -1,10 +1,5 @@
-'use strict';
-
 // electron zip
 const zip = require('electron-installer-zip');
-
-// checker
-const checker = require('./_check.js');
 
 /**
  * zip
@@ -12,9 +7,6 @@ const checker = require('./_check.js');
  * @returns
  */
 module.exports = async function (config) {
-  // check
-  checker.checkConfig(config);
-
   // opts
   let zipOptions = [];
   const opts = getZipOptions(config);

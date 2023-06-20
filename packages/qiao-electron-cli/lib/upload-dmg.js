@@ -1,13 +1,8 @@
-'use strict';
-
 // path
 const path = require('path');
 
 // q
 const q = require('qiao-cos');
-
-// checker
-const checker = require('./_check.js');
 
 /**
  * upload dmg
@@ -15,10 +10,6 @@ const checker = require('./_check.js');
  * @returns
  */
 module.exports = async function (config) {
-  // check
-  checker.checkConfig(config);
-  checker.checkCosConfig(config);
-
   // cos config
   const cosConfig = config.cosConfig;
   const client = q(cosConfig);

@@ -6,21 +6,12 @@ var path = require('path');
 // appdmg
 var appDMG = require('./appdmg.js');
 
-// checker
-var checker = require('../_check.js');
-
-// util
-var util = require('../_util.js');
-
 /**
  * pack dmg
  * @param {*} config
  * @returns
  */
 module.exports = async function (config) {
-  // check
-  checker.checkConfig(config);
-
   // vars
   var outPath = config.outPath;
   var arch = config.arch;
@@ -39,7 +30,7 @@ module.exports = async function (config) {
   // options
   var options = {
     name: dmgName,
-    icon: util.getIcon(config.appIconPath),
+    icon: config.appIconPath,
 
     overwrite: true,
     debug: false,
