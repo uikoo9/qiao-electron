@@ -29,7 +29,7 @@ module.exports = async function (config) {
   const destPath = `${cosConfig.destPath}${dmgName}.dmg`;
 
   // rs
-  const rs = await client.uploadFileSync(destPath, dmgPath);
+  const rs = await client.uploadFile(destPath, dmgPath);
   if (!rs || !rs.Location) return;
 
   // return

@@ -11,7 +11,6 @@ exports.checkConfig = function (config) {
   // vars
   const srcPath = config.srcPath;
   const distPath = config.distPath;
-  const srcFiles = config.srcFiles;
   const outPath = config.outPath;
 
   const arch = config.arch;
@@ -24,7 +23,6 @@ exports.checkConfig = function (config) {
   // check paths
   if (!srcPath) throw new Error('need config.srcPath params');
   if (!distPath) throw new Error('need config.distPath params');
-  if (!srcFiles || !srcFiles.length) throw new Error('need config.srcFiles params');
   if (!outPath) throw new Error('need config.outPath params');
 
   // others
