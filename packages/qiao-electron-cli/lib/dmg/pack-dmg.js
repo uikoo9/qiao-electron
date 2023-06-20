@@ -1,10 +1,8 @@
-'use strict';
-
 // path
-var path = require('path');
+const path = require('path');
 
 // appdmg
-var appDMG = require('./appdmg.js');
+const appDMG = require('./appdmg.js');
 
 /**
  * pack dmg
@@ -13,22 +11,21 @@ var appDMG = require('./appdmg.js');
  */
 module.exports = async function (config) {
   // vars
-  var outPath = config.outPath;
-  var arch = config.arch;
-  var appEnv = config.appEnv;
-  var appName = config.appName;
-  var appVersion = config.appVersion;
-  var dmgIconSize = config.dmgIconSize;
-  var dmgBackground = config.dmgBackground;
+  const outPath = config.out;
+  const arch = config.arch;
+  const appName = config.name;
+  const appVersion = config.appVersion;
+  const dmgIconSize = config.dmgIconSize;
+  const dmgBackground = config.dmgBackground;
 
   // other vars
-  var root = process.cwd();
-  var appPath = path.resolve(root, `${outPath}/${appName}-darwin-${arch}/${appName}.app`);
-  var dmgName = `${appName}-${appEnv}-${appVersion}-${arch}`;
-  var dmgOutPath = path.resolve(root, `${outPath}/dmg`);
+  const root = process.cwd();
+  const appPath = path.resolve(root, `${outPath}/${appName}-darwin-${arch}/${appName}.app`);
+  const dmgName = `${appName}-${appVersion}-${arch}`;
+  const dmgOutPath = path.resolve(root, `${outPath}/dmg`);
 
   // options
-  var options = {
+  const options = {
     name: dmgName,
     icon: config.appIconPath,
 
