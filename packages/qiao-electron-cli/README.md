@@ -84,22 +84,6 @@ module.exports = config;
 qelectron init /{youprojectpath}
 ```
 
-### icns
-
-生成 mac 下的 icns 图标
-
-```bash
-qelectron icns /{youprojectpath}/static/icon/pic.png
-```
-
-### dist
-
-复制 electron src 文件到 dist 文件夹
-
-```bash
-qelectron dist|d /{yourconfigpath}/qiao-electron.config.js
-```
-
 ### packmac
 
 打包 mac 下应用

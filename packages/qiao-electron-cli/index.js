@@ -6,16 +6,6 @@
 exports.init = require('./lib/init.js');
 
 /**
- * icns
- */
-exports.icns = require('./lib/icns.js');
-
-/**
- * dist
- */
-exports.dist = require('./lib/dist.js');
-
-/**
  * pack
  */
 exports.pack = require('./lib/pack.js');
