@@ -1,6 +1,6 @@
 {
   "name": "qiao-x-window",
-  "version": "3.2.3",
+  "version": "3.3.1",
   "description": "electron window tool",
   "keywords": [
     "electron",
@@ -25,7 +25,6 @@
   "scripts": {
     "build": "rollup -c"
   },
-  "dependencies": {},
   "nx": {
     "namedInputs": {
       "default": [
