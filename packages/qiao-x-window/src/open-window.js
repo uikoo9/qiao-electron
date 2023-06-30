@@ -1,8 +1,5 @@
-'use strict';
-
-var electron = require('electron');
-
 // electron
+import { BrowserWindow } from 'electron';
 
 /**
  * openWindowByFile
@@ -10,7 +7,7 @@ var electron = require('electron');
  * @param {*} options
  * @returns
  */
-const openWindowByFile = async (filePath, options) => {
+export const openWindowByFile = async (filePath, options) => {
   try {
     if (!filePath) {
       console.log('open window by file failed: need filePath');
@@ -18,7 +15,7 @@ const openWindowByFile = async (filePath, options) => {
     }
 
     // create window
-    const win = new electron.BrowserWindow(options);
+    const win = new BrowserWindow(options);
 
     // load file
     await win.loadFile('./renderer/index.html');
@@ -28,5 +25,3 @@ const openWindowByFile = async (filePath, options) => {
     console.log(error);
   }
 };
-
-exports.openWindowByFile = openWindowByFile;
