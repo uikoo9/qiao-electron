@@ -13,11 +13,32 @@ qiao.cli.cmd.command('uploaddmg <configPath>').alias('ud').description('upload d
 
 // upload dmg
 async function uploadDmg(configPath) {
+  if (process.platform !== 'darwin') {
+    console.log('This command only takes effect on Mac systems.');
+    console.log();
+    return;
+  }
+
   try {
     const cwd = process.cwd();
     if (configPath.startsWith('./')) configPath = path.resolve(cwd, configPath);
 
-    const url = await qiao.qec.uploadDmg(require(configPath));
+    // config
+    let config = require(configPath);
+
+    // upload dmg to cos
+    const cosConfigPath = './qiao-electron.upload-dmg.js';
+    try {
+      const rootPath = path.dirname(configPath);
+      const cosConfig = require(path.resolve(rootPath, cosConfigPath));
+      config = Object.assign({}, config, cosConfig);
+    } catch (error) {
+      console.log(`can not find ${cosConfigPath}`);
+      console.log();
+      return;
+    }
+
+    const url = await qiao.qec.uploadDmg(config);
     if (!url) {
       console.log('upload dmg to cos fail!');
       console.log();

@@ -10,22 +10,6 @@ const q = require('qiao-cos');
  * @returns
  */
 module.exports = async function (config) {
-  const cwd = process.cwd();
-
-  // darwin
-  if (process.platform === 'darwin') {
-    // upload dmg to cos
-    const cosConfigPath = './qiao-electron.upload-dmg.js';
-
-    try {
-      const cosConfig = require(path.resolve(cwd, cosConfigPath));
-      config = Object.assign({}, config, cosConfig);
-    } catch (error) {
-      console.log(`can not find ${cosConfigPath}`);
-      return;
-    }
-  }
-
   // cos config
   const cosConfig = config.cosConfig;
   const client = q(cosConfig);

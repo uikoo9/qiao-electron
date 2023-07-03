@@ -17,10 +17,29 @@ qiao.cli.cmd.command('packwin <configPath>').alias('pw').description('pack elect
 // pack
 async function pack(configPath) {
   try {
+    // config path
     const cwd = process.cwd();
     if (configPath.startsWith('./')) configPath = path.resolve(cwd, configPath);
 
-    await qiao.qec.pack(require(configPath));
+    // config
+    let config = require(configPath);
+
+    // darwin
+    if (process.platform === 'darwin') {
+      // sign and notarize
+      const macSignConfigPath = './qiao-electron.mac-sign.js';
+
+      try {
+        const rootPath = path.dirname(configPath);
+        const macSignConfig = require(path.resolve(rootPath, macSignConfigPath));
+        config = Object.assign({}, config, macSignConfig);
+      } catch (error) {
+        console.log(`can not find ${macSignConfigPath}`);
+      }
+    }
+
+    // pack
+    await qiao.qec.pack(config);
 
     console.log('pack electron application success!');
     console.log();
