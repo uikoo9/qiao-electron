@@ -10,14 +10,21 @@ const q = require('qiao-cos');
  * @returns
  */
 module.exports = async function (config) {
+  // vars
+  const outPath = config.out;
+  const arch = config.arch;
+  const appName = config.name;
+  const appVersion = config.appVersion;
+
+  // dest path
+  const root = process.cwd();
+  const dmgName = `${appName}-${appVersion}-${arch}`;
+  const dmgPath = path.resolve(root, `${outPath}/dmg/${dmgName}.dmg`);
+  const destPath = `${cosConfig.destPath}${dmgName}.dmg`;
+
   // cos config
   const cosConfig = config.cosConfig;
   const client = q(cosConfig);
-
-  // dest path
-  const dmgName = `${config.appName}-${config.appEnv}-${config.appVersion}-${config.arch}`;
-  const dmgPath = path.resolve(process.cwd(), `${config.outPath}/dmg/${dmgName}.dmg`);
-  const destPath = `${cosConfig.destPath}${dmgName}.dmg`;
 
   // rs
   const rs = await client.uploadFile(destPath, dmgPath);
