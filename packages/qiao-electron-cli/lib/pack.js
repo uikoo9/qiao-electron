@@ -8,5 +8,9 @@ const packager = require('electron-packager');
  * @returns
  */
 module.exports = async function (config) {
+  console.log('pack electron application by qiao-electron-cli:');
+  console.log(config);
+  console.log();
+
   return await packager(config);
 };

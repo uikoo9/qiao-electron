@@ -10,6 +10,10 @@ const q = require('qiao-cos');
  * @returns
  */
 module.exports = async function (config) {
+  console.log('upload mac dmg by qiao-electron-cli:');
+  console.log(config);
+  console.log();
+
   // cos config
   const cosConfig = config.cosConfig;
   const client = q(cosConfig);

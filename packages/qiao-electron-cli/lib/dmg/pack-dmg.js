@@ -10,6 +10,10 @@ const appDMG = require('./appdmg.js');
  * @returns
  */
 module.exports = async function (config) {
+  console.log('pack electron application for mac dmg by qiao-electron-cli:');
+  console.log(config);
+  console.log();
+
   // vars
   const outPath = config.out;
   const arch = config.arch;
