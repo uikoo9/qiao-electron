@@ -23,12 +23,11 @@ module.exports = async function (config) {
   const dmgName = `${appName}-${appVersion}-${arch}`;
   const dmgOutPath = path.resolve(root, `${outPath}/dmg`);
   const dmgIconSize = config.dmgIconSize;
-  const dmgBackground = config.dmgBackground;
-  const dmgWindowSize = config.dmgWindowSize;
-  const dmgWindowPosition = config.dmgWindowPosition;
+  const dmgBackground = config.background;
+  const dmgWindow = config.window;
 
   // dmg contents
-  let dmgContents = config.dmgContents;
+  let dmgContents = config.contents;
   if (dmgContents) {
     for (let i = 0; i < dmgContents.length; i++) {
       const item = dmgContents[i];
@@ -52,9 +51,7 @@ module.exports = async function (config) {
 
     out: dmgOutPath,
   };
-  if (dmgWindowSize) options.additionalDMGOptions = { window: { size: dmgWindowSize } };
-  if (dmgWindowPosition)
-    options.additionalDMGOptions = { window: { size: dmgWindowSize, position: dmgWindowPosition } };
+  if (dmgWindow) options.additionalDMGOptions = { window: dmgWindow };
 
   // log
   console.log('pack electron application for mac dmg by qiao-electron-cli:');
