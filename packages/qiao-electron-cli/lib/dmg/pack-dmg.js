@@ -19,6 +19,7 @@ module.exports = async function (config) {
   const arch = config.arch;
   const appName = config.name;
   const appVersion = config.appVersion;
+  const appIcon = config.icon;
   const dmgIconSize = config.dmgIconSize;
   const dmgBackground = config.dmgBackground;
 
@@ -31,7 +32,7 @@ module.exports = async function (config) {
   // options
   const options = {
     name: dmgName,
-    icon: config.appIconPath,
+    icon: appIcon,
 
     overwrite: true,
     debug: false,
