@@ -24,6 +24,7 @@ module.exports = async function (config) {
   const dmgOutPath = path.resolve(root, `${outPath}/dmg`);
   const dmgIconSize = config.dmgIconSize;
   const dmgBackground = config.dmgBackground;
+  const dmgWindowSize = config.dmgWindowSize;
 
   // dmg contents
   let dmgContents = config.dmgContents;
@@ -50,6 +51,7 @@ module.exports = async function (config) {
 
     out: dmgOutPath,
   };
+  if (dmgWindowSize) options.additionalDMGOptions = { window: { size: dmgWindowSize } };
 
   // log
   console.log('pack electron application for mac dmg by qiao-electron-cli:');
