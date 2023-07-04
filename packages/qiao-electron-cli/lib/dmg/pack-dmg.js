@@ -22,6 +22,7 @@ module.exports = async function (config) {
   const appIcon = config.icon;
   const dmgIconSize = config.dmgIconSize;
   const dmgBackground = config.dmgBackground;
+  const dmgContents = config.dmgContents;
 
   // other vars
   const root = process.cwd();
@@ -40,6 +41,7 @@ module.exports = async function (config) {
     appPath: appPath,
     iconSize: dmgIconSize || 80,
     background: dmgBackground,
+    contents: dmgContents,
 
     out: dmgOutPath,
   };
