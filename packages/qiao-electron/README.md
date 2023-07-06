@@ -223,31 +223,3 @@ shortcutReg(shortcutKey, shortcutCallback);
 // 注销全局快捷键
 shortcutUnReg(shortcutKey);
 ```
-
-### windowOpenByFile
-
-```javascript
-// 通过本地文件打开一个window
-windowOpenByFile(filePath, options, supportNode);
-```
-
-### windowOpenByUrl
-
-```javascript
-// 通过url打开一个window
-windowOpenByUrl(url, options, supportNode, isDev);
-```
-
-### windowOpenByUrlAndFile
-
-```javascript
-// dev下通过url打开window，非dev通过本地文件打开window
-windowOpenByUrlAndFile(urlPath, filePath, options);
-```
-
-### windowOpenByUrlAndFile
-
-```javascript
-// 通过ipc的event获取对应的window
-windowGetByEvent(event);
-```

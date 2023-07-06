@@ -15,6 +15,3 @@ export * from './shell/shell-main.js';
 
 // shortcut
 export * from './shortcut/shortcut-main/shortcut-main.js';
-
-// window
-export * from './window/window-main/window-main.js';
