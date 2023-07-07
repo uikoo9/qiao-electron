@@ -182,20 +182,6 @@ const log = logInit();
 const ls = ls();
 ```
 
-### setAboutVersion
-
-```javascript
-// 设置关于面板中的版本号
-setAboutVersion(version);
-```
-
-### setApplicationMenu
-
-```javascript
-// 设置系统菜单，如果不传menus会有默认的菜单
-setApplicationMenu();
-```
-
 ### shellOpenURL
 
 ```javascript

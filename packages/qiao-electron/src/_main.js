@@ -7,9 +7,6 @@ export * from './log/_log.js';
 // ls
 export * from './ls/_ls.js';
 
-// menu
-export * from './menu/menu.js';
-
 // shell
 export * from './shell/shell-main.js';
 
