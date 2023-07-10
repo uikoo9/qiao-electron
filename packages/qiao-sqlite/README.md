@@ -5,220 +5,151 @@
 
 本地数据库 sqlite 常见 api 封装，详见：[一篇文章学会 SQLite](https://blog.insistime.com/sqlite)
 
-## api
+## install
 
-### createDB
+```shell
+npm i qiao-sqlite
+```
 
-创建数据库
+## use
+
+使用
 
 ```javascript
-'use strict';
+// cjs
+const DB = require('qiao-sqlite');
 
-// q
-var q = require('qiao-sqlite');
+// mjs
+import DB from 'qiao-sqlite';
+```
 
-// db
-var db = q.createDB('./__tests__/test.db');
-console.log(db);
+## api
+
+### DB
+
+创建 DB 实例
+
+- databaseName
+  - 类型: string
+  - 说明: 数据库名称
+- return
+  - 类型: db
+  - 说明: DB 实例
+
+```javascript
+const db = await DB(databaseName);
 ```
 
 ### createTable
 
 创建表格
 
+- sql
+  - 类型: string
+  - 说明: 创建表格的 sql
+- return
+  - 类型: boolean
+  - 说明: 成功返回 true
+
 ```javascript
-'use strict';
-
-// q
-var q = require('qiao-sqlite');
-
-// db
-var db = q.createDB('./__tests__/test.db');
-
-// table
-var sql = 'CREATE TABLE if not exists t_project (project_name TEXT, project_appid TEXT, project_icon_url TEXT)';
-
-// test
-async function test() {
-  try {
-    await q.createTable(db, sql);
-  } catch (e) {
-    console.log(e);
-  }
-}
-
-// run
-test();
+const res = await db.createTable(sql);
 ```
 
 ### dropTable
 
 删除表格
 
+- tableName
+  - 类型: string
+  - 说明: 表格名
+- return
+  - 类型: boolean
+  - 说明: 成功返回 true
+
 ```javascript
-'use strict';
-
-// q
-var q = require('qiao-sqlite');
-
-// db
-var db = q.createDB('./__tests__/test.db');
-
-// test
-async function test() {
-  try {
-    console.log(await q.showTables(db));
-    await q.dropTable(db, 't_project');
-    console.log(await q.showTables(db));
-  } catch (e) {
-    console.log(e);
-  }
-}
-
-// run
-test();
+const res = await db.dropTable(tableName);
 ```
 
 ### showTables
 
 列出表格
 
+- return
+  - 类型: string[]
+  - 说明: 表格名数组
+
 ```javascript
-'use strict';
-
-// q
-var q = require('qiao-sqlite');
-
-// db
-var db = q.createDB('./__tests__/test.db');
-
-// test
-async function test() {
-  try {
-    const rows = await q.showTables(db);
-    console.log(rows);
-  } catch (e) {
-    console.log(e);
-  }
-}
-
-// run
-test();
+const res = await db.showTables();
 ```
 
 ### insertData
 
 插入数据
 
+- sql
+  - 类型: string
+  - 说明: 插入数据的 sql
+- params
+  - 类型: string
+  - 说明: 插入数据的 params
+- return
+  - 类型: boolean
+  - 说明: 成功返回 true
+
 ```javascript
-'use strict';
-
-// q
-var q = require('qiao-sqlite');
-
-// db
-var db = q.createDB('./__tests__/test.db');
-
-// data
-var sql = 'insert into t_project values (?, ?, ?)';
-
-// test
-async function test() {
-  try {
-    await q.insertData(db, sql, ['name', 'appid', 'url']);
-  } catch (e) {
-    console.log(e);
-  }
-}
-
-// run
-test();
+const res = await db.insertData(sql, params);
 ```
 
 ### deleteData
 
 删除数据
 
+- sql
+  - 类型: string
+  - 说明: 删除数据的 sql
+- params
+  - 类型: string
+  - 说明: 删除数据的 params
+- return
+  - 类型: boolean
+  - 说明: 成功返回 true
+
 ```javascript
-'use strict';
-
-// q
-var q = require('qiao-sqlite');
-
-// db
-var db = q.createDB('./__tests__/test.db');
-
-// data
-var sql = 'delete from t_project where rowid=?';
-
-// test
-async function test() {
-  try {
-    await q.deleteData(db, sql, [1]);
-  } catch (e) {
-    console.log(e);
-  }
-}
-
-// run
-test();
+const res = await db.deleteData(sql, params);
 ```
 
 ### modifyData
 
 修改数据
 
+- sql
+  - 类型: string
+  - 说明: 修改数据的 sql
+- params
+  - 类型: string
+  - 说明: 修改数据的 params
+- return
+  - 类型: boolean
+  - 说明: 成功返回 true
+
 ```javascript
-'use strict';
-
-// q
-var q = require('qiao-sqlite');
-
-// db
-var db = q.createDB('./__tests__/test.db');
-
-// data
-var sql = 'update t_project set project_name=?';
-
-// test
-async function test() {
-  try {
-    await q.modifyData(db, sql, ['name1']);
-  } catch (e) {
-    console.log(e);
-  }
-}
-
-// run
-test();
+const res = await db.modifyData(sql, params);
 ```
 
 ### selectData
 
 查询数据
 
+- sql
+  - 类型: string
+  - 说明: 查询数据的 sql
+- params
+  - 类型: string
+  - 说明: 查询数据的 params
+- return
+  - 类型: object[]
+  - 说明: 表格内数据列表
+
 ```javascript
-'use strict';
-
-// q
-var q = require('qiao-sqlite');
-
-// db
-var db = q.createDB('./__tests__/test.db');
-
-// sql
-var sql = 'SELECT rowid,* FROM t_project';
-
-// test
-async function test() {
-  try {
-    var rows = await q.selectData(db, sql);
-    console.log(rows);
-  } catch (e) {
-    console.log(e);
-  }
-}
-
-// run
-test();
+const rows = await db.modifyData(sql, params);
 ```
