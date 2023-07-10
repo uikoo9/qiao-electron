@@ -131,3 +131,15 @@ import { setApplicationMenu } from 'qiao-x-menu';
 ```javascript
 setApplicationMenu(menus);
 ```
+
+### setAboutVersion
+
+设置关于面板的版本号
+
+- version
+  - 类型: string
+  - 说明: 版本号
+
+```javascript
+setAboutVersion(version);
+```
