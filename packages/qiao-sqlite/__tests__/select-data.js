@@ -1,18 +1,15 @@
-'use strict';
-
 // q
-var q = require('../index.js');
-
-// db
-var db = q.createDB('./__tests__/test.db');
-
-// sql
-var sql = 'SELECT rowid,* FROM t_project';
+const q = require('../index.js');
 
 // test
 async function test() {
   try {
-    var rows = await q.selectData(db, sql);
+    // db
+    const db = await q('./__tests__/test.db');
+
+    // sql
+    const sql = 'SELECT rowid,* FROM t_project';
+    const rows = await db.selectData(sql);
     console.log(rows);
   } catch (e) {
     console.log(e);

@@ -1,18 +1,16 @@
-'use strict';
-
 // q
-var q = require('../index.js');
-
-// db
-var db = q.createDB('./__tests__/test.db');
-
-// data
-var sql = 'insert into t_project values (?, ?, ?)';
+const q = require('../index.js');
 
 // test
 async function test() {
   try {
-    await q.insertData(db, sql, ['name', 'appid', 'url']);
+    // db
+    const db = await q('./__tests__/test.db');
+
+    // data
+    const sql = 'insert into t_project values (?, ?, ?)';
+    const res = await db.insertData(sql, ['name', 'appid', 'url']);
+    console.log(res);
   } catch (e) {
     console.log(e);
   }

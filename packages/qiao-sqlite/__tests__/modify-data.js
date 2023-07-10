@@ -1,18 +1,16 @@
-'use strict';
-
 // q
-var q = require('../index.js');
-
-// db
-var db = q.createDB('./__tests__/test.db');
-
-// data
-var sql = 'update t_project set project_name=?';
+const q = require('../index.js');
 
 // test
 async function test() {
   try {
-    await q.modifyData(db, sql, ['name1']);
+    // db
+    const db = await q('./__tests__/test.db');
+
+    // data
+    const sql = 'update t_project set project_name=?';
+    const res = await db.modifyData(sql, ['name1']);
+    console.log(res);
   } catch (e) {
     console.log(e);
   }

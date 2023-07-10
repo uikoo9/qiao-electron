@@ -134,11 +134,77 @@ const selectData = (db, sql, params) => {
   });
 };
 
-exports.createDB = createDB;
-exports.createTable = createTable;
-exports.deleteData = deleteData;
-exports.dropTable = dropTable;
-exports.insertData = insertData;
-exports.modifyData = modifyData;
-exports.selectData = selectData;
-exports.showTables = showTables;
+// db
+
+/**
+ * db
+ * @param {*} databaseName
+ */
+var index = async (databaseName) => {
+  const obj = {};
+
+  // db
+  obj.db = createDB(databaseName);
+
+  // table
+  obj.createTable = async (sql) => {
+    try {
+      await createTable(obj.db, sql);
+      return true;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  obj.dropTable = async (tableName) => {
+    try {
+      await dropTable(obj.db, tableName);
+      return true;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  obj.showTables = async () => {
+    try {
+      return await showTables(obj.db);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // data
+  obj.insertData = async (sql, params) => {
+    try {
+      await insertData(obj.db, sql, params);
+      return true;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  obj.deleteData = async (sql, params) => {
+    try {
+      await deleteData(obj.db, sql, params);
+      return true;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  obj.modifyData = async (sql, params) => {
+    try {
+      await modifyData(obj.db, sql, params);
+      return true;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  obj.selectData = async (sql, params) => {
+    try {
+      return await selectData(obj.db, sql, params);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return obj;
+};
+
+module.exports = index;

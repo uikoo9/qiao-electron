@@ -1,8 +1,15 @@
-'use strict';
-
 // q
-var q = require('../index.js');
+const q = require('../index.js');
 
-// db
-var db = q.createDB('./__tests__/test.db');
-console.log(db);
+// test
+async function test() {
+  try {
+    const db = await q('./__tests__/test.db');
+    console.log(db);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+// run
+test();
