@@ -151,5 +151,5 @@ const res = await db.modifyData(sql, params);
   - 说明: 表格内数据列表
 
 ```javascript
-const rows = await db.modifyData(sql, params);
+const rows = await db.selectData(sql, params);
 ```
