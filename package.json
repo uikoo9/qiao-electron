@@ -17,8 +17,8 @@
     "graph": "nx graph",
     "check": "ncu && lerna exec ncu --concurrency=1",
     "update": "ncu -u && lerna exec 'ncu -u' --concurrency=1",
-    "pkg": "qlerna pkg ./packages",
-    "dpkg": "qlerna pkg ./packages dev"
+    "pkg": "qpro pkg ./packages",
+    "dpkg": "qpro pkg ./packages dev"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.7.2",
@@ -28,8 +28,7 @@
     "lerna": "^7.3.0",
     "lint-staged": "^14.0.1",
     "nx": "^16.10.0",
-    "qiao-lerna": "^4.0.8",
-    "qiao-project": "^4.0.7",
+    "qiao-project": "^4.0.9",
     "rollup": "^4.0.2"
   }
 }
