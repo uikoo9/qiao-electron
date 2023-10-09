@@ -26,11 +26,11 @@
   "dependencies": {
     "electron-installer-zip": "^0.1.2",
     "electron-packager": "^17.1.2",
-    "qiao-cli": "^4.0.0",
-    "qiao-file": "^4.0.0"
+    "qiao-cli": "^4.1.1",
+    "qiao-file": "^4.1.1"
   },
   "optionalDependencies": {
     "appdmg": "^0.6.6",
-    "qiao-cos": "^4.0.4"
+    "qiao-cos": "^4.1.1"
   }
 }
