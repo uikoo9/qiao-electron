@@ -21,13 +21,13 @@
     "dpkg": "qpro pkg ./packages dev"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.7.2",
-    "@commitlint/config-conventional": "^17.7.0",
+    "@commitlint/cli": "^18.2.0",
+    "@commitlint/config-conventional": "^18.1.0",
     "ava": "^5.3.1",
     "husky": "^8.0.3",
-    "lerna": "^7.3.0",
-    "lint-staged": "^14.0.1",
-    "nx": "^16.10.0",
-    "qiao-project": "^4.1.4"
+    "lerna": "^7.4.2",
+    "lint-staged": "^15.0.2",
+    "nx": "^17.0.2",
+    "qiao-project": "^4.2.5"
   }
 }

@@ -1,9 +1,12 @@
 # project
+
+.nx
 node_modules
 package-lock.json
 
 # packages
-packages/qiao-electron-cli/_demo
+
+packages/qiao-electron-cli/\_demo
 packages/qiao-electron-demo
-packages/electron-icns/__tests__/tmp.iconset
-packages/electron-icns/__tests__/icon.icns
+packages/electron-icns/**tests**/tmp.iconset
+packages/electron-icns/**tests**/icon.icns
