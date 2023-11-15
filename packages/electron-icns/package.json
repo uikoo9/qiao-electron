@@ -34,8 +34,8 @@
     "test": "node __tests__/test.js"
   },
   "dependencies": {
-    "qiao-cli": "^4.1.1",
-    "qiao-file": "^4.1.1"
+    "qiao-cli": "^4.3.0",
+    "qiao-file": "^4.3.0"
   },
   "nx": {
     "namedInputs": {
