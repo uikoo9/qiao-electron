@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "qiao-cli": "^4.3.0",
-    "qiao-file": "^4.3.0"
+    "qiao-file": "^4.3.5"
   },
   "nx": {
     "namedInputs": {
