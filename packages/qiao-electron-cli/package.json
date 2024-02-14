@@ -31,6 +31,6 @@
   },
   "optionalDependencies": {
     "appdmg": "^0.6.6",
-    "qiao-cos": "^4.3.5"
+    "qiao-cos": "^4.4.1"
   }
 }
