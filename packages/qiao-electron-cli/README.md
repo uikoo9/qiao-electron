@@ -5,6 +5,10 @@
 
 electron 脚手架，详见：[一篇文章学会 Electron](https://blog.insistime.com/electron)
 
+## 官网
+
+[https://qiao-electron-cli.insistime.com/#/](https://qiao-electron-cli.insistime.com/#/)
+
 ## install
 
 ```bash
