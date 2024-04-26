@@ -1,15 +1,12 @@
 // electron
 import { ipcRenderer } from 'electron';
 
-// const
-import { IPC_DIALOG_OPEN_FILE, IPC_DIALOG_OPEN_FOLDER, IPC_DIALOG_OPEN_FILE_FOLDER } from './dialog-constant.js';
-
 /**
  * dialogOpenFileIPC
  * @param {*} options
  */
 export const dialogOpenFileIPC = async (options) => {
-  return await ipcRenderer.invoke(IPC_DIALOG_OPEN_FILE, options);
+  return await ipcRenderer.invoke('ipc-dialog-open-file', options);
 };
 
 /**
@@ -17,7 +14,7 @@ export const dialogOpenFileIPC = async (options) => {
  * @param {*} options
  */
 export const dialogOpenFolderIPC = async (options) => {
-  return await ipcRenderer.invoke(IPC_DIALOG_OPEN_FOLDER, options);
+  return await ipcRenderer.invoke('ipc-dialog-open-folder', options);
 };
 
 /**
@@ -25,5 +22,5 @@ export const dialogOpenFolderIPC = async (options) => {
  * @param {*} options
  */
 export const dialogOpenFileAndFolderIPC = async (options) => {
-  return await ipcRenderer.invoke(IPC_DIALOG_OPEN_FILE_FOLDER, options);
+  return await ipcRenderer.invoke('ipc-dialog-open-file-folder', options);
 };

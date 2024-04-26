@@ -5,7 +5,7 @@ import { appIPCInit } from './app/app-ipc.js';
 import { darkModeIPCInit } from './darkmode/darkmode-ipc.js';
 
 // dialog
-import { dialogIPCInit } from './dialog/dialog-ipc.js';
+import { dialogIPCInit } from 'qiao-x-dialog';
 
 // fs
 import { fsIPCInit } from './fs/fs-ipc.js';

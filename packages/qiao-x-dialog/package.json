@@ -1,13 +1,13 @@
 {
-  "name": "qiao-electron",
-  "version": "3.6.3",
-  "description": "electron tools",
+  "name": "qiao-x-dialog",
+  "version": "3.5.9",
+  "description": "electron dialog tool",
   "keywords": [
     "electron",
-    "tools"
+    "dialog"
   ],
   "author": "uikoo9 <uikoo9@qq.com>",
-  "homepage": "https://code.insistime.com/#qiao-electron",
+  "homepage": "https://code.insistime.com/#qiao-x-dialog",
   "license": "MIT",
   "main": "index.js",
   "module": "src/index.js",
@@ -24,12 +24,6 @@
   },
   "scripts": {
     "build": "qpro rollup ./rollup.config.js"
-  },
-  "dependencies": {
-    "qiao-config": "^4.5.1",
-    "qiao-file": "^4.5.1",
-    "qiao-log": "^4.5.2",
-    "qiao-x-dialog": "^3.5.9"
   },
   "nx": {
     "namedInputs": {

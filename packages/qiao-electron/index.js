@@ -1,6 +1,7 @@
 'use strict';
 
 var electron = require('electron');
+var qiaoXDialog = require('qiao-x-dialog');
 var qiaoFile = require('qiao-file');
 var path = require('path');
 var Logger = require('qiao-log');
@@ -46,93 +47,6 @@ const darkModeIPCInit = () => {
   // ipc darkmode get
   electron.ipcMain.handle(IPC_DARKMODE_GET, () => {
     return electron.nativeTheme.shouldUseDarkColors;
-  });
-};
-
-/**
- * dialog constant
- */
-const IPC_DIALOG_OPEN_FILE = 'ipc-dialog-open-file';
-const IPC_DIALOG_OPEN_FOLDER = 'ipc-dialog-open-folder';
-const IPC_DIALOG_OPEN_FILE_FOLDER = 'ipc-dialog-open-file-folder';
-
-// electron
-
-/**
- * dialogOpenFile
- *  https://www.electronjs.org/zh/docs/latest/api/dialog#dialogshowopendialogbrowserwindow-options
- * @param {*} options
- * @returns
- */
-const dialogOpenFile = async (options) => {
-  return await openDialog(options, ['openFile']);
-};
-
-/**
- * dialogOpenFolder
- *  https://www.electronjs.org/zh/docs/latest/api/dialog#dialogshowopendialogbrowserwindow-options
- * @param {*} options
- * @returns
- */
-const dialogOpenFolder = async (options) => {
-  return await openDialog(options, ['openDirectory']);
-};
-
-/**
- * dialogOpenFileAndFolder
- *  https://www.electronjs.org/zh/docs/latest/api/dialog#dialogshowopendialogbrowserwindow-options
- * @param {*} options
- * @returns
- */
-const dialogOpenFileAndFolder = async (options) => {
-  return await openDialog(options, ['openFile', 'openDirectory']);
-};
-
-// openDialog
-async function openDialog(options, defaultProps) {
-  // opt
-  let opt = options || {};
-
-  // properties
-  opt.properties = opt.properties || defaultProps;
-
-  // win
-  const win = opt.win;
-
-  // filter
-  if (opt.files) {
-    opt.filters = [
-      {
-        name: 'files',
-        extensions: opt.files,
-      },
-    ];
-    delete opt.files;
-  }
-
-  // return
-  return win ? await electron.dialog.showOpenDialog(win, opt) : await electron.dialog.showOpenDialog(opt);
-}
-
-// electron
-
-/**
- * dialogIPCInit
- */
-const dialogIPCInit = () => {
-  // ipc dialog open file
-  electron.ipcMain.handle(IPC_DIALOG_OPEN_FILE, async (event, options) => {
-    return await dialogOpenFile(options);
-  });
-
-  // ipc dialog open folder
-  electron.ipcMain.handle(IPC_DIALOG_OPEN_FOLDER, async (event, options) => {
-    return await dialogOpenFolder(options);
-  });
-
-  // ipc dialog open file and folder
-  electron.ipcMain.handle(IPC_DIALOG_OPEN_FILE_FOLDER, async (event, options) => {
-    return await dialogOpenFileAndFolder(options);
   });
 };
 
@@ -413,7 +327,7 @@ const ipcInit = (version) => {
 
   // others
   darkModeIPCInit();
-  dialogIPCInit();
+  qiaoXDialog.dialogIPCInit();
   fsIPCInit();
   logIPCInit();
   lsIPCInit();
@@ -451,16 +365,6 @@ const darkModeChangeIPC = (callback) => {
  */
 const darkModeGetIPC = async () => {
   return await electron.ipcRenderer.invoke(IPC_DARKMODE_GET);
-};
-
-// electron
-
-/**
- * dialogOpenFolderIPC
- * @param {*} options
- */
-const dialogOpenFolderIPC = async (options) => {
-  return await electron.ipcRenderer.invoke(IPC_DIALOG_OPEN_FOLDER, options);
 };
 
 // electron
@@ -604,7 +508,6 @@ const getPreloads = (customPreloads) => {
     appGetVersionIPC,
     darkModeChangeIPC,
     darkModeGetIPC,
-    dialogOpenFolderIPC,
     fsRmIPC,
     fsMkdirIPC,
     fsRenameIPC,
@@ -648,9 +551,24 @@ const shortcutUnReg = (shortcutKey) => {
   return electron.globalShortcut.unregister(shortcutKey);
 };
 
-exports.dialogOpenFile = dialogOpenFile;
-exports.dialogOpenFileAndFolder = dialogOpenFileAndFolder;
-exports.dialogOpenFolder = dialogOpenFolder;
+Object.defineProperty(exports, 'dialogOpenFile', {
+  enumerable: true,
+  get: function () {
+    return qiaoXDialog.dialogOpenFile;
+  },
+});
+Object.defineProperty(exports, 'dialogOpenFileAndFolder', {
+  enumerable: true,
+  get: function () {
+    return qiaoXDialog.dialogOpenFileAndFolder;
+  },
+});
+Object.defineProperty(exports, 'dialogOpenFolder', {
+  enumerable: true,
+  get: function () {
+    return qiaoXDialog.dialogOpenFolder;
+  },
+});
 exports.getPreloads = getPreloads;
 exports.ipcInit = ipcInit;
 exports.logInit = logInit;

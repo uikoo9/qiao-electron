@@ -1,5 +1,5 @@
 // dialog
-export * from './dialog/dialog-main/dialog-main.js';
+export { dialogOpenFile, dialogOpenFolder, dialogOpenFileAndFolder } from 'qiao-x-dialog';
 
 // log
 export * from './log/_log.js';

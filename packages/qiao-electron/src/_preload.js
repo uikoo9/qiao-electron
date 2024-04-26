@@ -4,9 +4,6 @@ import { appGetVersionIPC } from './app/app-preload.js';
 // darkmode
 import { darkModeChangeIPC, darkModeGetIPC } from './darkmode/darkmode-preload.js';
 
-// dialog
-import { dialogOpenFolderIPC } from './dialog/dialog-preload.js';
-
 // fs
 import { fsRmIPC, fsMkdirIPC, fsRenameIPC, fsGetTreeIPC, fsReadFileIPC, fsWriteFileIPC } from './fs/fs-preload.js';
 
@@ -35,7 +32,6 @@ export const getPreloads = (customPreloads) => {
     appGetVersionIPC,
     darkModeChangeIPC,
     darkModeGetIPC,
-    dialogOpenFolderIPC,
     fsRmIPC,
     fsMkdirIPC,
     fsRenameIPC,
