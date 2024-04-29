@@ -1,5 +1,6 @@
 // electron pakcager
 const packager = require('electron-packager');
+const { serialHooks } = require('electron-packager/src/hooks');
 
 /**
  * pack
@@ -8,9 +9,14 @@ const packager = require('electron-packager');
  * @returns
  */
 module.exports = async function (config) {
+  // hooks
+  if (config.afterInitialize) config.afterInitialize = [serialHooks([config.afterInitialize])];
+
+  // log
   console.log('pack electron application by qiao-electron-cli:');
   console.log(config);
   console.log();
 
+  // pack
   return await packager(config);
 };
