@@ -3,6 +3,10 @@
 // path
 const path = require('path');
 
+// logger
+const { Logger } = require('qiao.log.js');
+const logger = Logger('qiao-electron-cli');
+
 // qiao
 const qiao = {};
 qiao.cli = require('qiao-cli');
@@ -16,6 +20,8 @@ qiao.cli.cmd.command('packwin <configPath>').alias('pw').description('pack elect
 
 // pack
 async function pack(configPath) {
+  const methodName = 'pack';
+
   try {
     // config path
     const cwd = process.cwd();
@@ -34,19 +40,17 @@ async function pack(configPath) {
         const macSignConfig = require(path.resolve(rootPath, macSignConfigPath));
         config = Object.assign({}, config, macSignConfig);
       } catch (error) {
-        console.log(`can not find ${macSignConfigPath}`);
+        logger.error(methodName, `can not find ${macSignConfigPath}`);
       }
     }
 
     // pack
     await qiao.qec.pack(config);
 
-    console.log('pack electron application success!');
+    logger.info(methodName, 'pack electron application success!');
     console.log();
   } catch (e) {
-    console.log('pack electron application fail!');
+    logger.error(methodName, 'pack electron application fail!', e);
     console.log();
-
-    console.log(e);
   }
 }

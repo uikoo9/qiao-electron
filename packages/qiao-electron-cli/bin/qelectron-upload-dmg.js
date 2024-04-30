@@ -3,6 +3,10 @@
 // path
 const path = require('path');
 
+// logger
+const { Logger } = require('qiao.log.js');
+const logger = Logger('qiao-electron-cli');
+
 // qiao
 const qiao = {};
 qiao.cli = require('qiao-cli');
@@ -13,8 +17,9 @@ qiao.cli.cmd.command('uploaddmg <configPath>').alias('ud').description('upload d
 
 // upload dmg
 async function uploadDmg(configPath) {
+  const methodName = 'uploadDmg';
   if (process.platform !== 'darwin') {
-    console.log('This command only takes effect on Mac systems.');
+    logger.info(methodName, 'This command only takes effect on Mac systems.');
     console.log();
     return;
   }
@@ -33,25 +38,23 @@ async function uploadDmg(configPath) {
       const cosConfig = require(path.resolve(rootPath, cosConfigPath));
       config = Object.assign({}, config, cosConfig);
     } catch (error) {
-      console.log(`can not find ${cosConfigPath}`);
+      logger.error(methodName, `can not find ${cosConfigPath}`);
       console.log();
       return;
     }
 
     const url = await qiao.qec.uploadDmg(config);
     if (!url) {
-      console.log('upload dmg to cos fail!');
+      logger.info(methodName, 'upload dmg to cos fail!');
       console.log();
       return;
     }
 
-    console.log('upload dmg to cos success! ');
-    console.log(url);
+    logger.info(methodName, 'upload dmg to cos success! ');
+    logger.info(methodName, 'url', url);
     console.log();
   } catch (e) {
-    console.log('upload dmg to cos fail!');
+    logger.error(methodName, 'upload dmg to cos fail!');
     console.log();
-
-    console.log(e);
   }
 }

@@ -3,6 +3,10 @@
 // path
 const path = require('path');
 
+// logger
+const { Logger } = require('qiao.log.js');
+const logger = Logger('qiao-electron-cli');
+
 // qiao
 const qiao = {};
 qiao.cli = require('qiao-cli');
@@ -17,8 +21,9 @@ qiao.cli.cmd
 
 // pack dmg
 async function packDmg(configPath) {
+  const methodName = 'packDmg';
   if (process.platform !== 'darwin') {
-    console.log('This command only takes effect on Mac systems.');
+    logger.info(methodName, 'This command only takes effect on Mac systems.');
     console.log();
     return;
   }
@@ -38,17 +43,15 @@ async function packDmg(configPath) {
       const macDmgConfig = require(path.resolve(rootPath, macDmgConfigPath));
       config = Object.assign({}, config, macDmgConfig);
     } catch (error) {
-      console.log(`can not find ${macDmgConfigPath}`);
+      logger.error(methodName, `can not find ${macDmgConfigPath}`);
     }
 
     await qiao.qec.packDmg(config);
 
-    console.log('pack electron application for mac dmg success!');
+    logger.info(methodName, 'pack electron application for mac dmg success!');
     console.log();
   } catch (e) {
-    console.log('pack electron application for mac dmg fail!');
+    logger.error(methodName, 'pack electron application for mac dmg fail!', e);
     console.log();
-
-    console.log(e);
   }
 }

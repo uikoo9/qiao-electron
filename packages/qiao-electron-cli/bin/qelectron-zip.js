@@ -3,6 +3,10 @@
 // path
 const path = require('path');
 
+// logger
+const { Logger } = require('qiao.log.js');
+const logger = Logger('qiao-electron-cli');
+
 // qiao
 const qiao = {};
 qiao.cli = require('qiao-cli');
@@ -13,18 +17,17 @@ qiao.cli.cmd.command('zip <configPath>').alias('z').description('zip electron ap
 
 // zip
 async function zip(configPath) {
+  const methodName = 'zip';
   try {
     const cwd = process.cwd();
     if (configPath.startsWith('./')) configPath = path.resolve(cwd, configPath);
 
     await qiao.qec.zip(require(configPath));
 
-    console.log('zip electron application success!');
+    logger.info(methodName, 'zip electron application success!');
     console.log();
   } catch (e) {
-    console.log('zip electron application fail!');
+    logger.error(methodName, 'zip electron application fail!', e);
     console.log();
-
-    console.log(e);
   }
 }
