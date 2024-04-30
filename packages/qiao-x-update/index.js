@@ -17,7 +17,6 @@ const logger = qiao_log_js.Logger('qiao-x-update');
  * @returns
  */
 const updateApp = async (downloadUrl, appName, appVersion) => {
-  process.noAsar = true;
   const methodName = 'updateApp';
 
   // root
@@ -35,7 +34,9 @@ const updateApp = async (downloadUrl, appName, appVersion) => {
   if (!downloadRes) return;
 
   // unzip
+  process.noAsar = true;
   const zipRes = await qiaoZip.unzip(downloadDest, root);
+  process.noAsar = false;
   logger.info(methodName, 'zipRes', zipRes);
   if (!downloadRes) return;
 
