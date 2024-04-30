@@ -1,6 +1,3 @@
-// app
-import { appGetVersionIPC } from './app/app-preload.js';
-
 // darkmode
 import { darkModeChangeIPC, darkModeGetIPC } from './darkmode/darkmode-preload.js';
 
@@ -29,7 +26,6 @@ import { windowResizeIPC } from './window/window-preload.js';
  */
 export const getPreloads = (customPreloads) => {
   const defaultPreloads = {
-    appGetVersionIPC,
     darkModeChangeIPC,
     darkModeGetIPC,
     fsRmIPC,

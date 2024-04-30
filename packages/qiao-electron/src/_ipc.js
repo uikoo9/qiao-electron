@@ -1,5 +1,5 @@
 // app
-import { appIPCInit } from './app/app-ipc.js';
+import { appIPCInit } from 'qiao-x-app';
 
 // darkmode
 import { darkModeIPCInit } from './darkmode/darkmode-ipc.js';

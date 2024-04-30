@@ -1,13 +1,13 @@
 {
-  "name": "qiao-electron",
+  "name": "qiao-x-app",
   "version": "3.6.4",
-  "description": "electron tools",
+  "description": "electron app tool",
   "keywords": [
     "electron",
-    "tools"
+    "app"
   ],
   "author": "uikoo9 <uikoo9@qq.com>",
-  "homepage": "https://code.insistime.com/#qiao-electron",
+  "homepage": "https://code.insistime.com/#qiao-x-app",
   "license": "MIT",
   "main": "index.js",
   "module": "src/index.js",
@@ -24,13 +24,6 @@
   },
   "scripts": {
     "build": "qpro rollup ./rollup.config.js"
-  },
-  "dependencies": {
-    "qiao-config": "^4.5.1",
-    "qiao-file": "^4.5.1",
-    "qiao-log": "^4.5.2",
-    "qiao-x-app": "^3.6.4",
-    "qiao-x-dialog": "^3.6.4"
   },
   "nx": {
     "namedInputs": {

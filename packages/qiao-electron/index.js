@@ -1,28 +1,12 @@
 'use strict';
 
+var qiaoXApp = require('qiao-x-app');
 var electron = require('electron');
 var qiaoXDialog = require('qiao-x-dialog');
 var qiaoFile = require('qiao-file');
 var path = require('path');
 var Logger = require('qiao-log');
 var q = require('qiao-config');
-
-/**
- * app constant
- */
-const IPC_APP_GET_VERSION = 'ipc-app-get-version';
-
-// electron
-
-/**
- * appIPCInit
- */
-const appIPCInit = (version) => {
-  // ipc get app version
-  electron.ipcMain.handle(IPC_APP_GET_VERSION, () => {
-    return version;
-  });
-};
 
 /**
  * darkmode constant
@@ -323,7 +307,7 @@ const windowIPCInit = () => {
  */
 const ipcInit = (version) => {
   // app
-  if (version) appIPCInit(version);
+  if (version) qiaoXApp.appIPCInit(version);
 
   // others
   darkModeIPCInit();
@@ -336,16 +320,6 @@ const ipcInit = (version) => {
 
   // shortcut quit init
   shortcutInit();
-};
-
-// electron
-
-/**
- * appGetVersionIPC
- * @returns version
- */
-const appGetVersionIPC = async () => {
-  return await electron.ipcRenderer.invoke(IPC_APP_GET_VERSION);
 };
 
 // electron
@@ -496,7 +470,7 @@ const windowResizeIPC = (width, height) => {
   electron.ipcRenderer.send(IPC_WINDOW_RESIZE_TO, width, height);
 };
 
-// app
+// darkmode
 
 /**
  * getPreloads
@@ -505,7 +479,6 @@ const windowResizeIPC = (width, height) => {
  */
 const getPreloads = (customPreloads) => {
   const defaultPreloads = {
-    appGetVersionIPC,
     darkModeChangeIPC,
     darkModeGetIPC,
     fsRmIPC,

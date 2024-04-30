@@ -117,7 +117,7 @@ dialogIPCInit();
 preload代码，由于preload中不能引入npm包，所以需要手动添加
 
 ```javascript
-// === dialog-ipc.js ===
+// === dialog-preload.js ===
 // electron
 import { ipcRenderer } from 'electron';
 
