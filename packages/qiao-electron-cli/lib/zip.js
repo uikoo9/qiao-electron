@@ -1,12 +1,18 @@
 // electron zip
 const zip = require('electron-installer-zip');
 
+// logger
+const { Logger } = require('qiao.log.js');
+const logger = Logger('qiao-electron-cli');
+
 /**
  * zip
  * @param {*} config
  * @returns
  */
 module.exports = async function (config) {
+  const methodName = 'zip.js';
+
   // opts
   let zipOptions = [];
   const opts = getZipOptions(config);
@@ -15,7 +21,7 @@ module.exports = async function (config) {
   } else {
     zipOptions = [].concat(opts);
   }
-  console.log('zip options:', zipOptions);
+  logger.info(methodName, 'zipOptions', zipOptions);
 
   // all promise
   const allPromiseArray = zipOptions.map(function (item) {

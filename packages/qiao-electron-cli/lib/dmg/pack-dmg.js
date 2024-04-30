@@ -4,6 +4,10 @@ const path = require('path');
 // appdmg
 const appDMG = require('./appdmg.js');
 
+// logger
+const { Logger } = require('qiao.log.js');
+const logger = Logger('qiao-electron-cli');
+
 /**
  * pack dmg
  * @param {*} config
@@ -54,8 +58,8 @@ module.exports = async function (config) {
   if (dmgWindow) options.additionalDMGOptions = { window: dmgWindow };
 
   // log
-  console.log('pack electron application for mac dmg by qiao-electron-cli:');
-  console.log(options);
+  logger.info('pack-dmg.js', 'pack electron application for mac dmg by qiao-electron-cli:');
+  logger.info('pack-dmg.js', 'options', options);
   console.log();
 
   // dmg

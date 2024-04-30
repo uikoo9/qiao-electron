@@ -4,14 +4,18 @@ const path = require('path');
 // q
 const q = require('qiao-cos');
 
+// logger
+const { Logger } = require('qiao.log.js');
+const logger = Logger('qiao-electron-cli');
+
 /**
  * upload dmg
  * @param {*} config
  * @returns
  */
 module.exports = async function (config) {
-  console.log('upload mac dmg by qiao-electron-cli:');
-  console.log(config);
+  logger.info('upload-dmg.js', 'upload mac dmg by qiao-electron-cli:');
+  logger.info('upload-dmg.js', 'config', config);
   console.log();
 
   // cos config
