@@ -4,6 +4,7 @@ const { serialHooks } = require('electron-packager/src/hooks');
 
 // version update
 const { versionUpdate } = require('./pack-update.js');
+const { afterPack } = require('./pack-after.js');
 
 // logger
 const { Logger } = require('qiao.log.js');
@@ -23,10 +24,10 @@ module.exports = async function (config) {
       logger.info('pack.js', 'versionUpdateRes', versionUpdateRes);
       return;
     }
-  }
 
-  // hooks
-  if (config.afterInitialize) config.afterInitialize = [serialHooks([config.afterInitialize])];
+    // hooks
+    config.afterInitialize = [serialHooks([afterPack])];
+  }
 
   // log
   logger.info('pack.js', 'pack electron application by qiao-electron-cli:');
