@@ -5,10 +5,10 @@ import path from 'path';
 import { download } from 'qiao-downloader';
 
 // unzip
-import { unzip, rm } from 'qiao-zip';
+import { unzip } from 'qiao-zip';
 
 // file
-import { readFile, writeFile } from 'qiao-file';
+import { readFile, writeFile, rm } from 'qiao-file';
 
 // logger
 import { Logger } from 'qiao.log.js';
