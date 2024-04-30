@@ -70,17 +70,6 @@ exports.versionUpdate = async function (config) {
     return;
   }
 
-  // rm
-  const rmRes = await rm(cpSrc);
-  logger.info(methodName, 'rmRes', rmRes);
-  if (!rmRes) return;
-
-  // mv
-  const oldPath = path.resolve(root, postPath);
-  const mvRes = await mv(oldPath, cpSrc);
-  logger.info(methodName, 'mvRes', mvRes);
-  if (!mvRes) return;
-
   // zip
   const zipDest = path.resolve(
     root,
@@ -91,6 +80,17 @@ exports.versionUpdate = async function (config) {
   logger.info(methodName, 'zipDest', zipDest);
   logger.info(methodName, 'zipRes', zipRes);
   if (!zipRes) return;
+
+  // rm
+  const rmRes = await rm(cpSrc);
+  logger.info(methodName, 'rmRes', rmRes);
+  if (!rmRes) return;
+
+  // mv
+  const oldPath = path.resolve(root, postPath);
+  const mvRes = await mv(oldPath, cpSrc);
+  logger.info(methodName, 'mvRes', mvRes);
+  if (!mvRes) return;
 
   // return
   return true;
