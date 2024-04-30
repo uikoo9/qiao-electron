@@ -49,8 +49,8 @@ exports.versionUpdate = async function (config) {
 
   // json
   try {
-    const jsonSrc = path.resolve(__dirname, `${postPath}/${version}/package.json`);
-    const jsonDest = path.resolve(__dirname, `${postPath}/package.json`);
+    const jsonSrc = path.resolve(root, `${postPath}/${version}/package.json`);
+    const jsonDest = path.resolve(root, `${postPath}/package.json`);
     const jsonStr = await readFile(jsonSrc);
     logger.info(methodName, 'jsonSrc', jsonSrc);
     logger.info(methodName, 'jsonDest', jsonDest);
