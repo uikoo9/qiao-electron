@@ -7,6 +7,9 @@ const { cp, readFile, writeFile, rm, mv } = require('qiao-file');
 // asar
 const asar = require('@electron/asar');
 
+// zip
+const { zip } = require('qiao-zip');
+
 // logger
 const { Logger } = require('qiao.log.js');
 const logger = Logger('qiao-electron-cli');
@@ -77,6 +80,17 @@ exports.versionUpdate = async function (config) {
   const mvRes = await mv(oldPath, cpSrc);
   logger.info(methodName, 'mvRes', mvRes);
   if (!mvRes) return;
+
+  // zip
+  const zipDest = path.resolve(
+    root,
+    `${config.out}/update/${config.name}-${config.platform}-${config.arch}-${version}.zip`,
+  );
+  const zipRes = await zip(asarDest, zipDest);
+  logger.info(methodName, 'zipSrc', asarDest);
+  logger.info(methodName, 'zipDest', zipDest);
+  logger.info(methodName, 'zipRes', zipRes);
+  if (!zipRes) return;
 
   // return
   return true;

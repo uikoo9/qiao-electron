@@ -24,6 +24,7 @@ async function zip(configPath) {
 
     await qiao.qec.zip(require(configPath));
 
+    console.log();
     logger.info(methodName, 'zip electron application success!');
     console.log();
   } catch (e) {

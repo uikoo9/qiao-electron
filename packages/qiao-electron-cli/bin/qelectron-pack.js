@@ -47,6 +47,7 @@ async function pack(configPath) {
     // pack
     await qiao.qec.pack(config);
 
+    console.log();
     logger.info(methodName, 'pack electron application success!');
     console.log();
   } catch (e) {
