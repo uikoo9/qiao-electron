@@ -8,7 +8,7 @@ import { download } from 'qiao-downloader';
 import { unzip } from 'qiao-zip';
 
 // file
-import { readFile, writeFile, rm } from 'qiao-file';
+import { tmpdir, readFile, writeFile, rm } from 'qiao-file';
 
 // logger
 import { Logger } from 'qiao.log.js';
@@ -21,17 +21,20 @@ const logger = Logger('qiao-x-update');
  * @param {*} version
  * @returns
  */
-export const updateApp = async (downloadUrl, appPath, version) => {
+export const updateApp = async (downloadUrl, appName, appVersion) => {
+  process.noAsar = true;
   const methodName = 'updateApp';
 
   // root
-  const root = path.resolve(appPath, './Contents/Reources/app');
+  const root = `/Applications/${appName}.app/Contents/Resources/app`;
   logger.info(methodName, 'root', root);
 
   // download zip
-  const downloadDest = path.resolve(root, `./${version}.zip`);
+  const downloadPath = await tmpdir();
+  const downloadDest = path.resolve(downloadPath, `./${appVersion}.zip`);
   const downloadRes = await download(downloadUrl, downloadDest);
   logger.info(methodName, 'downloadUrl', downloadUrl);
+  logger.info(methodName, 'downloadPath', downloadPath);
   logger.info(methodName, 'downloadDest', downloadDest);
   logger.info(methodName, 'downloadRes', downloadRes);
   if (!downloadRes) return;
@@ -46,8 +49,8 @@ export const updateApp = async (downloadUrl, appPath, version) => {
     const jsonPath = path.resolve(root, './package.json');
     const jsonStr = await readFile(jsonPath);
     const json = JSON.parse(jsonStr);
-    json.version = version;
-    json.main = `${version}.asar/main/index.js`;
+    json.version = appVersion;
+    json.main = `${appVersion}.asar/main/index.js`;
     logger.info(methodName, 'jsonPath', jsonPath);
     logger.info(methodName, 'json', json);
 
