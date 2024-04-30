@@ -53,7 +53,7 @@ const updateApp = async (downloadUrl, appPath, version) => {
   }
 
   // rm
-  const rmRes = await qiaoZip.rm(downloadDest);
+  const rmRes = await qiaoFile.rm(downloadDest);
   logger.info(methodName, 'rmRes', rmRes);
   return true;
 };
