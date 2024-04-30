@@ -31,6 +31,7 @@
     "qiao.log.js": "^3.7.1"
   },
   "optionalDependencies": {
+    "@electron/asar": "^3.2.9",
     "appdmg": "^0.6.6",
     "qiao-cos": "^4.5.2"
   }

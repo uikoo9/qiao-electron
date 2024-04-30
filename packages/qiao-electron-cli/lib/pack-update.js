@@ -2,25 +2,34 @@
 const path = require('path');
 
 // file
-const { cp, readFile, writeFile } = require('qiao-file');
-
-// version
-const { version } = require('../../dist/package.json');
+const { cp, readFile, writeFile, rm, mv } = require('qiao-file');
 
 // asar
 const asar = require('@electron/asar');
 
 // logger
 const { Logger } = require('qiao.log.js');
-const logger = Logger('pack-asar.js');
+const logger = Logger('qiao-electron-cli');
 
-// asar
-exports.asar = async function () {
-  const methodName = 'asar';
+/**
+ * versionUpdate
+ * @param {*} config
+ * @returns
+ */
+exports.versionUpdate = async function (config) {
+  const methodName = 'versionUpdate';
+
+  // root
+  const root = process.cwd();
+  const version = config.appVersion;
+  const postPath = `${config.dir}-post`;
+  logger.info(methodName, 'root', root);
+  logger.info(methodName, 'version', version);
+  logger.info(methodName, 'postPath', postPath);
 
   // cp
-  const cpSrc = path.resolve(__dirname, '../../dist');
-  const cpDest = path.resolve(__dirname, `../../dist-post/${version}`);
+  const cpSrc = path.resolve(root, config.dir);
+  const cpDest = path.resolve(root, `${postPath}/${version}`);
   const cpRes = await cp(cpSrc, cpDest);
   logger.info(methodName, 'cpSrc', cpSrc);
   logger.info(methodName, 'cpDest', cpDest);
@@ -28,20 +37,20 @@ exports.asar = async function () {
   if (!cpRes) return;
 
   // asar
-  const asarDest = path.resolve(__dirname, `../../dist-post/${version}.asar`);
+  const asarDest = path.resolve(root, `${postPath}/${version}.asar`);
   logger.info(methodName, 'asarDest', asarDest);
   try {
     await asar.createPackageWithOptions(cpDest, asarDest, {});
     logger.info(methodName, 'asarRes', 'sucess');
   } catch (error) {
-    logger.info(methodName, 'asarRes', 'error', error);
+    logger.error(methodName, 'asarRes', 'error', error);
     return;
   }
 
   // json
   try {
-    const jsonSrc = path.resolve(__dirname, `../../dist-post/${version}/package.json`);
-    const jsonDest = path.resolve(__dirname, `../../dist-post/package.json`);
+    const jsonSrc = path.resolve(__dirname, `${postPath}/${version}/package.json`);
+    const jsonDest = path.resolve(__dirname, `${postPath}/package.json`);
     const jsonStr = await readFile(jsonSrc);
     logger.info(methodName, 'jsonSrc', jsonSrc);
     logger.info(methodName, 'jsonDest', jsonDest);
@@ -54,6 +63,21 @@ exports.asar = async function () {
     logger.info(methodName, 'jsonRes', jsonRes);
     if (!jsonRes) return;
   } catch (error) {
-    logger.info(methodName, 'json', 'error', error);
+    logger.error(methodName, 'json', 'error', error);
+    return;
   }
+
+  // rm
+  const rmRes = await rm(cpSrc);
+  logger.info(methodName, 'rmRes', rmRes);
+  if (!rmRes) return;
+
+  // mv
+  const oldPath = path.resolve(root, postPath);
+  const mvRes = await mv(oldPath, cpSrc);
+  logger.info(methodName, 'mvRes', mvRes);
+  if (!mvRes) return;
+
+  // return
+  return true;
 };
