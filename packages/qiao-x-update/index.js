@@ -19,8 +19,12 @@ const logger = qiao_log_js.Logger('qiao-x-update');
 const updateApp = async (downloadUrl, appPath, version) => {
   const methodName = 'updateApp';
 
+  // root
+  const root = path.resolve(appPath, './Contents/Reources/app');
+  logger.info(methodName, 'root', root);
+
   // download zip
-  const downloadDest = path.resolve(appPath, `./Contents/Reources/app/${version}.zip`);
+  const downloadDest = path.resolve(root, `./${version}.zip`);
   const downloadRes = await qiaoDownloader.download(downloadUrl, downloadDest);
   logger.info(methodName, 'downloadUrl', downloadUrl);
   logger.info(methodName, 'downloadDest', downloadDest);
@@ -28,15 +32,13 @@ const updateApp = async (downloadUrl, appPath, version) => {
   if (!downloadRes) return;
 
   // unzip
-  const zipDest = path.resolve(appPath, `./Contents/Reources/app/${version}.asar`);
-  const zipRes = await qiaoZip.unzip(downloadDest, zipDest);
-  logger.info(methodName, 'zipDest', zipDest);
+  const zipRes = await qiaoZip.unzip(downloadDest, root);
   logger.info(methodName, 'zipRes', zipRes);
   if (!downloadRes) return;
 
   // rewrite json
   try {
-    const jsonPath = path.resolve(appPath, './Contents/Reources/app/package.json');
+    const jsonPath = path.resolve(root, './package.json');
     const jsonStr = await qiaoFile.readFile(jsonPath);
     const json = JSON.parse(jsonStr);
     json.version = version;
