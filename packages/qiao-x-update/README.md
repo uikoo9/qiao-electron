@@ -3,7 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/qiao-x-update.svg?style=flat-square)](https://www.npmjs.org/package/qiao-x-update)
 [![npm downloads](https://img.shields.io/npm/dm/qiao-x-update.svg?style=flat-square)](https://npm-stat.com/charts.html?package=qiao-x-update)
 
-Electron 中 APP 相关的操作封装
+Electron 中增量更新包相关操作
 
 ## install
 
@@ -13,47 +13,37 @@ Electron 中 APP 相关的操作封装
 npm i qiao-x-update
 ```
 
-## ipc
+## use
 
-ipc代码
-
-### appIPCInit
-
-主进程中初始化ipc监听，需要和渲染进程中preload对应使用
+使用
 
 ```javascript
-appIPCInit();
+// cjs
+const { updateApp } = require('qiao-x-update');
+
+// mjs
+import { updateApp } from 'qiao-x-update';
 ```
 
-## preload
+## api
 
-preload代码，由于preload中不能引入npm包，所以需要手动添加
+### updateApp
+
+使用增量更新的方式更新app
+
+- downloadUrl
+  - 类型: string
+  - 说明: 增量更新包地址
+- appPath
+  - 类型: string
+  - 说明: app安装的位置，一般是`/Applications/${appName}.app/Contents/Resources/app`
+- appVersion
+  - 类型: string
+  - 说明: 更新的版本号
+- return
+  - 类型: boolean
+  - 说明: 是否成功
 
 ```javascript
-// === app-preload.js ===
-// electron
-import { ipcRenderer } from 'electron';
-
-/**
- * appGetVersionIPC
- * @returns version
- */
-export const appGetVersionIPC = async () => {
-  return await ipcRenderer.invoke('ipc-app-get-version');
-};
-
-// === preload.js ===
-// electron
-import { contextBridge } from 'electron';
-
-// custom preload
-import { appGetVersionIPC } from 'app-preload.js';
-
-// preload
-contextBridge.exposeInMainWorld('electron', {
-  appGetVersionIPC,
-});
-
-// === 使用 ===
-await window.electron.appGetVersionIPC();
+updateApp(downloadUrl, appPath, appVersion);
 ```

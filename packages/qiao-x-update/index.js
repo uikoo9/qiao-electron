@@ -13,14 +13,14 @@ const logger = qiao_log_js.Logger('qiao-x-update');
  * updateApp
  * @param {*} downloadUrl
  * @param {*} appPath
- * @param {*} version
+ * @param {*} appVersion
  * @returns
  */
-const updateApp = async (downloadUrl, appName, appVersion) => {
+const updateApp = async (downloadUrl, appPath, appVersion) => {
   const methodName = 'updateApp';
 
   // root
-  const root = `/Applications/${appName}.app/Contents/Resources/app`;
+  const root = appPath;
   logger.info(methodName, 'root', root);
 
   // download zip
