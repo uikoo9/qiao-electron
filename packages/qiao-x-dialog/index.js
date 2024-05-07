@@ -2,6 +2,13 @@
 
 var electron = require('electron');
 
+/**
+ * dialog constant
+ */
+const IPC_DIALOG_OPEN_FILE = 'ipc-dialog-open-file';
+const IPC_DIALOG_OPEN_FOLDER = 'ipc-dialog-open-folder';
+const IPC_DIALOG_OPEN_FILE_FOLDER = 'ipc-dialog-open-file-folder';
+
 // electron
 
 /**
@@ -59,13 +66,6 @@ async function openDialog(options, defaultProps) {
   // return
   return win ? await electron.dialog.showOpenDialog(win, opt) : await electron.dialog.showOpenDialog(opt);
 }
-
-/**
- * dialog constant
- */
-const IPC_DIALOG_OPEN_FILE = 'ipc-dialog-open-file';
-const IPC_DIALOG_OPEN_FOLDER = 'ipc-dialog-open-folder';
-const IPC_DIALOG_OPEN_FILE_FOLDER = 'ipc-dialog-open-file-folder';
 
 // electron
 

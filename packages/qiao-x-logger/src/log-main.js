@@ -1,33 +1,38 @@
-// qiao-log
-import Logger from 'qiao-log';
+// logs
+const logs = ['debug', 'info', 'warn', 'error'];
 
 /**
- * logInit
- * @param {*} logPath
- * @param {*} logLevel
- * @returns
+ * Logger
+ * @param {*} namespace
  */
-export const logInit = (logPath, logLevel) => {
-  // config
-  const config = {
-    appenders: {
-      stdout: {
-        type: 'stdout',
-      },
-      datefile: {
-        type: 'dateFile',
-        pattern: 'yyyy-MM-dd-hh',
-        filename: logPath,
-        keepFileExt: true,
-      },
-    },
-    categories: {
-      default: {
-        level: logLevel || 'debug',
-        appenders: ['stdout', 'datefile'],
-      },
-    },
-  };
+export const Logger = (namespace) => {
+  const obj = {};
+  obj.namespace = namespace;
+  logs.forEach(function (logType) {
+    obj[logType] = function (methodName, ...msg) {
+      log(logType, this.namespace, methodName, ...msg);
+    };
+  });
 
-  return Logger(config);
+  return obj;
 };
+
+// log
+function log(logType, namespace, methodName, ...msg) {
+  // check
+  if (!global.logger) {
+    console.log('qiao-x-logger / global.logger not init');
+    return;
+  }
+  if (!namespace) {
+    console.log('qiao-x-logger / need namespace');
+    return;
+  }
+  if (!methodName) {
+    console.log('qiao-x-logger / need methodName');
+    return;
+  }
+
+  const finalMsg = `${namespace} / ${logType} / ${methodName} / ${msg}`;
+  global.logger[logType](finalMsg);
+}

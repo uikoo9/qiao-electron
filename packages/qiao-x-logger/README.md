@@ -13,6 +13,46 @@ Electron 中日志相关的操作封装
 npm i qiao-x-logger
 ```
 
+## use
+
+使用
+
+```javascript
+// cjs
+const { Logger } = require('qiao-x-logger');
+
+// mjs
+import { Logger } from 'qiao-x-logger';
+
+// logger
+const logger = Logger('qiao-x-logger');
+```
+
+## main
+
+主进程代码
+
+### log
+
+- methodName
+  - 类型: string
+  - 说明: 必填，方法名
+- msg
+  - 类型: any
+  - 说明: 要打印的信息，可以传多个
+- return
+
+```js
+// info
+logger.info('method info', 'msg1', 'msg2', 'msg3');
+
+// warn
+logger.warn('method warn', 'msg1', 'msg2', 'msg3');
+
+// error
+logger.error('method error', 'msg1', 'msg2', 'msg3');
+```
+
 ## ipc
 
 ipc代码

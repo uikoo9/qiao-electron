@@ -1,17 +1,36 @@
 'use strict';
 
 var electron = require('electron');
-var Logger = require('qiao-log');
+var Logger$1 = require('qiao-log');
 
-// qiao-log
+// electron
 
 /**
- * logInit
+ * logIPCInit
  * @param {*} logPath
  * @param {*} logLevel
- * @returns
  */
-const logInit = (logPath, logLevel) => {
+const logIPCInit = (logPath, logLevel) => {
+  // logger
+  logInit(logPath, logLevel);
+
+  // ipc log
+  electron.ipcMain.on('ipc-log', (event, arg) => {
+    // check
+    if (!arg || !arg.msg) return;
+
+    // log
+    const logType = arg.type || 'debug';
+    const msg = `renderer / ${logType} / ${arg.msg}`;
+    if (logType == 'debug') global.logger.debug(msg);
+    if (logType == 'info') global.logger.info(msg);
+    if (logType == 'warn') global.logger.warn(msg);
+    if (logType == 'error') global.logger.error(msg);
+  });
+};
+
+// logger init
+function logInit(logPath, logLevel) {
   // config
   const config = {
     appenders: {
@@ -33,32 +52,48 @@ const logInit = (logPath, logLevel) => {
     },
   };
 
-  return Logger(config);
-};
+  // return
+  global.logger = Logger$1(config);
+}
 
-// electron
+// logs
+const logs = ['debug', 'info', 'warn', 'error'];
 
 /**
- * logIPCInit
- * @param {*} logPath
- * @param {*} logLevel
+ * Logger
+ * @param {*} namespace
  */
-const logIPCInit = (logPath, logLevel) => {
-  // Logger
-  const Logger = logInit(logPath, logLevel);
-
-  // ipc log
-  electron.ipcMain.on('ipc-log', (event, arg) => {
-    // check
-    if (!arg || !arg.msg) return;
-
-    // log
-    let type = arg.type || 'debug';
-    if (type == 'debug') Logger.debug(arg.msg);
-    if (type == 'info') Logger.info(arg.msg);
-    if (type == 'warn') Logger.warn(arg.msg);
-    if (type == 'error') Logger.error(arg.msg);
+const Logger = (namespace) => {
+  const obj = {};
+  obj.namespace = namespace;
+  logs.forEach(function (logType) {
+    obj[logType] = function (methodName, ...msg) {
+      log(logType, this.namespace, methodName, ...msg);
+    };
   });
+
+  return obj;
 };
 
+// log
+function log(logType, namespace, methodName, ...msg) {
+  // check
+  if (!global.logger) {
+    console.log('qiao-x-logger / global.logger not init');
+    return;
+  }
+  if (!namespace) {
+    console.log('qiao-x-logger / need namespace');
+    return;
+  }
+  if (!methodName) {
+    console.log('qiao-x-logger / need methodName');
+    return;
+  }
+
+  const finalMsg = `${namespace} / ${logType} / ${methodName} / ${msg}`;
+  global.logger[logType](finalMsg);
+}
+
+exports.Logger = Logger;
 exports.logIPCInit = logIPCInit;

@@ -1,8 +1,8 @@
 // electron
 import { ipcMain } from 'electron';
 
-// log
-import { logInit } from './log-main.js';
+// qiao-log
+import Logger from 'qiao-log';
 
 /**
  * logIPCInit
@@ -10,8 +10,8 @@ import { logInit } from './log-main.js';
  * @param {*} logLevel
  */
 export const logIPCInit = (logPath, logLevel) => {
-  // Logger
-  const Logger = logInit(logPath, logLevel);
+  // logger
+  logInit(logPath, logLevel);
 
   // ipc log
   ipcMain.on('ipc-log', (event, arg) => {
@@ -19,10 +19,38 @@ export const logIPCInit = (logPath, logLevel) => {
     if (!arg || !arg.msg) return;
 
     // log
-    let type = arg.type || 'debug';
-    if (type == 'debug') Logger.debug(arg.msg);
-    if (type == 'info') Logger.info(arg.msg);
-    if (type == 'warn') Logger.warn(arg.msg);
-    if (type == 'error') Logger.error(arg.msg);
+    const logType = arg.type || 'debug';
+    const msg = `renderer / ${logType} / ${arg.msg}`;
+    if (logType == 'debug') global.logger.debug(msg);
+    if (logType == 'info') global.logger.info(msg);
+    if (logType == 'warn') global.logger.warn(msg);
+    if (logType == 'error') global.logger.error(msg);
   });
 };
+
+// logger init
+function logInit(logPath, logLevel) {
+  // config
+  const config = {
+    appenders: {
+      stdout: {
+        type: 'stdout',
+      },
+      datefile: {
+        type: 'dateFile',
+        pattern: 'yyyy-MM-dd-hh',
+        filename: logPath,
+        keepFileExt: true,
+      },
+    },
+    categories: {
+      default: {
+        level: logLevel || 'debug',
+        appenders: ['stdout', 'datefile'],
+      },
+    },
+  };
+
+  // return
+  global.logger = Logger(config);
+}
