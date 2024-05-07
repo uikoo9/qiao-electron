@@ -3,7 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/qiao-x-logger.svg?style=flat-square)](https://www.npmjs.org/package/qiao-x-logger)
 [![npm downloads](https://img.shields.io/npm/dm/qiao-x-logger.svg?style=flat-square)](https://npm-stat.com/charts.html?package=qiao-x-logger)
 
-Electron 中日志相关的操作
+Electron 中日志相关的操作封装
 
 ## install
 
@@ -13,37 +13,55 @@ Electron 中日志相关的操作
 npm i qiao-x-logger
 ```
 
-## use
+## ipc
 
-使用
+ipc代码
+
+### logIPCInit
+
+主进程中初始化ipc监听，需要和渲染进程中preload对应使用
+
+- logPath
+  - 类型: string
+  - 说明: 日志存放的位置
+- logLevel
+  - 类型: string
+  - 说明: 日志级别，默认为debug级别
 
 ```javascript
-// cjs
-const { updateApp } = require('qiao-x-logger');
-
-// mjs
-import { updateApp } from 'qiao-x-logger';
+logIPCInit(logPath, logLevel);
 ```
 
-## api
+## preload
 
-### updateApp
-
-使用增量更新的方式更新app
-
-- downloadUrl
-  - 类型: string
-  - 说明: 增量更新包地址
-- appPath
-  - 类型: string
-  - 说明: app安装的位置，一般是`/Applications/${appName}.app/Contents/Resources/app`
-- appVersion
-  - 类型: string
-  - 说明: 更新的版本号
-- return
-  - 类型: boolean
-  - 说明: 是否成功
+preload代码，由于preload中不能引入npm包，所以需要手动添加
 
 ```javascript
-updateApp(downloadUrl, appPath, appVersion);
+// === log-preload.js ===
+// electron
+import { ipcRenderer } from 'electron';
+
+/**
+ * logIPC
+ * @param {*} msg
+ * @param {*} type info,warn,error
+ */
+export const logIPC = (msg, type) => {
+  ipcRenderer.send('ipc-log', { msg, type });
+};
+
+// === preload.js ===
+// electron
+import { contextBridge } from 'electron';
+
+// custom preload
+import { logIPC } from 'log-preload.js';
+
+// preload
+contextBridge.exposeInMainWorld('electron', {
+  logIPC,
+});
+
+// === 使用 ===
+await window.electron.logIPC(msg, type);
 ```
