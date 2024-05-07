@@ -21,7 +21,7 @@ const logIPCInit = (logPath, logLevel) => {
 
     // log
     const logType = arg.type || 'debug';
-    const msg = `renderer / ${logType} / ${arg.msg}`;
+    const msg = `renderer / ${arg.msg}`;
     if (logType == 'debug') global.logger.debug(msg);
     if (logType == 'info') global.logger.info(msg);
     if (logType == 'warn') global.logger.warn(msg);
@@ -91,7 +91,7 @@ function log(logType, namespace, methodName, ...msg) {
     return;
   }
 
-  const finalMsg = `${namespace} / ${logType} / ${methodName} / ${msg}`;
+  const finalMsg = `${namespace} / ${methodName} / ${msg}`;
   global.logger[logType](finalMsg);
 }
 
