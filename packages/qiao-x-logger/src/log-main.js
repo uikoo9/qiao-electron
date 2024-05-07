@@ -33,6 +33,6 @@ function log(logType, namespace, methodName, ...msg) {
     return;
   }
 
-  const finalMsg = `${namespace} / ${logType} / ${methodName} / ${msg}`;
+  const finalMsg = `${namespace} / ${methodName} / ${msg}`;
   global.logger[logType](finalMsg);
 }
