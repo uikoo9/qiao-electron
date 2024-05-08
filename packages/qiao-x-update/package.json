@@ -1,6 +1,6 @@
 {
   "name": "qiao-x-update",
-  "version": "3.8.4",
+  "version": "3.8.5",
   "description": "electron update tool",
   "keywords": [
     "electron",
@@ -28,7 +28,7 @@
   "dependencies": {
     "qiao-downloader": "^4.5.1",
     "qiao-file": "^4.5.1",
-    "qiao-x-logger": "^3.8.1",
+    "qiao-x-logger": "^3.8.5",
     "qiao-zip": "^4.5.2",
     "qiao.log.js": "^3.7.1"
   },
