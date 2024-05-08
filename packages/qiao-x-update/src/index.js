@@ -11,18 +11,22 @@ import { unzip } from 'qiao-zip';
 import { tmpdir, readFile, writeFile, rm } from 'qiao-file';
 
 // logger
-import { Logger } from 'qiao.log.js';
-const logger = Logger('qiao-x-update');
+import { Logger as ConsoleLogger } from 'qiao.log.js';
+import { Logger as LocalLogger } from 'qiao-x-logger';
+const consoleLogger = ConsoleLogger('qiao-x-update');
+const localLogger = LocalLogger('qiao-x-update');
 
 /**
  * updateApp
  * @param {*} downloadUrl
  * @param {*} appPath
  * @param {*} appVersion
+ * @param {*} showLog
  * @returns
  */
-export const updateApp = async (downloadUrl, appPath, appVersion) => {
+export const updateApp = async (downloadUrl, appPath, appVersion, useLocalLogger) => {
   const methodName = 'updateApp';
+  const logger = useLocalLogger ? localLogger : consoleLogger;
 
   // root
   const root = appPath;

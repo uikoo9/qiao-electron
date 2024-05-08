@@ -28,6 +28,7 @@
   "dependencies": {
     "qiao-downloader": "^4.5.1",
     "qiao-file": "^4.5.1",
+    "qiao-x-logger": "^3.8.1",
     "qiao-zip": "^4.5.2",
     "qiao.log.js": "^3.7.1"
   },

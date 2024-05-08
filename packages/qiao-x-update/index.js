@@ -5,19 +5,23 @@ var qiaoDownloader = require('qiao-downloader');
 var qiaoZip = require('qiao-zip');
 var qiaoFile = require('qiao-file');
 var qiao_log_js = require('qiao.log.js');
+var qiaoXLogger = require('qiao-x-logger');
 
 // path
-const logger = qiao_log_js.Logger('qiao-x-update');
+const consoleLogger = qiao_log_js.Logger('qiao-x-update');
+const localLogger = qiaoXLogger.Logger('qiao-x-update');
 
 /**
  * updateApp
  * @param {*} downloadUrl
  * @param {*} appPath
  * @param {*} appVersion
+ * @param {*} showLog
  * @returns
  */
-const updateApp = async (downloadUrl, appPath, appVersion) => {
+const updateApp = async (downloadUrl, appPath, appVersion, useLocalLogger) => {
   const methodName = 'updateApp';
+  const logger = useLocalLogger ? localLogger : consoleLogger;
 
   // root
   const root = appPath;
