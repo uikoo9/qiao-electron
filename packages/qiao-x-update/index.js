@@ -27,6 +27,20 @@ const updateApp = async (downloadUrl, appPath, appVersion, useLocalLogger) => {
   const root = appPath;
   logger.info(methodName, 'root', root);
 
+  // check version
+  try {
+    const jsonPath = path.resolve(root, './package.json');
+    const jsonStr = await qiaoFile.readFile(jsonPath);
+    const json = JSON.parse(jsonStr);
+    if (json.version === appVersion) {
+      logger.info(methodName, 'checkVersion', 'already lastest version');
+      return;
+    }
+  } catch (error) {
+    logger.error(methodName, 'checkVersionError', error);
+    return;
+  }
+
   // download zip
   const downloadPath = await qiaoFile.tmpdir();
   const downloadDest = path.resolve(downloadPath, `./${appVersion}.zip`);
