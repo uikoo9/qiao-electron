@@ -41,5 +41,9 @@
         ]
       }
     }
+  },
+  "dependencies": {
+    "qiao-x-logger": "^3.8.5",
+    "qiao.log.js": "^3.7.1"
   }
 }

@@ -1,6 +1,8 @@
 'use strict';
 
 var electron = require('electron');
+var qiao_log_js = require('qiao.log.js');
+var qiaoXLogger = require('qiao-x-logger');
 
 // electron
 
@@ -35,26 +37,33 @@ const shortcutUnReg = (shortcutKey) => {
 };
 
 // electron
-
-// functions
-// const functions = {
-//   shortcutCallbackName: async () => 'shortcutCallbackName from main',
-// };
+const consoleLogger = qiao_log_js.Logger('qiao-x-update');
+const localLogger = qiaoXLogger.Logger('qiao-x-update');
 
 /**
  * shortcutIPCInit
  * @param {*} functions
  */
-const shortcutIPCInit = (functions) => {
+const shortcutIPCInit = (functions, useLocalLogger) => {
+  const methodName = 'shortcutIPCInit';
+  const logger = useLocalLogger ? localLogger : consoleLogger;
+
   // check
-  if (!functions || !functions.length) return;
+  logger.info(methodName, 'functions', functions);
+  if (!functions) return;
 
   // ipc
   electron.ipcMain.handle('ipc-shortcut-global', async (event, shortcutKey, shortcutCallbackName) => {
-    if (!(shortcutCallbackName in functions)) return;
+    logger.info(methodName, 'shortcutKey', shortcutKey);
+    logger.info(methodName, 'shortcutCallbackName', shortcutCallbackName);
+    if (!(shortcutCallbackName in functions)) {
+      logger.info(methodName, 'shortcutCallbackName not in functions');
+      return;
+    }
 
-    shortcutReg(shortcutKey, functions[shortcutCallbackName]);
-    return true;
+    const shortcutRegRes = shortcutReg(shortcutKey, functions[shortcutCallbackName]);
+    logger.info(methodName, 'shortcutRegRes', shortcutRegRes);
+    return shortcutRegRes;
   });
 };
 

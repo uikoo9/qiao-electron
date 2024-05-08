@@ -4,24 +4,35 @@ import { ipcMain } from 'electron';
 // shortcut
 import { shortcutReg } from './shortcut-main.js';
 
-// functions
-// const functions = {
-//   shortcutCallbackName: async () => 'shortcutCallbackName from main',
-// };
+// logger
+import { Logger as ConsoleLogger } from 'qiao.log.js';
+import { Logger as LocalLogger } from 'qiao-x-logger';
+const consoleLogger = ConsoleLogger('qiao-x-update');
+const localLogger = LocalLogger('qiao-x-update');
 
 /**
  * shortcutIPCInit
  * @param {*} functions
  */
-export const shortcutIPCInit = (functions) => {
+export const shortcutIPCInit = (functions, useLocalLogger) => {
+  const methodName = 'shortcutIPCInit';
+  const logger = useLocalLogger ? localLogger : consoleLogger;
+
   // check
-  if (!functions || !functions.length) return;
+  logger.info(methodName, 'functions', functions);
+  if (!functions) return;
 
   // ipc
   ipcMain.handle('ipc-shortcut-global', async (event, shortcutKey, shortcutCallbackName) => {
-    if (!(shortcutCallbackName in functions)) return;
+    logger.info(methodName, 'shortcutKey', shortcutKey);
+    logger.info(methodName, 'shortcutCallbackName', shortcutCallbackName);
+    if (!(shortcutCallbackName in functions)) {
+      logger.info(methodName, 'shortcutCallbackName not in functions');
+      return;
+    }
 
-    shortcutReg(shortcutKey, functions[shortcutCallbackName]);
-    return true;
+    const shortcutRegRes = shortcutReg(shortcutKey, functions[shortcutCallbackName]);
+    logger.info(methodName, 'shortcutRegRes', shortcutRegRes);
+    return shortcutRegRes;
   });
 };
