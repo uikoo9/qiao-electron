@@ -5,6 +5,15 @@ var electron = require('electron');
 // electron
 
 /**
+ * initShortcut
+ */
+const initShortcut = () => {
+  electron.app.on('will-quit', () => {
+    electron.globalShortcut.unregisterAll();
+  });
+};
+
+/**
  * shortcutReg
  * @param {*} shortcutKey
  * @param {*} shortcutCallback
@@ -23,15 +32,6 @@ const shortcutUnReg = (shortcutKey) => {
   if (!shortcutKey) return;
 
   return electron.globalShortcut.unregister(shortcutKey);
-};
-
-/**
- * shortcutInit
- */
-const shortcutInit = () => {
-  electron.app.on('will-quit', () => {
-    electron.globalShortcut.unregisterAll();
-  });
 };
 
 // electron
@@ -58,7 +58,7 @@ const shortcutIPCInit = (functions) => {
   });
 };
 
+exports.initShortcut = initShortcut;
 exports.shortcutIPCInit = shortcutIPCInit;
-exports.shortcutInit = shortcutInit;
 exports.shortcutReg = shortcutReg;
 exports.shortcutUnReg = shortcutUnReg;

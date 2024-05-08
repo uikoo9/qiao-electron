@@ -307,9 +307,6 @@ const ipcInit = (version) => {
   lsIPCInit();
   shellIPCInit();
   windowIPCInit();
-
-  // shortcut quit init
-  qiaoXShortcut.shortcutInit();
 };
 
 // electron
