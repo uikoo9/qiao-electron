@@ -19,9 +19,6 @@ import { lsIPCInit } from './ls/ls-ipc.js';
 // shell
 import { shellIPCInit } from './shell/shell-ipc.js';
 
-// shortcut
-import { shortcutInit } from 'qiao-x-shortcut';
-
 // window
 import { windowIPCInit } from './window/window-ipc.js';
 
@@ -41,7 +38,4 @@ export const ipcInit = (version) => {
   lsIPCInit();
   shellIPCInit();
   windowIPCInit();
-
-  // shortcut quit init
-  shortcutInit();
 };

@@ -2,6 +2,15 @@
 import { app, globalShortcut } from 'electron';
 
 /**
+ * initShortcut
+ */
+export const initShortcut = () => {
+  app.on('will-quit', () => {
+    globalShortcut.unregisterAll();
+  });
+};
+
+/**
  * shortcutReg
  * @param {*} shortcutKey
  * @param {*} shortcutCallback
@@ -20,13 +29,4 @@ export const shortcutUnReg = (shortcutKey) => {
   if (!shortcutKey) return;
 
   return globalShortcut.unregister(shortcutKey);
-};
-
-/**
- * shortcutInit
- */
-export const shortcutInit = () => {
-  app.on('will-quit', () => {
-    globalShortcut.unregisterAll();
-  });
 };

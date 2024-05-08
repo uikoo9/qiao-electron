@@ -29,6 +29,14 @@ import { shortcutReg } from 'qiao-x-shortcut';
 
 主进程代码
 
+### initShortcut
+
+取消所有已注册的快捷键在app退出时
+
+```javascript
+shortcutInit();
+```
+
 ### shortcutReg
 
 注册快捷键
@@ -60,14 +68,6 @@ shortcutReg(shortcutKey, shortcutCallback);
 
 ```javascript
 shortcutUnReg(shortcutKey);
-```
-
-### shortcutInit
-
-取消所有已注册的快捷键在app退出时
-
-```javascript
-shortcutInit();
 ```
 
 ## ipc
