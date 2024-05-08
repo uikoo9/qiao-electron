@@ -37,8 +37,8 @@ const shortcutUnReg = (shortcutKey) => {
 };
 
 // electron
-const consoleLogger = qiao_log_js.Logger('qiao-x-update');
-const localLogger = qiaoXLogger.Logger('qiao-x-update');
+const consoleLogger = qiao_log_js.Logger('qiao-x-shortcut');
+const localLogger = qiaoXLogger.Logger('qiao-x-shortcut');
 
 /**
  * shortcutIPCInit

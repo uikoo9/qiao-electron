@@ -7,8 +7,8 @@ import { shortcutReg } from './shortcut-main.js';
 // logger
 import { Logger as ConsoleLogger } from 'qiao.log.js';
 import { Logger as LocalLogger } from 'qiao-x-logger';
-const consoleLogger = ConsoleLogger('qiao-x-update');
-const localLogger = LocalLogger('qiao-x-update');
+const consoleLogger = ConsoleLogger('qiao-x-shortcut');
+const localLogger = LocalLogger('qiao-x-shortcut');
 
 /**
  * shortcutIPCInit
