@@ -58,6 +58,7 @@ const initLogger = (logPath, logLevel) => {
       },
     },
   };
+  console.log('qiao-x-logger / config / ', config);
 
   // return
   global.logger = Logger$1(config);
