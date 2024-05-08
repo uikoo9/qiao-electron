@@ -32,7 +32,23 @@ const logger = Logger('qiao-x-logger');
 
 主进程代码
 
-### log
+### initLogger
+
+初始化logger，只有初始化logger后其他方法才可以使用
+
+- logPath
+  - 类型: string
+  - 说明: 必填，日志路径
+- logLevel
+  - 类型: string
+  - 说明: 日志级别，默认为debug
+- return
+
+```js
+initLogger(logPath, logLevel);
+```
+
+### logger
 
 - methodName
   - 类型: string
@@ -69,7 +85,7 @@ ipc代码
   - 说明: 日志级别，默认为debug级别
 
 ```javascript
-logIPCInit(logPath, logLevel);
+logIPCInit();
 ```
 
 ## preload

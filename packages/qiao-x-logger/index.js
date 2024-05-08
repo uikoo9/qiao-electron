@@ -7,12 +7,13 @@ var Logger$1 = require('qiao-log');
 
 /**
  * logIPCInit
- * @param {*} logPath
- * @param {*} logLevel
  */
-const logIPCInit = (logPath, logLevel) => {
-  // logger
-  logInit(logPath, logLevel);
+const logIPCInit = () => {
+  // check
+  if (!global.logger) {
+    console.log('qiao-x-logger / please init logger, use initLogger method');
+    return;
+  }
 
   // ipc log
   electron.ipcMain.on('ipc-log', (event, arg) => {
@@ -29,8 +30,14 @@ const logIPCInit = (logPath, logLevel) => {
   });
 };
 
-// logger init
-function logInit(logPath, logLevel) {
+// qiao-log
+
+/**
+ * initLogger
+ * @param {*} logPath
+ * @param {*} logLevel
+ */
+const initLogger = (logPath, logLevel) => {
   // config
   const config = {
     appenders: {
@@ -54,7 +61,7 @@ function logInit(logPath, logLevel) {
 
   // return
   global.logger = Logger$1(config);
-}
+};
 
 // logs
 const logs = ['debug', 'info', 'warn', 'error'];
@@ -79,7 +86,7 @@ const Logger = (namespace) => {
 function log(logType, namespace, methodName, ...msg) {
   // check
   if (!global.logger) {
-    console.log('qiao-x-logger / global.logger not init');
+    console.log('qiao-x-logger / please init logger, use initLogger method');
     return;
   }
   if (!namespace) {
@@ -96,4 +103,5 @@ function log(logType, namespace, methodName, ...msg) {
 }
 
 exports.Logger = Logger;
+exports.initLogger = initLogger;
 exports.logIPCInit = logIPCInit;

@@ -1,17 +1,15 @@
 // electron
 import { ipcMain } from 'electron';
 
-// qiao-log
-import Logger from 'qiao-log';
-
 /**
  * logIPCInit
- * @param {*} logPath
- * @param {*} logLevel
  */
-export const logIPCInit = (logPath, logLevel) => {
-  // logger
-  logInit(logPath, logLevel);
+export const logIPCInit = () => {
+  // check
+  if (!global.logger) {
+    console.log('qiao-x-logger / please init logger, use initLogger method');
+    return;
+  }
 
   // ipc log
   ipcMain.on('ipc-log', (event, arg) => {
@@ -27,30 +25,3 @@ export const logIPCInit = (logPath, logLevel) => {
     if (logType == 'error') global.logger.error(msg);
   });
 };
-
-// logger init
-function logInit(logPath, logLevel) {
-  // config
-  const config = {
-    appenders: {
-      stdout: {
-        type: 'stdout',
-      },
-      datefile: {
-        type: 'dateFile',
-        pattern: 'yyyy-MM-dd-hh',
-        filename: logPath,
-        keepFileExt: true,
-      },
-    },
-    categories: {
-      default: {
-        level: logLevel || 'debug',
-        appenders: ['stdout', 'datefile'],
-      },
-    },
-  };
-
-  // return
-  global.logger = Logger(config);
-}
