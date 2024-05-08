@@ -20,7 +20,7 @@ import { lsIPCInit } from './ls/ls-ipc.js';
 import { shellIPCInit } from './shell/shell-ipc.js';
 
 // shortcut
-import { shortcutInit } from './shortcut/shortcut-quit.js';
+import { shortcutInit } from 'qiao-x-shortcut';
 
 // window
 import { windowIPCInit } from './window/window-ipc.js';

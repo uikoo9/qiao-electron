@@ -7,6 +7,7 @@ var qiaoFile = require('qiao-file');
 var path = require('path');
 var Logger = require('qiao-log');
 var q = require('qiao-config');
+var qiaoXShortcut = require('qiao-x-shortcut');
 
 /**
  * darkmode constant
@@ -268,17 +269,6 @@ const shellIPCInit = () => {
   });
 };
 
-// electron
-
-/**
- * shortcutInit
- */
-const shortcutInit = () => {
-  electron.app.on('will-quit', () => {
-    electron.globalShortcut.unregisterAll();
-  });
-};
-
 /**
  * window constant
  */
@@ -319,7 +309,7 @@ const ipcInit = (version) => {
   windowIPCInit();
 
   // shortcut quit init
-  shortcutInit();
+  qiaoXShortcut.shortcutInit();
 };
 
 // electron
@@ -444,21 +434,6 @@ const shellShowPathIPC = (path) => {
   electron.ipcRenderer.send(IPC_SHELL_SHOW_PATH, path);
 };
 
-/**
- * shortcut constant
- */
-const IPC_SHORTCUT_GLOBAL = 'ipc-shortcut-global';
-
-// electron
-
-/**
- * shortcutGlobalIPC
- * @returns res
- */
-const shortcutGlobalIPC = async (shortcutKey, shortcutCallbackName) => {
-  return await electron.ipcRenderer.invoke(IPC_SHORTCUT_GLOBAL, shortcutKey, shortcutCallbackName);
-};
-
 // electron
 
 /**
@@ -494,34 +469,10 @@ const getPreloads = (customPreloads) => {
     lsDelIPC,
     shellOpenUrlIPC,
     shellShowPathIPC,
-    shortcutGlobalIPC,
     windowResizeIPC,
   };
 
   return { ...defaultPreloads, ...customPreloads };
-};
-
-// electron
-
-/**
- * shortcutReg
- * @param {*} shortcutKey
- * @param {*} shortcutCallback
- */
-const shortcutReg = (shortcutKey, shortcutCallback) => {
-  if (!shortcutKey || !shortcutCallback) return;
-
-  return electron.globalShortcut.register(shortcutKey, shortcutCallback);
-};
-
-/**
- * shortcutUnReg
- * @param {*} shortcutKey
- */
-const shortcutUnReg = (shortcutKey) => {
-  if (!shortcutKey) return;
-
-  return electron.globalShortcut.unregister(shortcutKey);
 };
 
 Object.defineProperty(exports, 'dialogOpenFile', {
@@ -542,11 +493,21 @@ Object.defineProperty(exports, 'dialogOpenFolder', {
     return qiaoXDialog.dialogOpenFolder;
   },
 });
+Object.defineProperty(exports, 'shortcutReg', {
+  enumerable: true,
+  get: function () {
+    return qiaoXShortcut.shortcutReg;
+  },
+});
+Object.defineProperty(exports, 'shortcutUnReg', {
+  enumerable: true,
+  get: function () {
+    return qiaoXShortcut.shortcutUnReg;
+  },
+});
 exports.getPreloads = getPreloads;
 exports.ipcInit = ipcInit;
 exports.logInit = logInit;
 exports.ls = ls;
 exports.shellOpenURL = shellOpenURL;
 exports.shellShowPath = shellShowPath;
-exports.shortcutReg = shortcutReg;
-exports.shortcutUnReg = shortcutUnReg;

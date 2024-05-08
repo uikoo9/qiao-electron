@@ -1,6 +1,9 @@
 // dialog
 export { dialogOpenFile, dialogOpenFolder, dialogOpenFileAndFolder } from 'qiao-x-dialog';
 
+// shortcut
+export { shortcutReg, shortcutUnReg } from 'qiao-x-shortcut';
+
 // log
 export * from './log/_log.js';
 
@@ -9,6 +12,3 @@ export * from './ls/_ls.js';
 
 // shell
 export * from './shell/shell-main.js';
-
-// shortcut
-export * from './shortcut/shortcut-main/shortcut-main.js';
