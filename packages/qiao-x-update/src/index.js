@@ -39,7 +39,7 @@ export const updateApp = async (downloadUrl, appPath, appVersion, useLocalLogger
     const json = JSON.parse(jsonStr);
     const checkVersionRes = compareVersion(appVersion, json.version);
     logger.info(methodName, 'checkVersionRes', checkVersionRes);
-    if (!checkVersionRes) return;
+    if (checkVersionRes !== 1) return;
   } catch (error) {
     logger.error(methodName, 'checkVersionError', error);
     return;
