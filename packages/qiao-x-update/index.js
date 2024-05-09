@@ -32,10 +32,9 @@ const updateApp = async (downloadUrl, appPath, appVersion, useLocalLogger) => {
     const jsonPath = path.resolve(root, './package.json');
     const jsonStr = await qiaoFile.readFile(jsonPath);
     const json = JSON.parse(jsonStr);
-    if (json.version === appVersion) {
-      logger.info(methodName, 'checkVersion', 'already lastest version');
-      return;
-    }
+    const checkVersionRes = compareVersion(appVersion, json.version);
+    logger.info(methodName, 'checkVersionRes', checkVersionRes);
+    if (!checkVersionRes) return;
   } catch (error) {
     logger.error(methodName, 'checkVersionError', error);
     return;
@@ -81,5 +80,32 @@ const updateApp = async (downloadUrl, appPath, appVersion, useLocalLogger) => {
   logger.info(methodName, 'rmRes', rmRes);
   return true;
 };
+
+function compareVersion(v1, v2) {
+  v1 = v1.split('.');
+  v2 = v2.split('.');
+  const len = Math.max(v1.length, v2.length);
+
+  while (v1.length < len) {
+    v1.push('0');
+  }
+  while (v2.length < len) {
+    v2.push('0');
+  }
+
+  for (let i = 0; i < len; i++) {
+    const num1 = parseInt(v1[i], 10);
+    const num2 = parseInt(v2[i], 10);
+
+    if (num1 > num2) {
+      return 1;
+    }
+    if (num1 < num2) {
+      return -1;
+    }
+  }
+
+  return 0;
+}
 
 exports.updateApp = updateApp;
