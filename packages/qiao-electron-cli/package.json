@@ -10,7 +10,7 @@
     "icns"
   ],
   "author": "uikoo9 <uikoo9@qq.com>",
-  "homepage": "https://qiao-electron-cli.insistime.com/",
+  "homepage": "https://qiao-electron-cli.vincentqiao.com/",
   "license": "MIT",
   "main": "index.js",
   "bin": {

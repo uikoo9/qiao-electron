@@ -7,7 +7,7 @@ electron 脚手架，详见：[一篇文章学会 Electron](https://blog.insisti
 
 ## 官网
 
-[https://qiao-electron-cli.insistime.com/#/](https://qiao-electron-cli.insistime.com/#/)
+[https://qiao-electron-cli.vincentqiao.com/#/](https://qiao-electron-cli.vincentqiao.com/#/)
 
 ## install
 
