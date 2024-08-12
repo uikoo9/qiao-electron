@@ -44,7 +44,7 @@ function getZipOptions(config) {
   // string
   if (!isArchArray) {
     return {
-      out: `${config.outPath}/${config.appName}-${config.appVersion}-${process.platform}-${config.arch}.zip`,
+      out: `${config.out}/${config.name}-${config.appVersion}-${process.platform}-${config.arch}.zip`,
       dir: getDirPath(config, config.arch),
     };
   }
@@ -53,7 +53,7 @@ function getZipOptions(config) {
   if (isArchArray) {
     return config.arch.map(function (item) {
       return {
-        out: `${config.outPath}/${config.appName}-${config.appVersion}-${process.platform}-${item}.zip`,
+        out: `${config.out}/${config.name}-${config.appVersion}-${process.platform}-${item}.zip`,
         dir: getDirPath(config, item),
       };
     });
@@ -63,9 +63,9 @@ function getZipOptions(config) {
 // get dir path
 function getDirPath(config, arch) {
   let dirPath;
-  if (process.platform === 'win32') dirPath = `${config.outPath}/${config.appName}-${process.platform}-${arch}`;
+  if (process.platform === 'win32') dirPath = `${config.out}/${config.name}-${process.platform}-${arch}`;
   if (process.platform === 'darwin')
-    dirPath = `${config.outPath}/${config.appName}-${process.platform}-${arch}/${config.appName}.app`;
+    dirPath = `${config.out}/${config.name}-${process.platform}-${arch}/${config.name}.app`;
 
   return dirPath;
 }
