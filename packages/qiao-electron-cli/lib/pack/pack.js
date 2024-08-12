@@ -1,6 +1,6 @@
 // electron pakcager
-const packager = require('electron-packager');
-const { serialHooks } = require('electron-packager/src/hooks');
+const packager = require('@electron/packager');
+const { serialHooks } = require('@electron/packager/src/hooks');
 
 // version update
 const { versionUpdate } = require('./pack-update.js');
@@ -12,7 +12,7 @@ const logger = Logger('qiao-electron-cli');
 
 /**
  * pack
- *  https://electron.github.io/electron-packager/main/interfaces/electronpackager.options.html
+ *  https://electron.github.io/@electron/packager/main/interfaces/electronpackager.options.html
  * @param {*} config
  * @returns
  */
