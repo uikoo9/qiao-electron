@@ -1,6 +1,6 @@
 // electron pakcager
 const packager = require('@electron/packager');
-const { serialHooks } = require('@electron/packager/src/hooks');
+const { serialHooks } = require('@electron/packager');
 
 // version update
 const { versionUpdate } = require('./pack-update.js');
