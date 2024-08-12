@@ -1,6 +1,6 @@
 {
   "name": "qiao-electron-cli",
-  "version": "3.9.4",
+  "version": "3.9.5",
   "description": "electron cli tools",
   "keywords": [
     "electron",
@@ -24,8 +24,8 @@
     "url": "https://github.com/uikoo9/qiao-electron/issues"
   },
   "dependencies": {
-    "electron-installer-zip": "^0.1.2",
     "@electron/packager": "^18.3.3",
+    "electron-installer-zip": "^0.1.2",
     "qiao-cli": "^4.5.1",
     "qiao-file": "^4.5.5",
     "qiao.log.js": "^3.7.1"
