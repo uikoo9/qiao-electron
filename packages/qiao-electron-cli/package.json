@@ -25,15 +25,15 @@
   },
   "dependencies": {
     "electron-installer-zip": "^0.1.2",
-    "electron-packager": "^17.1.2",
+    "@electron/packager": "^18.3.3",
     "qiao-cli": "^4.5.1",
-    "qiao-file": "^4.5.1",
+    "qiao-file": "^4.5.5",
     "qiao.log.js": "^3.7.1"
   },
   "optionalDependencies": {
-    "@electron/asar": "^3.2.9",
+    "@electron/asar": "^3.2.10",
     "appdmg": "^0.6.6",
-    "qiao-cos": "^4.5.2",
-    "qiao-zip": "^4.5.2"
+    "qiao-cos": "^4.6.6",
+    "qiao-zip": "^4.5.5"
   }
 }

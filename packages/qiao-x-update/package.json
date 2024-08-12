@@ -26,10 +26,10 @@
     "build": "qpro rollup ./rollup.config.js"
   },
   "dependencies": {
-    "qiao-downloader": "^4.5.1",
-    "qiao-file": "^4.5.1",
+    "qiao-downloader": "^4.5.6",
+    "qiao-file": "^4.5.5",
     "qiao-x-logger": "^3.8.5",
-    "qiao-zip": "^4.5.2",
+    "qiao-zip": "^4.5.5",
     "qiao.log.js": "^3.7.1"
   },
   "nx": {
