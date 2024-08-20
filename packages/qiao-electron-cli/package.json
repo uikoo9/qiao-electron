@@ -31,6 +31,7 @@
     "qiao.log.js": "^3.7.1"
   },
   "optionalDependencies": {
+    "@bitdisaster/exe-icon-extractor": "^1.0.10",
     "@electron/asar": "^3.2.10",
     "appdmg": "^0.6.6",
     "electron-wix-msi": "^5.1.3",
