@@ -24,6 +24,7 @@ module.exports = async function (config) {
   // other vars
   const root = process.cwd();
   const appPath = path.resolve(root, `${outPath}/${appName}-win32-${arch}`);
+  const outputPath = path.resolve(root, outPath);
 
   // options
   const options = {
@@ -33,7 +34,7 @@ module.exports = async function (config) {
     name: appName,
     manufacturer: appCopyright,
     version: appVersion,
-    outputDirectory: outPath,
+    outputDirectory: outputPath,
   };
 
   // log
