@@ -43,19 +43,10 @@ module.exports = async function (config) {
   console.log();
 
   // creator
-  const msiCreator = new MSICreator({
-    appDirectory: appPath,
-    description: appName,
-    exe: appName,
-    name: appName,
-    manufacturer: appCopyright,
-    version: appVersion,
-    outputDirectory: outPath,
-  });
+  const msiCreator = new MSICreator(options);
 
   // create
-  const supportBinaries = await msiCreator.create();
-  console.log(supportBinaries);
+  await msiCreator.create();
   // supportBinaries.forEach(async (binary) => {
   //   await signFile(binary);
   // });
