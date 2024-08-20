@@ -16,6 +16,7 @@ const logger = Logger('qiao-electron-cli');
 module.exports = async function (config) {
   // vars
   const arch = config.arch;
+  const icon = config.icon;
   const outPath = config.out;
   const appName = config.name;
   const appVersion = config.appVersion;
@@ -25,16 +26,22 @@ module.exports = async function (config) {
   const root = process.cwd();
   const appPath = path.resolve(root, `${outPath}/${appName}-win32-${arch}`);
   const outputPath = path.resolve(root, outPath);
+  const iconPath = path.resolve(root, icon);
 
   // options
   const options = {
     appDirectory: appPath,
-    description: appName,
-    exe: appName,
-    name: appName,
-    manufacturer: appCopyright,
-    version: appVersion,
     outputDirectory: outputPath,
+    exe: `${appName}Installer`,
+    description: appName,
+    version: appVersion,
+    name: appName,
+    icon: iconPath,
+    manufacturer: appCopyright,
+    ui: {
+      enabled: true,
+      chooseDirectory: true,
+    },
   };
 
   // log
