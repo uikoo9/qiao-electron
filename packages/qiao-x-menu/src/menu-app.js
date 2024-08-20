@@ -99,8 +99,9 @@ export const setApplicationMenu = (menus) => {
   ];
 
   // final menus
-  let finalMenus = menus && menus.length ? menus : defaultMenus;
+  const finalMenus = menus && menus.length ? menus : defaultMenus;
+  const finalMenuTemplate = Menu.buildFromTemplate(finalMenus);
 
   // set menus
-  Menu.setApplicationMenu(Menu.buildFromTemplate(finalMenus));
+  Menu.setApplicationMenu(process.platform === 'darwin' ? finalMenuTemplate : null);
 };

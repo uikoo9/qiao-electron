@@ -116,10 +116,11 @@ const setApplicationMenu = (menus) => {
   ];
 
   // final menus
-  let finalMenus = menus && menus.length ? menus : defaultMenus;
+  const finalMenus = menus && menus.length ? menus : defaultMenus;
+  const finalMenuTemplate = electron.Menu.buildFromTemplate(finalMenus);
 
   // set menus
-  electron.Menu.setApplicationMenu(electron.Menu.buildFromTemplate(finalMenus));
+  electron.Menu.setApplicationMenu(process.platform === 'darwin' ? finalMenuTemplate : null);
 };
 
 exports.setAboutVersion = setAboutVersion;
