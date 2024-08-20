@@ -32,7 +32,7 @@ module.exports = async function (config) {
   const options = {
     appDirectory: appPath,
     outputDirectory: outputPath,
-    exe: `${appName}Installer`,
+    exe: appName,
     description: appName,
     version: appVersion,
     name: appName,
