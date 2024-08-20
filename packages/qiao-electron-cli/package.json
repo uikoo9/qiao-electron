@@ -33,6 +33,7 @@
   "optionalDependencies": {
     "@electron/asar": "^3.2.10",
     "appdmg": "^0.6.6",
+    "electron-wix-msi": "^5.1.3",
     "qiao-cos": "^4.6.6",
     "qiao-zip": "^4.5.5"
   }
