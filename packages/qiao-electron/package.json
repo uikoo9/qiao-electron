@@ -1,6 +1,6 @@
 {
   "name": "qiao-electron",
-  "version": "3.9.5",
+  "version": "4.0.0",
   "description": "electron tools",
   "keywords": [
     "electron",
@@ -29,9 +29,9 @@
     "qiao-config": "^4.5.5",
     "qiao-file": "^4.5.5",
     "qiao-log": "^4.5.2",
-    "qiao-x-app": "^3.7.1",
-    "qiao-x-dialog": "^3.7.8",
-    "qiao-x-shortcut": "^3.9.0"
+    "qiao-x-app": "^4.0.0",
+    "qiao-x-dialog": "^4.0.0",
+    "qiao-x-shortcut": "^4.0.0"
   },
   "nx": {
     "namedInputs": {

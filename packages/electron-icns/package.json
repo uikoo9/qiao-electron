@@ -1,6 +1,6 @@
 {
   "name": "electron-icns",
-  "version": "3.9.5",
+  "version": "4.0.0",
   "description": "generate electron icns icon",
   "keywords": [
     "generate",
