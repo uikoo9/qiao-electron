@@ -71,7 +71,7 @@ exports.versionUpdate = async function (config) {
   }
 
   // zip
-  const zipDest = path.resolve(root, `${config.out}/update/${config.name}-${config.platform}-${version}.zip`);
+  const zipDest = path.resolve(root, `${config.out}/update/${config.name}-${version}.zip`);
   const zipRes = await zip(asarDest, zipDest);
   logger.info(methodName, 'zipSrc', asarDest);
   logger.info(methodName, 'zipDest', zipDest);
