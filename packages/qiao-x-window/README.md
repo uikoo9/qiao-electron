@@ -29,17 +29,32 @@ import { openWindowByFile } from 'qiao-x-window';
 
 ### getWindowByEvent
 
-通过本地文件打开窗口
+通过event找到窗口
 
 - event
   - 类型: [IpcMainEvent](https://www.electronjs.org/zh/docs/latest/api/structures/ipc-main-event)
   - 说明: IpcMainEvent
 - return
   - 类型: BrowserWindow
-  - 说明: 创建成功则返回 BrowserWindow 的实例
+  - 说明: 返回 BrowserWindow 的实例
 
 ```javascript
 const win = getWindowByEvent(event);
+```
+
+### getWindowByTitle
+
+通过标题找到窗口
+
+- title
+  - 类型: string
+  - 说明: 窗口标题
+- return
+  - 类型: BrowserWindow
+  - 说明: 返回 BrowserWindow 的实例
+
+```javascript
+const win = getWindowByTitle(title);
 ```
 
 ### openWindowByFile
@@ -62,7 +77,7 @@ const win = await openWindowByFile(filePath, options);
 
 ### openWindowByUrl
 
-通过本地文件打开窗口
+通过远程地址打开窗口
 
 - url
   - 类型: string

@@ -17,6 +17,18 @@ function getWindowByEvent(event) {
   return electron.BrowserWindow.fromWebContents(event.sender);
 }
 
+/**
+ * getWindowByTitle
+ * @param {*} title
+ */
+function getWindowByTitle(title) {
+  const allWindows = electron.BrowserWindow.getAllWindows();
+  for (let i = 0; i < allWindows.length; i++) {
+    const win = allWindows[i];
+    if (win.title === title) return win;
+  }
+}
+
 // electron
 
 /**
@@ -70,5 +82,6 @@ const openWindowByUrl = async (url, options) => {
 };
 
 exports.getWindowByEvent = getWindowByEvent;
+exports.getWindowByTitle = getWindowByTitle;
 exports.openWindowByFile = openWindowByFile;
 exports.openWindowByUrl = openWindowByUrl;
