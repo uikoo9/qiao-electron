@@ -35,6 +35,17 @@ async function packWin(configPath) {
     // config
     let config = require(configPath);
 
+    // custom msi
+    const winMsiConfigPath = './qiao-electron.win-msi.js';
+
+    try {
+      const rootPath = path.dirname(configPath);
+      const winMsiConfig = require(path.resolve(rootPath, winMsiConfigPath));
+      config = Object.assign({}, config, winMsiConfig);
+    } catch (error) {
+      logger.error(methodName, `can not find ${winMsiConfigPath}`);
+    }
+
     // pack
     await qiao.qec.packWin(config);
 

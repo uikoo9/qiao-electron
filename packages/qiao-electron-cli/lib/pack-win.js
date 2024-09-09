@@ -21,6 +21,7 @@ module.exports = async function (config) {
   const appName = config.name;
   const appVersion = config.appVersion;
   const appCopyright = config.appCopyright;
+  const msiUIOptions = config.msiUIOptions;
 
   // other vars
   const root = process.cwd();
@@ -38,10 +39,7 @@ module.exports = async function (config) {
     name: appName,
     icon: iconPath,
     manufacturer: appCopyright,
-    ui: {
-      enabled: true,
-      chooseDirectory: true,
-    },
+    ui: msiUIOptions,
   };
 
   // log
