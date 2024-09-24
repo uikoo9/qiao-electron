@@ -3,9 +3,10 @@ import { Menu } from 'electron';
 
 /**
  * setApplicationMenu
- * @param {*} menus 菜单数组
+ * @param {*} menus
+ * @param {*} showDevtools
  */
-export const setApplicationMenu = (menus) => {
+export const setApplicationMenu = (menus, showDevtools) => {
   const defaultMenus = [
     {
       label: 'app',
@@ -87,7 +88,9 @@ export const setApplicationMenu = (menus) => {
         },
       ],
     },
-    {
+  ];
+  if (showDevtools)
+    defaultMenus.push({
       label: '调试',
       submenu: [
         {
@@ -95,8 +98,7 @@ export const setApplicationMenu = (menus) => {
           role: 'toggleDevTools',
         },
       ],
-    },
-  ];
+    });
 
   // final menus
   const finalMenus = menus && menus.length ? menus : defaultMenus;
