@@ -1,6 +1,6 @@
 {
   "name": "qiao-sqlite",
-  "version": "4.0.0",
+  "version": "4.1.1",
   "description": "sqlite3 tools",
   "keywords": [
     "sqlite3",
