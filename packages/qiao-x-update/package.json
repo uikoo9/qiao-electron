@@ -30,7 +30,7 @@
     "qiao-file": "^4.5.5",
     "qiao-x-logger": "^4.0.0",
     "qiao-zip": "^4.5.5",
-    "qiao.log.js": "^3.7.1"
+    "qiao.log.js": "^3.7.3"
   },
   "nx": {
     "namedInputs": {
