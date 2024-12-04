@@ -181,3 +181,7 @@ dist
 packages/qiao-electron-cli/_demo
 packages/electron-icns/__tests__/tmp.iconset
 packages/electron-icns/__tests__/icon.icns
+
+
+.nx/cache
+.nx/workspace-data
