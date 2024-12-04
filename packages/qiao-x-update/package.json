@@ -7,7 +7,7 @@
     "update"
   ],
   "author": "uikoo9 <uikoo9@qq.com>",
-  "homepage": "https://code.insistime.com/#qiao-x-update",
+  "homepage": "https://code.vincentqiao.com/#qiao-x-update",
   "license": "MIT",
   "main": "index.js",
   "module": "src/index.js",

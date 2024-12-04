@@ -10,7 +10,7 @@
     "mac"
   ],
   "author": "uikoo9 <uikoo9@qq.com>",
-  "homepage": "https://code.insistime.com/#electron-icns",
+  "homepage": "https://code.vincentqiao.com/#electron-icns",
   "license": "MIT",
   "main": "index.js",
   "module": "src/index.js",

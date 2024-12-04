@@ -42,7 +42,7 @@ import { updateApp } from 'qiao-x-update';
   - 说明: 更新的版本号
 - useLocalLogger
   - 类型: boolean
-  - 说明: 是否使用本地日志，传true需要配合[https://code.insistime.com/#/qiao-x-logger](https://code.insistime.com/#/qiao-x-logger)使用
+  - 说明: 是否使用本地日志，传true需要配合[https://code.vincentqiao.com/#/qiao-x-logger](https://code.vincentqiao.com/#/qiao-x-logger)使用
 - return
   - 类型: boolean
   - 说明: 是否成功
