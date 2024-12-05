@@ -3,7 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/qiao-electron.svg?style=flat-square)](https://www.npmjs.org/package/qiao-electron)
 [![npm downloads](https://img.shields.io/npm/dm/qiao-electron.svg?style=flat-square)](https://npm-stat.com/charts.html?package=qiao-electron)
 
-封装了一些常见的 electron 主进程操作，详见：[一篇文章学会 Electron](https://blog.insistime.com/electron)
+封装了一些常见的 electron 主进程操作，详见：[一篇文章学会 Electron](https://blog.vincentqiao.com/electron)
 
 ## install
 

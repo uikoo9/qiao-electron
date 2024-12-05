@@ -3,7 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/qiao-x-update.svg?style=flat-square)](https://www.npmjs.org/package/qiao-x-update)
 [![npm downloads](https://img.shields.io/npm/dm/qiao-x-update.svg?style=flat-square)](https://npm-stat.com/charts.html?package=qiao-x-update)
 
-Electron 中增量更新包相关操作，详见：[Electron-开发实践：几种更新方式](https://blog.insistime.com/electron-update)
+Electron 中增量更新包相关操作，详见：[Electron-开发实践：几种更新方式](https://blog.vincentqiao.com/electron-update)
 
 ## install
 

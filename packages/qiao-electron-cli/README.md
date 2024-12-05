@@ -3,7 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/qiao-electron-cli.svg?style=flat-square)](https://www.npmjs.org/package/qiao-electron-cli)
 [![npm downloads](https://img.shields.io/npm/dm/qiao-electron-cli.svg?style=flat-square)](https://npm-stat.com/charts.html?package=qiao-electron-cli)
 
-electron 脚手架，详见：[一篇文章学会 Electron](https://blog.insistime.com/electron)
+electron 脚手架，详见：[一篇文章学会 Electron](https://blog.vincentqiao.com/electron)
 
 ## 官网
 

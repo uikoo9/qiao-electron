@@ -3,7 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/qiao-x-logger.svg?style=flat-square)](https://www.npmjs.org/package/qiao-x-logger)
 [![npm downloads](https://img.shields.io/npm/dm/qiao-x-logger.svg?style=flat-square)](https://npm-stat.com/charts.html?package=qiao-x-logger)
 
-Electron 中日志相关的操作封装，详见：[Electron-开发实践：本地日志](https://blog.insistime.com/electron-logger)
+Electron 中日志相关的操作封装，详见：[Electron-开发实践：本地日志](https://blog.vincentqiao.com/electron-logger)
 
 ## install
 

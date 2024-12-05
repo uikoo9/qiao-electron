@@ -3,7 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/qiao-x-menu.svg?style=flat-square)](https://www.npmjs.org/package/qiao-x-menu)
 [![npm downloads](https://img.shields.io/npm/dm/qiao-x-menu.svg?style=flat-square)](https://npm-stat.com/charts.html?package=qiao-x-menu)
 
-Electron 中 Menu 相关的操作封装，[Electron-开发实践：定制 Mac 菜单](https://blog.insistime.com/electron-mac-menu)
+Electron 中 Menu 相关的操作封装，[Electron-开发实践：定制 Mac 菜单](https://blog.vincentqiao.com/electron-mac-menu)
 
 ## install
 

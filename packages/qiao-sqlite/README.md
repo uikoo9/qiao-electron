@@ -3,7 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/qiao-sqlite.svg?style=flat-square)](https://www.npmjs.org/package/qiao-sqlite)
 [![npm downloads](https://img.shields.io/npm/dm/qiao-sqlite.svg?style=flat-square)](https://npm-stat.com/charts.html?package=qiao-sqlite)
 
-本地数据库 sqlite 常见 api 封装，详见：[一篇文章学会 SQLite](https://blog.insistime.com/sqlite)
+本地数据库 sqlite 常见 api 封装，详见：[一篇文章学会 SQLite](https://blog.vincentqiao.com/sqlite)
 
 ## install
 

@@ -3,7 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/qiao-x-shortcut.svg?style=flat-square)](https://www.npmjs.org/package/qiao-x-shortcut)
 [![npm downloads](https://img.shields.io/npm/dm/qiao-x-shortcut.svg?style=flat-square)](https://npm-stat.com/charts.html?package=qiao-x-shortcut)
 
-Electron 中快捷键相关的操作封装，详见：[Electron-开发实践：注册快捷键](https://blog.insistime.com/electron-shortcut)
+Electron 中快捷键相关的操作封装，详见：[Electron-开发实践：注册快捷键](https://blog.vincentqiao.com/electron-shortcut)
 
 ## install
 
