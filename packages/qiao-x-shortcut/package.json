@@ -1,6 +1,6 @@
 {
   "name": "qiao-x-shortcut",
-  "version": "4.1.1",
+  "version": "4.1.3",
   "description": "electron shortcut tool",
   "keywords": [
     "electron",
@@ -43,7 +43,7 @@
     }
   },
   "dependencies": {
-    "qiao-x-logger": "^4.1.1",
+    "qiao-x-logger": "^4.1.3",
     "qiao.log.js": "^3.7.3"
   }
 }
