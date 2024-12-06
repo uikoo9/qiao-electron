@@ -29,7 +29,8 @@ export const updateApp = async (downloadUrl, appPath, appVersion, useLocalLogger
   const logger = useLocalLogger ? localLogger : consoleLogger;
 
   // root
-  const root = appPath;
+  const winAppPath = path.resolve(process.cwd(), './resources/app');
+  const root = process.platform === 'darwin' ? appPath : winAppPath;
   logger.info(methodName, 'root', root);
 
   // check version
